@@ -1,0 +1,118 @@
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: 80px;
+  /* 40px here + 120px of the previous section = 160px between sections */
+  padding: 40px 0 120px;
+  background: var(--color-white);
+}
+
+.header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  width: 100%;
+  max-width: var(--page-max-width);
+  margin: 0 auto;
+  padding: 0 var(--page-padding-x);
+}
+
+/* Single featured case: title stands alone, centered like the site's
+   other single-headline sections (no arrows to balance against) */
+.headerCentered {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  max-width: var(--page-max-width);
+  margin: 0 auto;
+  padding: 0 var(--page-padding-x);
+}
+
+.title {
+  font-family: var(--font-display);
+  font-size: 48px;
+  font-weight: 600;
+  letter-spacing: -1.92px;
+  line-height: 1;
+  text-align: center;
+}
+
+.header .title {
+  text-align: left;
+}
+
+/* Same full-bleed scroll track pattern as the characters carousel.
+   Extra vertical padding leaves room for the hover scale-up. */
+.track {
+  --track-inset: max(
+    var(--page-padding-x),
+    calc((100% - var(--page-max-width)) / 2 + var(--page-padding-x))
+  );
+  display: flex;
+  gap: 20px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-padding-inline: var(--track-inset);
+  padding: 12px var(--track-inset);
+  scrollbar-width: none;
+}
+
+.track::-webkit-scrollbar {
+  display: none;
+}
+
+/* Single featured case: centered block, no scroll track, card fills the row */
+.single {
+  width: 100%;
+  max-width: var(--page-max-width);
+  margin: 0 auto;
+  padding: 0 var(--page-padding-x);
+}
+
+/* ---------- Tablet (768–1199px) ---------- */
+@media (max-width: 1199px) {
+  .section {
+    gap: 60px;
+    /* 82px here + 24px of the previous section = 106px between sections */
+    padding: 82px 0 24px;
+  }
+
+  .header,
+  .headerCentered {
+    padding: 0 24px;
+  }
+
+  .title {
+    font-size: 48px;
+    letter-spacing: -1.92px;
+    max-width: 100%;
+  }
+
+  .track {
+    --track-inset: 24px;
+  }
+
+  .single {
+    padding: 0 24px;
+  }
+}
+
+/* ---------- Mobile (<768px) ---------- */
+@media (max-width: 767px) {
+  .section {
+    padding: 82px 0 24px;
+  }
+
+  .header,
+  .headerCentered {
+    padding: 0 16px;
+  }
+
+  .track {
+    --track-inset: 16px;
+  }
+
+  .single {
+    padding: 0 16px;
+  }
+}

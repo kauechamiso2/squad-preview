@@ -1,0 +1,188 @@
+.section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: var(--page-max-width);
+  margin: 0 auto;
+  /* 40px here + 120px of the previous section = 160px between sections */
+  padding: 40px var(--page-padding-x) 120px;
+  background: var(--color-white);
+}
+
+.content {
+  display: flex;
+  align-items: center;
+  gap: 69px;
+}
+
+.textCol {
+  display: flex;
+  flex-direction: column;
+  gap: 60px;
+  width: 453px;
+  flex-shrink: 0;
+}
+
+.heading {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.eyebrow {
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.2;
+  text-transform: uppercase;
+  color: #6d7cff;
+}
+
+.title {
+  font-family: var(--font-display);
+  font-size: 40px;
+  font-weight: 600;
+  letter-spacing: -1.6px;
+  line-height: 1;
+}
+
+/* ---------- Photo card with overlaid stats ---------- */
+.photoCard {
+  position: relative;
+  width: 643px;
+  height: 476px;
+  border-radius: 16px;
+  overflow: hidden;
+  background: #f0efff;
+  flex-shrink: 0;
+}
+
+/* The duotone/darkening treatment is baked into the exported image */
+.photo {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Stats centered over the photo */
+.stats {
+  position: absolute;
+  z-index: 1;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: min(545px, calc(100% - 48px));
+  color: var(--color-white);
+}
+
+.divider {
+  width: 1px;
+  height: 67px;
+  background: rgba(255, 255, 255, 0.45);
+  flex-shrink: 0;
+}
+
+.stat {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.statValue {
+  font-size: 48px;
+  font-weight: 600;
+  letter-spacing: -0.09em;
+  line-height: 1.1;
+  color: var(--color-white);
+}
+
+.statPrefix {
+  color: #9b93f9;
+}
+
+.statLabel {
+  font-size: 19px;
+  font-weight: 500;
+  line-height: 1.2;
+  text-transform: uppercase;
+  color: var(--color-white);
+}
+
+/* ---------- Tablet (768–1199px) ---------- */
+@media (max-width: 1199px) {
+  .section {
+    /* 82px here + 24px of the previous section = 106px between sections */
+    padding: 82px 24px 24px;
+  }
+
+  .content {
+    flex-direction: column;
+    gap: 40px;
+    width: 100%;
+    max-width: 786px;
+  }
+
+  .textCol {
+    width: 100%;
+    gap: 40px;
+  }
+
+  .heading {
+    align-items: center;
+    text-align: center;
+    width: 100%;
+  }
+
+  .photoCard {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 802 / 388;
+  }
+}
+
+/* ---------- Mobile (<768px) ---------- */
+@media (max-width: 767px) {
+  .section {
+    padding: 82px 16px 24px;
+  }
+
+  .title {
+    font-size: clamp(38px, 12vw, 48px);
+    letter-spacing: -0.04em;
+  }
+
+  .photoCard {
+    aspect-ratio: 398 / 444;
+  }
+
+  /* Stats stack vertically with horizontal dividers */
+  .stats {
+    flex-direction: column;
+    justify-content: center;
+    gap: 24px;
+    width: calc(100% - 48px);
+    text-align: center;
+  }
+
+  .divider {
+    width: 109px;
+    height: 1px;
+  }
+
+  .stat {
+    align-items: center;
+    gap: 10px;
+  }
+
+  .statValue {
+    font-size: 35px;
+  }
+
+  .statLabel {
+    font-size: 14px;
+  }
+}

@@ -1,0 +1,107 @@
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: 80px;
+  /* 40px here + 120px of hero bottom padding = 160px between sections */
+  padding: 40px 0 120px;
+  background: var(--color-white);
+}
+
+.header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  width: 100%;
+  max-width: var(--page-max-width);
+  margin: 0 auto;
+  padding: 0 var(--page-padding-x);
+}
+
+.headerText {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  width: 571px;
+}
+
+.title {
+  font-family: var(--font-display);
+  font-size: 54px;
+  font-weight: 600;
+  letter-spacing: -2.16px;
+  line-height: 0.9;
+}
+
+.subtitle {
+  font-size: 20px;
+  letter-spacing: -0.8px;
+  line-height: 1.4;
+  color: var(--color-text-secondary);
+}
+
+/* Scrollable track: spans the full viewport width, scrollbar hidden.
+   The inline padding aligns the first/last card with the 1440px content area. */
+.track {
+  --track-inset: max(
+    var(--page-padding-x),
+    calc((100% - var(--page-max-width)) / 2 + var(--page-padding-x))
+  );
+  display: flex;
+  gap: 20px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-padding-inline: var(--track-inset);
+  padding: 4px var(--track-inset) 12px;
+  scrollbar-width: none;
+}
+
+.track::-webkit-scrollbar {
+  display: none;
+}
+
+/* ---------- Tablet (768–1199px) ---------- */
+@media (max-width: 1199px) {
+  .section {
+    gap: 60px;
+    /* 82px top (+24px of hero) keeps the 106px inter-section rhythm;
+       24px bottom pairs with the next section's 94px top */
+    padding: 82px 0 24px;
+  }
+
+  .header {
+    justify-content: center;
+    padding: 0 24px;
+  }
+
+  .headerText {
+    width: 100%;
+    max-width: 786px;
+    align-items: center;
+    text-align: center;
+  }
+
+  .title {
+    font-size: 56px;
+    letter-spacing: -2.24px;
+  }
+
+  .subtitle {
+    font-size: 16px;
+    letter-spacing: -0.64px;
+  }
+
+  .track {
+    --track-inset: 24px;
+  }
+}
+
+/* ---------- Mobile (<768px) ---------- */
+@media (max-width: 767px) {
+  .header {
+    padding: 0 16px;
+  }
+
+  .track {
+    --track-inset: 16px;
+  }
+}

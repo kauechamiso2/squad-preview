@@ -1,0 +1,151 @@
+.section {
+  max-width: var(--page-max-width);
+  margin: 0 auto;
+  padding: 80px var(--page-padding-x);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  list-style: none;
+}
+
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  background: var(--color-white);
+  border-radius: 16px;
+  /* Figma: drop-shadow(0px -4px 4px rgba(0,0,0,0.05)) — the card's only effect */
+  box-shadow: 0 -4px 4px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Hover: Maky-pink stroke segment traveling around the card
+   (same pattern as the BigNumbers cards) */
+.card::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: 16px;
+  padding: 1.5px;
+  background: conic-gradient(
+    from var(--angle),
+    transparent 0%,
+    transparent 55%,
+    #f45dac 70%,
+    #f9aed5 84%,
+    #ffd6ec 96%,
+    transparent 100%
+  );
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 0.25s ease;
+  animation: stroke-orbit 3s linear infinite;
+  pointer-events: none;
+}
+
+.card:hover {
+  transform: scale(1.02);
+}
+
+.card:hover::before {
+  opacity: 1;
+}
+
+@keyframes stroke-orbit {
+  to {
+    --angle: 360deg;
+  }
+}
+
+/* Illustration mockup (exported from Figma) sits at the top */
+.illus {
+  width: 100%;
+  height: auto;
+  border-radius: 16px 16px 0 0;
+}
+
+/* Caption is real text, bottom-aligned like in the design */
+.caption {
+  margin-top: auto;
+  padding: 4px 32px 40px;
+  text-align: center;
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 1.1;
+  letter-spacing: -0.8px;
+  color: #090909;
+}
+
+/* --- Tablet & mobile: horizontal scroll, cards keep their size --- */
+@media (max-width: 1199px) {
+  .section {
+    padding: 64px 24px;
+  }
+
+  .grid {
+    display: flex;
+    grid-template-columns: none;
+    gap: 16px;
+    overflow-x: auto;
+    scroll-snap-type: x proximity;
+    -webkit-overflow-scrolling: touch;
+    /* Let the row scroll edge-to-edge while the first card lines up with the
+       section padding */
+    margin: 0 -24px;
+    padding: 0 24px;
+    scrollbar-width: none;
+  }
+
+  .grid::-webkit-scrollbar {
+    display: none;
+  }
+
+  .card {
+    flex: 0 0 276px;
+    width: 276px;
+    scroll-snap-align: start;
+  }
+}
+
+@media (max-width: 767px) {
+  .section {
+    padding: 48px 16px;
+  }
+
+  .grid {
+    margin: 0 -16px;
+    padding: 0 16px;
+  }
+
+  .card {
+    flex-basis: 260px;
+    width: 260px;
+  }
+
+  .caption {
+    font-size: 18px;
+    padding: 4px 24px 32px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card,
+  .card:hover {
+    transition: none;
+    transform: none;
+  }
+
+  .card:hover::before {
+    animation: none;
+  }
+}

@@ -1,0 +1,186 @@
+.hero {
+  max-width: var(--page-max-width);
+  margin: 0 auto;
+  padding: 120px var(--page-padding-x) 140px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 120px;
+  /* Clip only horizontal spill (character arm) — vertical overflow of the
+     dashboard/character stays visible. */
+  overflow-x: clip;
+}
+
+/* --- Text block --- */
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 40px;
+  text-align: center;
+}
+
+.title {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 64px;
+  line-height: 0.9;
+  letter-spacing: -2.56px;
+  color: var(--color-black);
+}
+
+.subtitle {
+  max-width: 688px;
+  font-size: 20px;
+  line-height: 1.4;
+  letter-spacing: -0.8px;
+  color: var(--color-text-secondary);
+}
+
+/* --- Visual (gradient card + dashboard + character) --- */
+.visual {
+  position: relative;
+  width: 100%;
+}
+
+.card {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1164 / 647;
+  border-radius: 24px;
+  background: linear-gradient(180deg, #ffffff 0%, #ebfbfb 50%, #1ab0b3 100%);
+}
+
+/* Dashboard mockup floats slightly above the card. The PNG is the Figma node's
+   full render (panel + soft shadow bleed), so it's positioned by those bounds —
+   the white panel then lands ~36px inside the card, a thin gradient frame like
+   in Figma (not a thick "moldura"). */
+.dashboard {
+  position: absolute;
+  top: -11%;
+  left: 1.85%;
+  width: 96.3%;
+  height: auto;
+  transform-origin: center;
+  transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Subtle scale on hover — only the interface, never the gradient behind it */
+.dashboard:hover {
+  transform: scale(1.02);
+}
+
+/* Mobile-only zoomed dashboard crop (hidden on desktop/tablet) */
+.dashboardMobile {
+  display: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dashboard {
+    transition: none;
+  }
+
+  .dashboard:hover {
+    transform: none;
+  }
+}
+
+/* Soft ground shadow under the character's feet (Figma "Ellipse 37") */
+.characterShadow {
+  position: absolute;
+  left: 97%;
+  top: 112%;
+  width: 16%;
+  aspect-ratio: 262.5 / 143.3;
+  transform: translate(-50%, -50%) rotate(-11deg);
+  background: radial-gradient(
+    ellipse 50% 50% at 50% 50%,
+    rgba(120, 110, 115, 0.36) 0%,
+    rgba(120, 110, 115, 0) 70%
+  );
+  pointer-events: none;
+}
+
+/* Jumping character overlaps the card and spills past the bottom-right */
+.character {
+  position: absolute;
+  top: 21%;
+  left: 86.9%;
+  width: 21.4%;
+  height: auto;
+}
+
+/* --- Tablet --- */
+@media (max-width: 1199px) {
+  .hero {
+    padding: 96px 24px 110px;
+    gap: 96px;
+  }
+
+  .title {
+    font-size: 48px;
+    letter-spacing: -1.92px;
+  }
+
+  .subtitle {
+    font-size: 18px;
+    letter-spacing: -0.6px;
+  }
+
+  /* Pull the character in so it doesn't spill past the narrower padding */
+  .character {
+    left: 74%;
+  }
+}
+
+/* --- Mobile --- */
+@media (max-width: 767px) {
+  .hero {
+    padding: 64px 16px 80px;
+    gap: 56px;
+  }
+
+  .content {
+    gap: 28px;
+  }
+
+  .title {
+    font-size: 34px;
+    letter-spacing: -1.2px;
+  }
+
+  .subtitle {
+    font-size: 16px;
+    letter-spacing: -0.4px;
+  }
+
+  /* Visual: zoomed dashboard crop bleeding off the right, character centered */
+  .card {
+    aspect-ratio: 380 / 430;
+    overflow: hidden;
+    border-radius: 20px;
+  }
+
+  .dashboard {
+    display: none;
+  }
+
+  .dashboardMobile {
+    display: block;
+    position: absolute;
+    top: 6%;
+    left: 6%;
+    width: 104%;
+    height: auto;
+  }
+
+  .characterShadow {
+    display: none;
+  }
+
+  .character {
+    top: 44%;
+    left: 19%;
+    width: 47%;
+  }
+}

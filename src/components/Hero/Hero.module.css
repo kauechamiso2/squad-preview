@@ -1,0 +1,335 @@
+/*
+ * Desktop (≥1200px): two columns — text content on the left, app preview
+ * flush with the right edge. "Na mídia" sits below the content, beside the image.
+ * Tablet (768–1199px) and Mobile (<768px): single centered column, with the
+ * app preview between the CTA and the "Na mídia" block.
+ */
+
+.hero {
+  display: grid;
+  grid-template-columns: 571px minmax(0, 612px);
+  /* Row 1 hugs the text content so "Na mídia" sits right below the CTA */
+  grid-template-rows: max-content 1fr;
+  grid-template-areas:
+    'content visual'
+    'media visual';
+  column-gap: 119px;
+  row-gap: 40px;
+  align-items: start;
+  max-width: var(--page-max-width);
+  margin: 0 auto;
+  /* No right padding: the app preview sits flush with the right edge (571 + 119 + 612 + 138 = 1440) */
+  padding: 120px 0 120px var(--page-padding-x);
+  background: var(--color-white);
+}
+
+.content {
+  grid-area: content;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 40px;
+}
+
+/* Announcement pill — compact, like the ClickUp/Brain² label */
+.announcement {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px 8px 16px;
+  background: var(--color-white);
+  border: 1px solid var(--color-border);
+  border-radius: 360px;
+}
+
+/* Hover: a thin brand-gradient ring orbits the pill (same technique as the
+   Pricing featured card's border) */
+.announcement::after {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  border-radius: 360px;
+  padding: 1.5px;
+  background: conic-gradient(
+    from var(--angle),
+    #8aefd4,
+    #b89afa,
+    #f45dac,
+    #8aefd4
+  );
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  animation: stroke-orbit 4s linear infinite;
+  pointer-events: none;
+}
+
+.announcement:hover::after {
+  opacity: 1;
+}
+
+@keyframes stroke-orbit {
+  to {
+    --angle: 360deg;
+  }
+}
+
+.announcementText {
+  font-size: 15px;
+  letter-spacing: -0.3px;
+  line-height: 1.4;
+  white-space: nowrap;
+}
+
+.announcementHighlight {
+  font-weight: 600;
+  background: var(--gradient-brand);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+.announcementIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  border-radius: 360px;
+  background: var(--color-white);
+  overflow: hidden;
+}
+
+.announcementIcon img {
+  width: 16px;
+  height: 16px;
+  transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.announcement:hover .announcementIcon img {
+  transform: translateY(-2px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .announcement::after {
+    animation: none;
+  }
+
+  .announcementIcon img {
+    transition: none;
+  }
+}
+
+/* Headline */
+.title {
+  font-family: var(--font-display);
+  font-size: 78px;
+  font-weight: 600;
+  letter-spacing: -3.12px;
+  line-height: 0.9;
+}
+
+.subtitle {
+  font-size: 20px;
+  letter-spacing: -0.8px;
+  line-height: 1.4;
+  color: var(--color-text-secondary);
+}
+
+/* CTA */
+.ctaRow {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  width: 100%;
+}
+
+.ctaNote {
+  font-size: 16px;
+  letter-spacing: -0.64px;
+  line-height: 1.4;
+  color: var(--color-text-secondary);
+}
+
+/* Media */
+.media {
+  grid-area: media;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 40px;
+}
+
+.mediaTitle {
+  font-size: 16px;
+  font-weight: 500;
+  letter-spacing: -0.64px;
+  line-height: 1.4;
+}
+
+.mediaLogos {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+}
+
+.mediaTrack {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+}
+
+/* The duplicated track only exists for the mobile marquee */
+.mediaTrackClone {
+  display: none;
+}
+
+.mediaLogo {
+  width: 116px;
+  height: 34px;
+  object-fit: contain;
+}
+
+/* App preview */
+.visual {
+  grid-area: visual;
+  display: block;
+  min-width: 0;
+  width: 612px;
+  height: 776px;
+}
+
+.visualImage {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* ---------- Tablet (768–1199px) ---------- */
+@media (max-width: 1199px) {
+  .hero {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+    padding: 24px;
+  }
+
+  .content {
+    align-items: center;
+    gap: 24px;
+    width: 100%;
+    max-width: 786px;
+    text-align: center;
+  }
+
+  .title {
+    font-size: 68px;
+    letter-spacing: -2.72px;
+  }
+
+  .subtitle {
+    font-size: 16px;
+    letter-spacing: -0.64px;
+  }
+
+  .ctaRow {
+    width: auto;
+    justify-content: center;
+  }
+
+  .ctaNote {
+    text-align: left;
+  }
+
+  .visual {
+    width: 100%;
+    max-width: 786px;
+    height: auto;
+    aspect-ratio: 786 / 523;
+  }
+
+  .media {
+    align-items: center;
+    gap: 24px;
+    width: 100%;
+  }
+
+  .mediaLogos {
+    gap: 54px;
+  }
+
+  .mediaLogo {
+    width: 156px;
+    height: 46px;
+  }
+}
+
+/* ---------- Mobile (<768px) ---------- */
+@media (max-width: 767px) {
+  .hero {
+    padding: 24px 16px;
+  }
+
+  .visual {
+    aspect-ratio: 398 / 523;
+  }
+
+  .title {
+    font-size: 42px;
+    letter-spacing: -0.04em;
+  }
+
+  /* Infinite auto-scrolling marquee */
+  .mediaLogos {
+    width: 100vw;
+    max-width: none;
+    align-self: center;
+    overflow: hidden;
+    gap: 40px;
+    /* Fades the logos in/out at the edges */
+    mask-image: linear-gradient(
+      90deg,
+      transparent,
+      black 10%,
+      black 90%,
+      transparent
+    );
+  }
+
+  .mediaTrack {
+    flex-shrink: 0;
+    animation: marquee 22s linear infinite;
+  }
+
+  .mediaTrackClone {
+    display: flex;
+  }
+
+  .mediaLogo {
+    width: 79px;
+    height: 23px;
+  }
+
+  @keyframes marquee {
+    to {
+      /* Own width + the 40px gap between the two tracks */
+      transform: translateX(calc(-100% - 40px));
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .mediaTrack {
+      animation: none;
+    }
+  }
+}

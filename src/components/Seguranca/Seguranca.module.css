@@ -1,0 +1,349 @@
+.section {
+  /* Extra breathing room around this block: 80px + the neighbours' 120px/40px */
+  padding: 80px var(--page-padding-x) 160px;
+  max-width: var(--page-max-width);
+  margin: 0 auto;
+  background: var(--color-white);
+}
+
+/* Gradient headline (dark on the left melting to gray on the right) */
+.title {
+  font-family: var(--font-display);
+  font-size: 72px;
+  font-weight: 600;
+  letter-spacing: -2.88px;
+  line-height: 1;
+  text-align: center;
+  background: linear-gradient(90deg, #222222 0%, #7c7c7c 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+/* Wrapper that anchors the full-width line and the junction dots */
+.panelBox {
+  position: relative;
+  max-width: 1164px;
+  margin: 96px auto 0;
+}
+
+/* Full-width line through the vertical middle of the panel; the panel's
+   opaque background hides it, so it only shows from the screen edges in */
+.line {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100vw;
+  height: 1px;
+  transform: translate(-50%, -50%);
+  background: #ccdae2;
+}
+
+/* Dots where the line meets the panel border */
+.dot {
+  position: absolute;
+  z-index: 2;
+  top: 50%;
+  width: 11px;
+  height: 11px;
+  margin-top: -5.5px;
+  border-radius: 50%;
+  background: #ccdae2;
+}
+
+.dotLeft {
+  left: -5.5px;
+}
+
+.dotRight {
+  right: -5.5px;
+}
+
+/* Single light panel with the three features side by side */
+.panel {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  min-height: 226px;
+  padding: 30px 24px;
+  border: 1px solid #eef3f6;
+  border-radius: 24px;
+  background: #eef3f6;
+}
+
+/* High-tech light run (8s cycle): a streak comes in along the left
+   line, orbits the whole panel border and leaves along the right line */
+.panel::after {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  padding: 1.5px;
+  border-radius: 24px;
+  background: conic-gradient(
+    from calc(var(--angle) - 60deg),
+    transparent 0deg,
+    rgba(94, 137, 163, 0.14) 24deg,
+    rgba(94, 137, 163, 0.55) 46deg,
+    #5e89a3 56deg,
+    rgba(94, 137, 163, 0.25) 59.5deg,
+    transparent 60deg,
+    transparent 360deg
+  );
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  pointer-events: none;
+  opacity: 0;
+  animation: ring-run 10s linear infinite;
+}
+
+/* Orbit window: enters at the left junction (270°), does 1.5 laps and
+   hands off at the right junction (90° + 720°) */
+@keyframes ring-run {
+  0%,
+  14% {
+    --angle: 270deg;
+    opacity: 0;
+  }
+
+  16% {
+    opacity: 1;
+  }
+
+  84% {
+    opacity: 1;
+  }
+
+  86%,
+  100% {
+    --angle: 1170deg;
+    opacity: 0;
+  }
+}
+
+/* Streaks that cross the side lines (width = gap between the screen
+   edge and the panel, at any viewport) */
+.sweepLeft,
+.sweepRight {
+  position: absolute;
+  z-index: 2;
+  top: 50%;
+  width: calc(50vw - 50%);
+  height: 3px;
+  margin-top: -1.5px;
+  background-image: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(94, 137, 163, 0.15) 25%,
+    rgba(94, 137, 163, 0.55) 60%,
+    #5e89a3 82%,
+    rgba(94, 137, 163, 0.2) 95%,
+    transparent 100%
+  );
+  background-repeat: no-repeat;
+  background-size: 180px 100%;
+  background-position-x: -180px;
+  pointer-events: none;
+}
+
+.sweepLeft {
+  right: 100%;
+  animation: sweep-in 10s linear infinite;
+}
+
+.sweepRight {
+  left: 100%;
+  animation: sweep-out 10s linear infinite;
+}
+
+@keyframes sweep-in {
+  0% {
+    background-position-x: -180px;
+    opacity: 1;
+  }
+
+  14% {
+    background-position-x: calc(100% + 180px);
+    opacity: 1;
+  }
+
+  14.1%,
+  100% {
+    background-position-x: calc(100% + 180px);
+    opacity: 0;
+  }
+}
+
+@keyframes sweep-out {
+  0%,
+  85.9% {
+    background-position-x: -180px;
+    opacity: 0;
+  }
+
+  86% {
+    background-position-x: -180px;
+    opacity: 1;
+  }
+
+  100% {
+    background-position-x: calc(100% + 180px);
+    opacity: 1;
+  }
+}
+
+.card {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 13px;
+}
+
+/* Vertical divider between the columns */
+.card + .card {
+  position: relative;
+  padding-left: 21px;
+}
+
+.card + .card::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 1px;
+  height: 167px;
+  background: #d9e0e5;
+}
+
+.cardHead {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.cardIcon {
+  flex-shrink: 0;
+  color: var(--color-black);
+}
+
+.cardTitle {
+  font-size: 19.5px;
+  font-weight: 600;
+  letter-spacing: -0.78px;
+  line-height: 1.1;
+  color: var(--color-black);
+}
+
+.cardText {
+  font-size: 14px;
+  letter-spacing: -0.56px;
+  line-height: 1.4;
+  color: var(--color-black);
+}
+
+/* Blur-in that replays on every view: the cards remount with .cardIn
+   when the panel enters the viewport and the entrance runs again.
+   Without .cardIn the content is fully visible — it never depends on
+   JS or on the animation actually running. */
+.cardIn {
+  animation: card-in 0.7s ease backwards;
+}
+
+.cardIn:nth-child(2) {
+  animation-delay: 0.12s;
+}
+
+.cardIn:nth-child(3) {
+  animation-delay: 0.24s;
+}
+
+@keyframes card-in {
+  from {
+    opacity: 0;
+    filter: blur(10px);
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    filter: blur(0);
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cardIn {
+    animation: none;
+  }
+
+  .panel::after,
+  .sweepLeft,
+  .sweepRight {
+    display: none;
+  }
+}
+
+/* ---------- Tablet (768–1199px) ---------- */
+@media (max-width: 1199px) {
+  .section {
+    /* Extra breathing room around this block on top of the 106px rhythm */
+    padding: 106px 24px 48px;
+  }
+
+  .title {
+    font-size: 48px;
+    letter-spacing: -1.92px;
+  }
+
+  .panelBox {
+    margin-top: 40px;
+  }
+
+  .panel {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 24px;
+    min-height: 0;
+    padding: 24px;
+  }
+
+  /* Dividers become horizontal when stacked */
+  .card + .card {
+    padding-left: 0;
+    padding-top: 25px;
+  }
+
+  .card + .card::before {
+    left: 0;
+    right: 0;
+    top: 0;
+    transform: none;
+    width: auto;
+    height: 1px;
+  }
+}
+
+/* ---------- Mobile (<768px) ---------- */
+@media (max-width: 767px) {
+  .section {
+    padding: 106px 16px 48px;
+  }
+
+  .title {
+    font-size: clamp(34px, 10.5vw, 42px);
+    letter-spacing: -0.04em;
+  }
+
+  .panel {
+    padding: 24px 20px;
+  }
+}

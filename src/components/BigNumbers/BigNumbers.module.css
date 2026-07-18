@@ -1,0 +1,289 @@
+.section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 80px;
+  max-width: var(--page-max-width);
+  margin: 0 auto;
+  /* 40px here + 120px of the previous section = 160px between sections */
+  padding: 40px var(--page-padding-x) 120px;
+  background: var(--color-white);
+}
+
+.heading {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  max-width: 928px;
+  text-align: center;
+}
+
+.title {
+  font-family: var(--font-display);
+  font-size: 48px;
+  font-weight: 600;
+  letter-spacing: -1.92px;
+  line-height: 0.9;
+}
+
+.subtitle {
+  font-size: 24px;
+  letter-spacing: -0.96px;
+  line-height: 1.4;
+  color: var(--color-text-secondary);
+}
+
+.bottom {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  width: 100%;
+}
+
+.cards {
+  display: flex;
+  align-items: stretch;
+  gap: 20px;
+  list-style: none;
+}
+
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 80px;
+  flex: 1;
+  min-width: 0;
+  padding: 40px;
+  border: 1px solid var(--color-border);
+  border-radius: 16px;
+  box-shadow: 0 2px 6.8px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Hover: slight scale-up + colored stroke circling the card
+   (same palette as the label gradient, via --stroke-* per card) */
+.card::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: 16px;
+  padding: 1.5px;
+  background: conic-gradient(
+    from var(--angle),
+    transparent 0%,
+    transparent 55%,
+    var(--stroke-1) 70%,
+    var(--stroke-2) 84%,
+    var(--stroke-3) 96%,
+    transparent 100%
+  );
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 0.25s ease;
+  animation: stroke-orbit 3s linear infinite;
+  pointer-events: none;
+}
+
+.card:hover {
+  transform: scale(1.02);
+}
+
+.card:hover::before {
+  opacity: 1;
+}
+
+@keyframes stroke-orbit {
+  to {
+    --angle: 360deg;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card,
+  .card::before {
+    transition: none;
+    animation: none;
+  }
+
+  .card:hover {
+    transform: none;
+  }
+}
+
+.stat {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.label {
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.2;
+  text-transform: uppercase;
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+.gradientRoi {
+  background-image: linear-gradient(90deg, #7cc870, #b3ddf2 54.327%, #ffd2ea);
+}
+
+.gradientReceita {
+  background-image: linear-gradient(90deg, #6d7cff, #b3ddf2 54.327%, #f45dac);
+}
+
+.gradientHoras {
+  background-image: linear-gradient(90deg, #6d7cff, #0091ff 54.327%, #eac764);
+}
+
+.gradientPayback {
+  background-image: linear-gradient(90deg, #7cc870 0%, #6d7cff 32.161%);
+}
+
+.value {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  font-size: 56px;
+  font-weight: 600;
+  letter-spacing: -0.04em;
+  line-height: 1.1;
+  color: #090909;
+}
+
+.suffix {
+  font-size: 16px;
+  font-weight: 400;
+  letter-spacing: -0.64px;
+  line-height: 1.4;
+  color: var(--color-text-secondary);
+}
+
+/* transitions.dev number pop-in */
+@keyframes digit-pop-in {
+  0% {
+    transform: translate(
+      calc(var(--digit-distance) * var(--digit-dir-x)),
+      calc(var(--digit-distance) * var(--digit-dir-y))
+    );
+    opacity: 0;
+    filter: blur(var(--digit-blur));
+  }
+  100% {
+    transform: translate(0, 0);
+    opacity: 1;
+    filter: blur(0);
+  }
+}
+
+.digitGroup {
+  display: inline-flex;
+  align-items: baseline;
+}
+
+.digit {
+  display: inline-block;
+  opacity: 0;
+  will-change: transform, opacity, filter;
+}
+
+.isAnimating .digit {
+  animation: digit-pop-in var(--digit-dur) var(--digit-ease) both;
+}
+
+.isAnimating .digit[data-stagger='1'] {
+  animation-delay: var(--digit-stagger);
+}
+
+.isAnimating .digit[data-stagger='2'] {
+  animation-delay: calc(var(--digit-stagger) * 2);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .digit {
+    opacity: 1;
+  }
+
+  .digitGroup .digit {
+    animation: none !important;
+  }
+}
+
+.description {
+  font-size: 16px;
+  letter-spacing: -0.64px;
+  line-height: 1.4;
+  color: var(--color-text-secondary);
+}
+
+.sources {
+  font-size: 16px;
+  letter-spacing: -0.64px;
+  line-height: 1.4;
+  color: var(--color-text-secondary);
+}
+
+.sourceLink {
+  color: var(--color-black);
+  text-decoration: underline;
+}
+
+/* ---------- Tablet (768–1199px) ---------- */
+@media (max-width: 1199px) {
+  .section {
+    gap: 60px;
+    /* 82px here + 24px of the previous section = 106px between sections */
+    padding: 82px 24px 24px;
+  }
+
+  .subtitle {
+    font-size: 16px;
+    letter-spacing: -0.64px;
+  }
+
+  /* 2×2 grid of cards on tablet */
+  .cards {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .card {
+    gap: 24px;
+  }
+
+  .value {
+    font-size: 42px;
+  }
+}
+
+/* ---------- Mobile (<768px) ---------- */
+@media (max-width: 767px) {
+  .section {
+    padding: 82px 16px 24px;
+  }
+
+  /* Single column on mobile */
+  .cards {
+    grid-template-columns: 1fr;
+  }
+
+  .title {
+    font-size: clamp(36px, 11vw, 48px);
+    letter-spacing: -0.04em;
+  }
+
+  .value {
+    font-size: 32px;
+  }
+}

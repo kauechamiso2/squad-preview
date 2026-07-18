@@ -1,0 +1,276 @@
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  background: rgba(0, 0, 0, 0.55);
+  opacity: 0;
+  transition: opacity var(--modal-open-dur) var(--modal-ease);
+}
+
+.overlay.isOpen {
+  opacity: 1;
+}
+
+.overlay.isClosing {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--modal-close-dur) var(--modal-ease);
+}
+
+/* transitions.dev modal: scale up from --modal-scale, soft dip on close.
+   Stays non-scrolling so the close button (a sibling of .scrollArea) never
+   drifts with the content — only .scrollArea scrolls internally. */
+.modal {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: min(1040px, 100%);
+  max-height: calc(100vh - 48px);
+  background: var(--color-white);
+  border-radius: 20px;
+  overflow: hidden;
+  transform-origin: center;
+  transform: scale(var(--modal-scale));
+  opacity: 0;
+  pointer-events: none;
+  transition:
+    transform var(--modal-open-dur) var(--modal-ease),
+    opacity var(--modal-open-dur) var(--modal-ease);
+  will-change: transform, opacity;
+}
+
+.scrollArea {
+  min-height: 0;
+  padding: 48px;
+  overflow-y: auto;
+}
+
+.modal.isOpen {
+  transform: scale(1);
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.modal.isClosing {
+  transform: scale(var(--modal-scale-close));
+  opacity: 0;
+  pointer-events: none;
+  transition:
+    transform var(--modal-close-dur) var(--modal-ease),
+    opacity var(--modal-close-dur) var(--modal-ease);
+}
+
+.close {
+  position: absolute;
+  z-index: 1;
+  top: 16px;
+  right: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.85);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.12);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  color: var(--color-black);
+}
+
+.title {
+  margin-top: 8px;
+  font-family: var(--font-display);
+  font-size: 44px;
+  font-weight: 600;
+  letter-spacing: -1.76px;
+  line-height: 1;
+  color: #090909;
+}
+
+.subtitle {
+  margin-top: 16px;
+  font-size: 18px;
+  letter-spacing: -0.36px;
+  line-height: 1.4;
+  color: var(--color-text-secondary);
+}
+
+/* Quote: plain white card */
+.quote {
+  margin: 40px 0 0;
+  padding: 24px 28px;
+  background: var(--color-white);
+  border-radius: 12px;
+  box-shadow: 0 2px 24px rgba(0, 0, 0, 0.06);
+  font-size: 18px;
+  letter-spacing: -0.36px;
+  line-height: 1.5;
+  color: #090909;
+}
+
+.sectionLabel {
+  margin-top: 40px;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+/* Feature grid: 4 cards on desktop */
+.featureGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  margin-top: 24px;
+}
+
+.featureCard {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 20px;
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
+  background: var(--color-white);
+}
+
+.featureIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
+  background: color-mix(in srgb, var(--accent) 14%, white);
+  color: var(--accent);
+}
+
+.featureTitle {
+  font-size: 17px;
+  font-weight: 500;
+  letter-spacing: -0.34px;
+  line-height: 1.2;
+  color: #090909;
+}
+
+.featureText {
+  font-size: 14px;
+  letter-spacing: -0.28px;
+  line-height: 1.4;
+  color: var(--color-text-secondary);
+}
+
+/* Media slot for an upcoming tool with content: agent photo + pill */
+.comingMedia {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  margin-top: 24px;
+  padding: 48px 0;
+  border-radius: 16px;
+  background: #f7f8f8;
+}
+
+.comingAvatar {
+  width: 96px;
+  height: 96px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.comingPill {
+  padding: 6px 16px;
+  border-radius: 360px;
+  background: #eef0f0;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: -0.28px;
+  color: #8a9494;
+}
+
+/* Upcoming tool without content yet: centered agent photo + light gray note */
+.soon {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  padding: 56px 0 40px;
+}
+
+.soonAvatar {
+  width: 112px;
+  height: 112px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.soonText {
+  font-size: 22px;
+  letter-spacing: -0.44px;
+  line-height: 1.4;
+  text-align: center;
+  color: #c3cbcb;
+}
+
+/* Product screenshot shown in place of the video */
+.screenshot {
+  display: block;
+  width: 100%;
+  margin-top: 24px;
+  border-radius: 16px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .overlay,
+  .modal {
+    transition: none !important;
+  }
+}
+
+/* ---------- Tablet ---------- */
+@media (max-width: 1023px) {
+  .featureGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* ---------- Mobile ---------- */
+@media (max-width: 767px) {
+  .modal {
+    border-radius: 16px;
+  }
+
+  .scrollArea {
+    padding: 28px 20px;
+  }
+
+  .close {
+    top: 12px;
+    right: 12px;
+  }
+
+  .title {
+    font-size: 32px;
+    letter-spacing: -1.28px;
+  }
+
+  .subtitle {
+    font-size: 16px;
+  }
+
+  .quote {
+    font-size: 16px;
+    padding: 20px;
+  }
+
+  .featureGrid {
+    grid-template-columns: 1fr;
+  }
+}

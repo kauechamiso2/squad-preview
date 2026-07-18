@@ -1,0 +1,176 @@
+/* Rainbow color scale (HSL channels, from the original component) */
+.rainbow {
+  --color-1: 0 100% 63%;
+  --color-2: 270 100% 63%;
+  --color-3: 210 100% 63%;
+  --color-4: 195 100% 63%;
+  --color-5: 90 100% 63%;
+  --speed: 2s;
+
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 56px;
+  padding: 0 32px;
+  border-radius: 12px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 500;
+  letter-spacing: -0.32px;
+  color: var(--color-white);
+  border: 0.08rem solid transparent;
+  background:
+    linear-gradient(#121213, #121213),
+    linear-gradient(#121213 50%, rgba(18, 18, 19, 0.6) 80%, rgba(18, 18, 19, 0)),
+    linear-gradient(
+      90deg,
+      hsl(var(--color-1)),
+      hsl(var(--color-5)),
+      hsl(var(--color-3)),
+      hsl(var(--color-4)),
+      hsl(var(--color-2))
+    );
+  background-clip: padding-box, border-box, border-box;
+  background-origin: border-box;
+  background-size: 200%;
+  animation: rainbow var(--speed) infinite linear;
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.28);
+  transition: color 0.2s ease;
+}
+
+.label {
+  position: relative;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Arrow nudges right on hover */
+.label svg {
+  transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.rainbow:hover .label svg {
+  transform: translateX(4px);
+}
+
+/* Silver "coin" shine sweeping quickly across on hover */
+.shine {
+  position: absolute;
+  inset: 0;
+  border-radius: 12px;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.shine::after {
+  content: '';
+  position: absolute;
+  top: -30%;
+  bottom: -30%;
+  left: -85%;
+  width: 55%;
+  transform: skewX(-20deg);
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(200, 212, 228, 0.3),
+    rgba(255, 255, 255, 0.6),
+    rgba(200, 212, 228, 0.3),
+    transparent
+  );
+  opacity: 0;
+}
+
+.rainbow:hover .shine::after {
+  animation: coin-shine 0.65s ease-out forwards;
+}
+
+@keyframes coin-shine {
+  0% {
+    transform: translateX(0) skewX(-20deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(440%) skewX(-20deg);
+    opacity: 0.8;
+  }
+}
+
+/* Blurred rainbow glow under the button — a large, very diffuse cloud
+   like the 21st.dev original (two layers: tight halo + wide haze) */
+.rainbow::before,
+.rainbow::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  z-index: -1;
+  transform: translateX(-50%);
+  background: linear-gradient(
+    90deg,
+    hsl(var(--color-1)),
+    hsl(var(--color-5)),
+    hsl(var(--color-3)),
+    hsl(var(--color-4)),
+    hsl(var(--color-2))
+  );
+  background-size: 200%;
+  animation: rainbow var(--speed) infinite linear;
+  pointer-events: none;
+}
+
+/* Tight halo hugging the bottom edge */
+.rainbow::before {
+  bottom: -25%;
+  height: 40%;
+  width: 90%;
+  filter: blur(1.2rem);
+  opacity: 0.9;
+}
+
+/* Wide soft haze spreading far below */
+.rainbow::after {
+  bottom: -110%;
+  height: 110%;
+  width: 130%;
+  filter: blur(3rem);
+  opacity: 0.55;
+  border-radius: 50%;
+}
+
+.rainbow:focus-visible {
+  outline: 2px solid var(--color-black);
+  outline-offset: 2px;
+}
+
+.rainbow:disabled {
+  pointer-events: none;
+  opacity: 0.5;
+}
+
+@keyframes rainbow {
+  0% {
+    background-position: 0%;
+  }
+  100% {
+    background-position: 200%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rainbow,
+  .rainbow::before,
+  .rainbow::after {
+    animation: none;
+  }
+
+  .rainbow:hover .shine::after {
+    animation: none;
+  }
+
+  .rainbow:hover .label svg {
+    transform: none;
+  }
+}

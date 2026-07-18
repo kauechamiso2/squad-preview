@@ -1,0 +1,157 @@
+/* Featured case row: video thumbnail (left) + testimonial text (right) + arrow */
+.card {
+  display: flex;
+  align-items: center;
+  gap: 64px;
+  width: 100%;
+  cursor: pointer;
+}
+
+/* ---------- Video thumbnail ---------- */
+.media {
+  position: relative;
+  flex-shrink: 0;
+  width: 54%;
+  aspect-ratio: 16 / 10;
+  border-radius: 16px;
+  overflow: hidden;
+  background: #f0efff;
+}
+
+.photo,
+.video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* The preview clip fades in over the photo on hover */
+.video {
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.card:hover .video {
+  opacity: 1;
+}
+
+.playButton {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 76px;
+  height: 76px;
+  padding-left: 4px;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 255, 255, 0.9);
+  background: rgba(255, 255, 255, 0.12);
+  color: var(--color-white);
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+  transition:
+    transform 0.3s cubic-bezier(0.22, 1, 0.36, 1),
+    background 0.3s ease;
+}
+
+.card:hover .playButton {
+  background: rgba(255, 255, 255, 0.28);
+  transform: translate(-50%, -50%) scale(1.06);
+}
+
+/* ---------- Text content ---------- */
+.body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.quote {
+  font-family: var(--font-display);
+  font-size: 32px;
+  font-weight: 600;
+  letter-spacing: -1.28px;
+  line-height: 1.15;
+  color: var(--color-black);
+}
+
+.person {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+}
+
+.identity {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.name {
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: -0.36px;
+  line-height: 1.4;
+  color: var(--color-black);
+}
+
+.role {
+  font-size: 15px;
+  font-weight: 500;
+  letter-spacing: -0.3px;
+  line-height: 1.4;
+  color: var(--color-text-secondary);
+}
+
+.logo {
+  height: 40px;
+  width: auto;
+  object-fit: contain;
+  flex-shrink: 0;
+  /* The source wordmark is monochrome; render it black on the light section */
+  filter: brightness(0);
+  opacity: 0.85;
+}
+
+/* ---------- Tablet / Mobile: stack video over text ---------- */
+@media (max-width: 1199px) {
+  .card {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 32px;
+  }
+
+  .media {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+  }
+
+  .body {
+    gap: 24px;
+  }
+}
+
+@media (max-width: 767px) {
+  .quote {
+    font-size: 26px;
+    letter-spacing: -1.04px;
+  }
+
+  .playButton {
+    width: 60px;
+    height: 60px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .video,
+  .playButton {
+    transition: none;
+  }
+}

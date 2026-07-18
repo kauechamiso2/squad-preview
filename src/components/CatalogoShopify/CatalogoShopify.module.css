@@ -1,0 +1,115 @@
+.section {
+  max-width: var(--page-max-width);
+  margin: 0 auto;
+  padding: 60px var(--page-padding-x);
+}
+
+.card {
+  background: #5e8e3e;
+  border-radius: 28px;
+  padding: 72px;
+  display: grid;
+  grid-template-columns: minmax(0, 440px) minmax(0, 1fr);
+  gap: 32px;
+  align-items: center;
+  overflow: hidden;
+}
+
+.text {
+  max-width: 440px;
+}
+
+.logo {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: #ffffff;
+  margin-bottom: 40px;
+}
+
+.logo img {
+  width: 34px;
+  height: auto;
+}
+
+.title {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 36px;
+  line-height: 1.12;
+  letter-spacing: -1.44px;
+  color: #ffffff;
+}
+
+.titleBreak {
+  display: block;
+  height: 18px;
+}
+
+.paragraph {
+  margin-top: 28px;
+  font-size: 16px;
+  line-height: 1.5;
+  letter-spacing: -0.32px;
+  color: rgba(255, 255, 255, 0.82);
+}
+
+/* Visual bleeds toward the card's right/top/bottom edges (baked green matches
+   the card, so the product photos read as floating on the card). */
+.visual {
+  position: relative;
+  margin: -72px -72px -72px 0;
+}
+
+.visual img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* --- Tablet --- */
+@media (max-width: 1199px) {
+  .card {
+    padding: 56px;
+    gap: 24px;
+    grid-template-columns: minmax(0, 380px) minmax(0, 1fr);
+  }
+
+  .visual {
+    margin: -56px -56px -56px 0;
+  }
+
+  .title {
+    font-size: 30px;
+    letter-spacing: -1.2px;
+  }
+}
+
+/* --- Mobile --- */
+@media (max-width: 767px) {
+  .section {
+    padding: 40px 16px;
+  }
+
+  .card {
+    grid-template-columns: 1fr;
+    padding: 40px 28px;
+    gap: 24px;
+  }
+
+  .text {
+    max-width: none;
+  }
+
+  .visual {
+    margin: 0 -28px -40px 0;
+  }
+
+  .title {
+    font-size: 26px;
+    letter-spacing: -1.04px;
+  }
+}

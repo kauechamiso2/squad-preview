@@ -1,0 +1,116 @@
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  background: rgba(0, 0, 0, 0.6);
+  opacity: 0;
+  transition: opacity var(--modal-open-dur) var(--modal-ease);
+}
+
+.overlay.isOpen {
+  opacity: 1;
+}
+
+.overlay.isClosing {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--modal-close-dur) var(--modal-ease);
+}
+
+/* transitions.dev modal: scale up from --modal-scale, soft dip on close.
+   Width is also capped by available viewport height (via the video's 16/9
+   ratio) so the whole modal always fits the screen without overflowing. */
+.modal {
+  position: relative;
+  width: min(1600px, 100%, calc((100dvh - 210px) * 16 / 9));
+  max-height: calc(100dvh - 48px);
+  padding: 16px;
+  background: var(--color-white);
+  border-radius: 16px;
+  transform-origin: center;
+  transform: scale(var(--modal-scale));
+  opacity: 0;
+  pointer-events: none;
+  transition:
+    transform var(--modal-open-dur) var(--modal-ease),
+    opacity var(--modal-open-dur) var(--modal-ease);
+  will-change: transform, opacity;
+}
+
+.modal.isOpen {
+  transform: scale(1);
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.modal.isClosing {
+  transform: scale(var(--modal-scale-close));
+  opacity: 0;
+  pointer-events: none;
+  transition:
+    transform var(--modal-close-dur) var(--modal-ease),
+    opacity var(--modal-close-dur) var(--modal-ease);
+}
+
+.close {
+  position: absolute;
+  z-index: 1;
+  top: 28px;
+  right: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.85);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.16);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  color: var(--color-black);
+}
+
+/* Wraps the Vidalytics embed (its inner div reserves the 16:9 box) */
+.video {
+  width: 100%;
+  overflow: hidden;
+  background: var(--color-black);
+  border-radius: 12px;
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 16px 8px 8px;
+}
+
+.quote {
+  font-size: 20px;
+  font-weight: 500;
+  letter-spacing: -0.8px;
+  line-height: 1.4;
+  color: var(--color-black);
+}
+
+.person {
+  font-size: 16px;
+  letter-spacing: -0.64px;
+  color: var(--color-text-secondary);
+}
+
+.name {
+  font-weight: 600;
+  color: var(--color-black);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .overlay,
+  .modal {
+    transition: none !important;
+  }
+}

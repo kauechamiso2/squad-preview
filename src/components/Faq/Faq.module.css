@@ -1,0 +1,154 @@
+.section {
+  display: flex;
+  align-items: flex-start;
+  gap: 80px;
+  max-width: var(--page-max-width);
+  margin: 0 auto;
+  /* 40px here + 120px of the previous section = 160px between sections */
+  padding: 40px var(--page-padding-x) 120px;
+  background: var(--color-white);
+}
+
+.title {
+  font-family: var(--font-display);
+  font-size: 56px;
+  font-weight: 600;
+  letter-spacing: -2.24px;
+  line-height: 0.9;
+  width: 395px;
+  flex-shrink: 0;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  flex: 1;
+  min-width: 0;
+  list-style: none;
+}
+
+.questionRow {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 40px;
+  width: 100%;
+  text-align: left;
+}
+
+.question {
+  font-family: var(--font-display);
+  font-size: 24px;
+  font-weight: 600;
+  letter-spacing: -0.48px;
+  line-height: 1.15;
+  color: var(--color-black);
+}
+
+/* Accordion pattern from transitions.dev: the chevron flips vertically
+   (scaleY) passing through a flat line at the midpoint */
+.chevron {
+  flex-shrink: 0;
+  color: var(--color-black);
+  transform: scaleY(1);
+  transform-origin: center;
+  transition: transform var(--acc-chevron) var(--acc-ease);
+}
+
+.chevronOpen {
+  transform: scaleY(-1);
+}
+
+/* Height animates via grid-template-rows 0fr ↔ 1fr (no JS measuring),
+   the answer cross-fades with a subtle blur */
+.answerWrap {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows var(--acc-collapse) var(--acc-ease);
+}
+
+.answerWrapOpen {
+  grid-template-rows: 1fr;
+  transition: grid-template-rows var(--acc-expand) var(--acc-ease);
+}
+
+.answerInner {
+  overflow: hidden;
+  min-height: 0;
+  opacity: 0;
+  filter: blur(2px);
+  transition:
+    opacity var(--acc-collapse) var(--acc-ease),
+    filter var(--acc-collapse) var(--acc-ease);
+}
+
+.answerWrapOpen .answerInner {
+  opacity: 1;
+  filter: blur(0);
+  transition:
+    opacity var(--acc-expand) var(--acc-ease),
+    filter var(--acc-expand) var(--acc-ease);
+}
+
+.answer {
+  font-family: var(--font-display);
+  font-size: 16px;
+  font-weight: 500;
+  letter-spacing: -0.32px;
+  line-height: 1.3;
+  color: var(--color-text-secondary);
+  max-width: 665px;
+  margin-top: 20px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .answerWrap,
+  .answerInner,
+  .chevron {
+    transition: none !important;
+  }
+}
+
+/* ---------- Tablet (768–1199px) ---------- */
+@media (max-width: 1199px) {
+  .section {
+    flex-direction: column;
+    align-items: center;
+    gap: 60px;
+    /* 82px here + 24px of the previous section = 106px between sections */
+    padding: 82px 24px 24px;
+  }
+
+  .title {
+    width: auto;
+    font-size: 48px;
+    letter-spacing: -1.92px;
+    text-align: center;
+  }
+
+  .list {
+    width: 100%;
+    max-width: 776px;
+    flex: none;
+  }
+}
+
+/* ---------- Mobile (<768px) ---------- */
+@media (max-width: 767px) {
+  .section {
+    padding: 82px 16px 24px;
+  }
+
+  .title {
+    font-size: clamp(36px, 11vw, 44px);
+  }
+
+  .list {
+    gap: 32px;
+  }
+
+  .question {
+    font-size: 20px;
+  }
+}

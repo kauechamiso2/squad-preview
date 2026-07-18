@@ -1,0 +1,482 @@
+.section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 80px;
+  /* 40px here + 120px of the previous section = 160px between sections */
+  padding: 40px 0 120px;
+  background: var(--color-white);
+}
+
+.heading {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  text-align: center;
+  padding: 0 var(--page-padding-x);
+}
+
+.title {
+  font-family: var(--font-display);
+  font-size: 48px;
+  font-weight: 600;
+  letter-spacing: -1.92px;
+  line-height: 0.9;
+}
+
+.subtitle {
+  font-size: 16px;
+  letter-spacing: -0.32px;
+  line-height: 1.4;
+  color: var(--color-text-secondary);
+}
+
+/* Cards row: fits the content area on desktop, scrolls horizontally on tablet.
+   Top padding leaves room for the "Mais escolhido" badge. */
+.track {
+  --track-inset: max(
+    var(--page-padding-x),
+    calc((100% - var(--page-max-width)) / 2 + var(--page-padding-x))
+  );
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+  width: 100%;
+  overflow-x: auto;
+  scroll-padding-inline: var(--track-inset);
+  /* Generous vertical headroom so the floating badge and the hover
+     glow/shadows are never clipped by the scroll area */
+  padding: 56px var(--track-inset) 96px;
+  scrollbar-width: none;
+}
+
+.track::-webkit-scrollbar {
+  display: none;
+}
+
+/* Side cards: very light gray by default, turn white on hover */
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 60px;
+  flex: 1;
+  min-width: 361px;
+  padding: 40px;
+  border: 1px solid var(--color-border);
+  border-radius: 16px;
+  background: #f4f5f5;
+  scroll-snap-align: center;
+  transition:
+    transform 0.3s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.3s cubic-bezier(0.22, 1, 0.36, 1),
+    background 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.card:hover {
+  transform: scale(1.015);
+  background: var(--color-white);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.08);
+}
+
+/* Featured plan: white background, black stroke; shadow only on hover */
+.featured {
+  flex: none;
+  width: 402px;
+  background: var(--color-white);
+  border: 2px solid var(--color-black);
+}
+
+/* Hover: an animated gradient stroke circles the card, with a very
+   soft glow. The ring is masked to the border area only, so the card
+   interior stays white. */
+.featured::after {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  border-radius: 16px;
+  padding: 2px;
+  background: conic-gradient(
+    from var(--angle),
+    #8aefd4,
+    #b3ddf2,
+    #b89afa,
+    #f45dac,
+    #8aefd4
+  );
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  animation: stroke-orbit 4s linear infinite;
+  pointer-events: none;
+}
+
+.featured:hover {
+  transform: none;
+  /* Very soft colorful glow */
+  box-shadow: 0 12px 64px rgba(184, 154, 250, 0.22);
+}
+
+.featured:hover::after {
+  opacity: 1;
+}
+
+@keyframes stroke-orbit {
+  to {
+    --angle: 360deg;
+  }
+}
+
+.badge {
+  position: absolute;
+  z-index: 2;
+  top: -16px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  height: 32px;
+  padding: 0 12px;
+  border-radius: 8px;
+  background: var(--color-black);
+  color: var(--color-white);
+  font-size: 16px;
+  line-height: 1.2;
+  white-space: nowrap;
+  filter: drop-shadow(0 2px 5px rgba(0, 0, 0, 0.19));
+}
+
+.top {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.planHeading {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.planName {
+  font-size: 32px;
+  font-weight: 600;
+  letter-spacing: -1.28px;
+  line-height: 1.1;
+  color: #090909;
+}
+
+.planNameFeatured {
+  font-size: 40px;
+  letter-spacing: -1.6px;
+}
+
+.planDescription {
+  font-family: var(--font-display);
+  font-size: 16px;
+  font-weight: 500;
+  letter-spacing: -0.32px;
+  line-height: 1.3;
+  color: var(--color-text-secondary);
+}
+
+.featured .planDescription {
+  color: var(--color-black);
+}
+
+.priceBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.priceLabel {
+  font-size: 16px;
+  letter-spacing: -0.64px;
+  line-height: 1.4;
+  color: var(--color-text-secondary);
+}
+
+.price {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  font-size: 56px;
+  font-weight: 600;
+  letter-spacing: -2.24px;
+  line-height: 1.1;
+  color: #090909;
+}
+
+.period {
+  font-size: 16px;
+  font-weight: 400;
+  letter-spacing: -0.64px;
+  line-height: 1.4;
+  color: var(--color-text-secondary);
+}
+
+/* Outline CTAs: turn slightly gray on hover */
+.outlineCta {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 56px;
+  padding: 0 20px;
+  border-radius: 12px;
+  text-decoration: none;
+  background: var(--color-white);
+  border: 1px solid var(--color-border);
+  color: var(--color-black);
+  font-size: 16px;
+  font-weight: 500;
+  letter-spacing: -0.32px;
+  transition: background 0.2s ease;
+}
+
+.outlineCta:hover {
+  background: #efefef;
+}
+
+.outlineCta:hover .proCtaArrow {
+  width: 18px;
+  margin-left: 8px;
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Featured CTA: black, silver coin shine + arrow sliding in on hover */
+.proCta {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 56px;
+  padding: 0 20px;
+  border-radius: 12px;
+  text-decoration: none;
+  background: var(--color-black);
+  color: var(--color-white);
+  font-size: 16px;
+  font-weight: 500;
+  letter-spacing: -0.32px;
+  overflow: hidden;
+}
+
+.proCtaLabel {
+  position: relative;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+}
+
+.proCtaArrow {
+  width: 0;
+  margin-left: 0;
+  opacity: 0;
+  transform: translateX(-6px);
+  transition:
+    width 0.3s cubic-bezier(0.22, 1, 0.36, 1),
+    margin-left 0.3s cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 0.3s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.proCta:hover .proCtaArrow {
+  width: 18px;
+  margin-left: 8px;
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.proCtaShine {
+  position: absolute;
+  inset: 0;
+  border-radius: 12px;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.proCtaShine::after {
+  content: '';
+  position: absolute;
+  top: -30%;
+  bottom: -30%;
+  left: -85%;
+  width: 55%;
+  transform: skewX(-20deg);
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(200, 212, 228, 0.3),
+    rgba(255, 255, 255, 0.6),
+    rgba(200, 212, 228, 0.3),
+    transparent
+  );
+  opacity: 0;
+}
+
+.proCta:hover .proCtaShine::after {
+  animation: coin-shine 0.65s ease-out forwards;
+}
+
+@keyframes coin-shine {
+  0% {
+    transform: translateX(0) skewX(-20deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(440%) skewX(-20deg);
+    opacity: 0.8;
+  }
+}
+
+/* Features */
+.features {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  list-style: none;
+}
+
+.feature {
+  display: flex;
+  flex-direction: column;
+}
+
+.featureRow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.iconCheck {
+  color: #090909;
+  flex-shrink: 0;
+}
+
+.iconX {
+  color: #c2c7c7;
+  flex-shrink: 0;
+}
+
+.featureLabel {
+  flex: 1;
+  min-width: 0;
+  font-size: 18px;
+  font-weight: 500;
+  letter-spacing: -0.72px;
+  line-height: 1.1;
+  color: #090909;
+}
+
+.featureStrong {
+  font-weight: 600;
+}
+
+.featureExcluded {
+  color: var(--color-text-secondary);
+}
+
+/* "+" toggle: black circle; the plus rotates into an "x" when open */
+.expandButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: var(--color-black);
+  color: var(--color-white);
+  transition: transform var(--acc-chevron) var(--acc-ease);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card,
+  .cta button,
+  .expandButton,
+  .featured::before,
+  .proCtaArrow {
+    transition: none !important;
+  }
+
+  .card:hover,
+  .featured:hover {
+    transform: none;
+  }
+
+  .proCta:hover .proCtaShine::after {
+    animation: none;
+  }
+}
+
+/* ---------- Tablet (768–1199px) ---------- */
+@media (max-width: 1199px) {
+  .section {
+    gap: 60px;
+    /* 82px here + 24px of the previous section = 106px between sections */
+    padding: 82px 0 24px;
+  }
+
+  .heading {
+    padding: 0 24px;
+  }
+
+  .track {
+    --track-inset: 24px;
+    scroll-snap-type: x mandatory;
+  }
+
+  .card {
+    flex: none;
+    width: 361px;
+  }
+
+  .featured {
+    width: 402px;
+  }
+}
+
+/* ---------- Mobile (<768px): cards stack vertically, featured first ---------- */
+@media (max-width: 767px) {
+  .section {
+    padding: 82px 16px 24px;
+  }
+
+  .heading {
+    padding: 0;
+  }
+
+  .title {
+    font-size: clamp(40px, 12vw, 48px);
+  }
+
+  .track {
+    flex-direction: column;
+    align-items: stretch;
+    overflow: visible;
+    padding: 16px 0 0;
+    width: 100%;
+  }
+
+  .card,
+  .featured {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .featured {
+    order: -1;
+  }
+}

@@ -1,0 +1,147 @@
+.section {
+  max-width: var(--page-max-width);
+  margin: 0 auto;
+  padding: 120px var(--page-padding-x) 40px;
+  display: flex;
+  align-items: flex-start;
+  gap: 80px;
+}
+
+.title {
+  flex-shrink: 0;
+  width: 395px;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 56px;
+  line-height: 1;
+  letter-spacing: -2.24px;
+  color: var(--color-black);
+}
+
+.list {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.item {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Question row (button) */
+.question {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 40px;
+  width: 100%;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
+  text-align: left;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 1.15;
+  letter-spacing: -0.48px;
+  color: #b2b9b9;
+  transition: color var(--acc-chevron, 250ms) var(--acc-ease, ease);
+}
+
+.questionOpen {
+  color: var(--color-black);
+}
+
+.chevron {
+  flex-shrink: 0;
+  color: #b2b9b9;
+  transition: transform var(--acc-chevron, 250ms) var(--acc-ease, ease);
+}
+
+.questionOpen .chevron {
+  color: var(--color-black);
+}
+
+.chevronOpen {
+  transform: rotate(180deg);
+}
+
+/* Answer — smooth expand/collapse via grid-rows */
+.answerWrap {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows var(--acc-expand, 250ms) var(--acc-ease, ease);
+}
+
+.answerOpen {
+  grid-template-rows: 1fr;
+}
+
+.answerWrap > .answer {
+  overflow: hidden;
+  min-height: 0;
+}
+
+.answer {
+  margin-top: 20px;
+  max-width: 665px;
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 1.3;
+  letter-spacing: -0.36px;
+  color: var(--color-text-secondary);
+}
+
+/* Collapsed answers have no top margin eating space */
+.answerWrap:not(.answerOpen) > .answer {
+  margin-top: 0;
+}
+
+/* --- Tablet / mobile --- */
+@media (max-width: 1199px) {
+  .section {
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+    padding: 72px 24px 40px;
+  }
+
+  .title {
+    width: 100%;
+    text-align: center;
+  }
+
+  .list {
+    width: 100%;
+  }
+}
+
+@media (max-width: 767px) {
+  .section {
+    padding: 56px 16px 32px;
+  }
+
+  .title {
+    font-size: 36px;
+    letter-spacing: -1.2px;
+  }
+
+  .question {
+    font-size: 20px;
+    letter-spacing: -0.4px;
+    gap: 20px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .question,
+  .chevron,
+  .answerWrap {
+    transition: none;
+  }
+}

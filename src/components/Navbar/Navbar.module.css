@@ -1,0 +1,298 @@
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  max-width: var(--page-max-width);
+  margin: 0 auto;
+  background: var(--color-white);
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Hides on scroll down, reveals on scroll up */
+.navbar.hidden {
+  transform: translateY(-100%);
+}
+
+.bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px var(--page-padding-x);
+}
+
+.left {
+  display: flex;
+  align-items: center;
+  gap: 60px;
+}
+
+.logo {
+  width: 133px;
+  height: 24px;
+}
+
+.links {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+}
+
+.navItem {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.link {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: -0.28px;
+  line-height: 1.15;
+  color: #56575b;
+  background: none;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+  transition: color 0.18s ease;
+}
+
+.link:hover,
+.linkActive {
+  color: var(--color-black);
+}
+
+.chevron {
+  color: currentColor;
+  transition: transform 0.2s ease;
+}
+
+.chevronOpen {
+  transform: rotate(180deg);
+}
+
+/* --- Desktop mega-menu (Agentes) --- */
+.megaWrap {
+  position: absolute;
+  top: 100%;
+  left: -20px;
+  padding-top: 18px; /* transparent bridge so hover survives the gap */
+  z-index: 60;
+}
+
+.megaPanel {
+  background: var(--color-white);
+  border-radius: 20px;
+  border: 1px solid rgba(0, 0, 0, 0.04);
+  box-shadow: 0 24px 56px rgba(0, 0, 0, 0.16);
+  padding: 12px;
+  transform-origin: top center;
+  animation: megaIn 0.22s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@keyframes megaIn {
+  from {
+    opacity: 0;
+    transform: translateY(-8px) scale(0.985);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .megaPanel {
+    animation: none;
+  }
+}
+
+.agentsGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(288px, 1fr));
+  gap: 2px 8px;
+}
+
+/* Segment label stays on a single line inside the Agentes menu */
+.agentsGrid .agentSegment {
+  white-space: nowrap;
+}
+
+.bizGrid {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 328px;
+}
+
+.bizIcon {
+  flex-shrink: 0;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.agentItem {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 12px 16px;
+  border-radius: 14px;
+  text-decoration: none;
+  transition: background 0.15s ease;
+}
+
+.agentItem:hover {
+  background: #f5f5f6;
+}
+
+.agentAvatar {
+  flex-shrink: 0;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  overflow: hidden;
+  background: #f0f0f1;
+}
+
+.agentAvatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.agentText {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.agentSegment {
+  font-family: var(--font-body);
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: -0.3px;
+  color: var(--color-black);
+  line-height: 1.2;
+}
+
+.agentName {
+  font-size: 13px;
+  letter-spacing: -0.2px;
+  color: var(--color-text-secondary);
+  line-height: 1.2;
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Hamburger — hidden on desktop */
+.hamburger {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--color-black);
+  cursor: pointer;
+}
+
+/* Dropdown menu (tablet & mobile) */
+.menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  z-index: 50;
+  background: var(--color-white);
+  border-top: 1px solid var(--color-border);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.06);
+  padding: 8px 24px 16px;
+}
+
+.menuItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 16px 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
+  font-family: var(--font-body);
+  font-size: 18px;
+  font-weight: 500;
+  letter-spacing: -0.36px;
+  color: var(--color-black);
+}
+
+.menuChevron {
+  color: var(--color-text-secondary);
+  transition: transform 0.25s var(--acc-ease, ease);
+}
+
+.menuChevronOpen {
+  transform: rotate(180deg);
+}
+
+.submenu {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s var(--acc-ease, ease);
+}
+
+.submenuOpen {
+  max-height: 520px;
+}
+
+.submenuItem {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 10px 0 10px 8px;
+  text-decoration: none;
+}
+
+/* --- Tablet & mobile: show hamburger, hide inline nav --- */
+@media (max-width: 1199px) {
+  .bar {
+    padding: 16px 24px;
+  }
+
+  .links {
+    display: none;
+  }
+
+  .hamburger {
+    display: inline-flex;
+  }
+}
+
+@media (max-width: 767px) {
+  .bar {
+    padding: 16px 12px;
+  }
+
+  .actions {
+    gap: 4px;
+  }
+
+  .menu {
+    padding: 8px 16px 16px;
+  }
+}

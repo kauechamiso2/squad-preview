@@ -1,0 +1,48 @@
+.arrows {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.arrowButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: var(--color-black);
+  color: var(--color-white);
+  transition:
+    background 0.2s ease,
+    color 0.2s ease,
+    transform 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.arrowButton:not(:disabled):hover {
+  transform: scale(1.12);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .arrowButton {
+    transition: background 0.2s ease, color 0.2s ease;
+  }
+
+  .arrowButton:not(:disabled):hover {
+    transform: none;
+  }
+}
+
+.arrowButton:disabled {
+  background: var(--color-white);
+  border: 1px solid var(--color-border);
+  color: var(--color-black);
+  cursor: default;
+}
+
+/* Arrows are desktop-only: tablet/mobile navigate by swiping */
+@media (max-width: 1199px) {
+  .arrows {
+    display: none;
+  }
+}

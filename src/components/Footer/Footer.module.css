@@ -1,0 +1,145 @@
+.footer {
+  position: relative;
+  overflow: hidden;
+  /* 40px here + 120px of the previous section = 160px between sections */
+  padding: 40px 24px 60px;
+  background: var(--color-white);
+}
+
+/* Soft blue/pink glows behind the card */
+.footer::before,
+.footer::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 120%;
+  pointer-events: none;
+}
+
+.footer::before {
+  bottom: 32px;
+  height: 253px;
+  background: #b3ddf2;
+  filter: blur(120px);
+}
+
+.footer::after {
+  bottom: -60px;
+  height: 260px;
+  background: #ffd2ea;
+  filter: blur(88px);
+}
+
+.card {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  max-width: 1392px;
+  height: 715px;
+  margin: 0 auto;
+  padding: 48px 48px 12px;
+  background: var(--color-white);
+  border-radius: 24px;
+  box-shadow: 0 11px 75.3px rgba(0, 0, 0, 0.07);
+}
+
+.columns {
+  display: flex;
+  gap: 100px;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  min-width: 191px;
+}
+
+.columnTitle {
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: -0.36px;
+  line-height: 1.15;
+  color: var(--color-black);
+}
+
+.linkList {
+  display: flex;
+  flex-direction: column;
+  gap: 29px;
+  list-style: none;
+}
+
+.link {
+  font-size: 16.5px;
+  letter-spacing: -0.33px;
+  line-height: 1.15;
+  color: var(--color-text-secondary);
+}
+
+.link:hover {
+  color: var(--color-black);
+}
+
+/* Scales proportionally: height follows the SVG's intrinsic aspect ratio */
+.wordmark {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1351.52 / 243.883;
+  margin-top: 60px;
+}
+
+/* ---------- Tablet (768–1199px) ---------- */
+@media (max-width: 1199px) {
+  .footer {
+    /* 82px here + 24px of the previous section = 106px between sections */
+    padding: 82px 24px 40px;
+  }
+
+  .card {
+    height: auto;
+    padding: 40px 40px 12px;
+  }
+
+  /* Columns stay side by side, like the desktop design */
+  .columns {
+    gap: 100px;
+  }
+
+  .column {
+    min-width: 0;
+  }
+
+  .wordmark {
+    margin-top: 80px;
+  }
+}
+
+/* ---------- Mobile (<768px) ---------- */
+@media (max-width: 767px) {
+  .footer {
+    padding: 82px 16px 24px;
+  }
+
+  .card {
+    padding: 32px 24px 8px;
+  }
+
+  .columns {
+    justify-content: space-between;
+    gap: 24px;
+    width: 100%;
+  }
+
+  .linkList {
+    gap: 24px;
+  }
+
+  .wordmark {
+    margin-top: 64px;
+  }
+}

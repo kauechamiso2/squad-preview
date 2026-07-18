@@ -1,0 +1,25 @@
+.section {
+  max-width: var(--page-max-width);
+  margin: 0 auto;
+  /* Image runs to the grid edges (no side gutter) so the gradient reaches
+     the full grid width */
+  padding: 20px 0 60px;
+}
+
+.image {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+@media (max-width: 1199px) {
+  .section {
+    padding: 20px 0 48px;
+  }
+}
+
+@media (max-width: 767px) {
+  .section {
+    padding: 12px 0 32px;
+  }
+}

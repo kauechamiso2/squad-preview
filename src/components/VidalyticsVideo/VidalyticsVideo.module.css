@@ -1,0 +1,35 @@
+/* Full-cover background layer that sits under the CTA overlay */
+.bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  background: #000;
+  container-type: size;
+}
+
+/* A 16:9 box sized to always cover the section, centred (overflow is cropped).
+   Uses container-query units: width is the larger of the section width or the
+   width needed to make a 16:9 box as tall as the section. */
+.frame {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: max(100cqw, calc(100cqh * 16 / 9));
+  aspect-ratio: 16 / 9;
+}
+
+/* Vidalytics injects its player (an iframe) inside this div */
+.embed {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.embed :global(iframe),
+.embed :global(video) {
+  width: 100% !important;
+  height: 100% !important;
+}

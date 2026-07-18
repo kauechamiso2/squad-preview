@@ -1,0 +1,223 @@
+/* Flat hit area for the tilt: the pointer is tracked here while the
+   card inside rotates (transitions.dev card hover tilt) */
+.tilt {
+  flex-shrink: 0;
+  display: block;
+  width: 335px;
+  scroll-snap-align: start;
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+}
+
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  width: 100%;
+  height: 100%;
+  padding: 40px;
+  background: var(--color-white);
+  border: 1px solid #f6f6f6;
+  border-radius: 16px;
+  box-shadow: 0 2px 6.8px rgba(0, 0, 0, 0.05);
+  overflow: hidden;
+  transform: perspective(var(--tilt-perspective)) rotateX(var(--tilt-rx, 0deg))
+    rotateY(var(--tilt-ry, 0deg)) scale(var(--card-scale, 1));
+  transform-style: preserve-3d;
+  transition: transform var(--tilt-return) var(--tilt-return-ease);
+  will-change: transform;
+}
+
+/* Slight scale-up on hover (combined with the tilt) */
+.tilt:hover .card {
+  --card-scale: 1.02;
+}
+
+/* Short linear follow while the pointer moves, long ease back on leave */
+.card[data-tilting='true'] {
+  transition: transform var(--tilt-follow) var(--tilt-follow-ease);
+}
+
+/* Cursor-tracked glare: soft light circles at the pointer position */
+.glare {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0;
+  mix-blend-mode: screen;
+  background:
+    radial-gradient(
+      circle 95px at var(--tilt-gx, 50%) var(--tilt-gy, 50%),
+      rgba(255, 255, 255, 0.48),
+      rgba(255, 255, 255, 0.06) 52%,
+      rgba(255, 255, 255, 0) 84%
+    ),
+    radial-gradient(
+      circle 200px at var(--tilt-gx, 50%) var(--tilt-gy, 50%),
+      rgba(255, 255, 255, 0.22),
+      rgba(255, 255, 255, 0.04) 58%,
+      rgba(255, 255, 255, 0) 78%
+    ),
+    radial-gradient(
+      circle 360px at var(--tilt-gx, 50%) var(--tilt-gy, 50%),
+      rgba(255, 255, 255, 0.1),
+      rgba(255, 255, 255, 0) 88%
+    );
+  transition: opacity var(--tilt-glare-fade) var(--tilt-glare-ease);
+}
+
+.tilt[data-hover='true'] .glare {
+  opacity: var(--tilt-glare-opacity);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card {
+    transform: none !important;
+    transition: none !important;
+  }
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  width: 251px;
+}
+
+.avatar {
+  position: relative;
+  width: 160px;
+  height: 160px;
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.avatarImage {
+  width: 100%;
+  height: 100%;
+}
+
+/* Composed tiles (Juri / Pipo): gradient background + positioned character crop */
+.avatarSheet {
+  position: absolute;
+  aspect-ratio: 1;
+  height: auto;
+  max-width: none;
+}
+
+.juriTile {
+  background: linear-gradient(180deg, #b89afa 15.625%, #f0efff 100%);
+}
+
+.pipoTile {
+  background: linear-gradient(180deg, #eac764 26.875%, #fbeeca 100%);
+}
+
+.heading {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+/* Agent name: now the secondary line (less emphasis) */
+.name {
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.2;
+  color: #858585;
+}
+
+/* Segment: takes over the prominent styling the name used to have */
+.segment {
+  font-size: 24px;
+  font-weight: 500;
+  line-height: 1.1;
+  color: #090909;
+}
+
+.description {
+  font-size: 16px;
+  line-height: 1.2;
+  color: #858585;
+  margin-top: 8px;
+}
+
+/* Skills */
+.skills {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.skillsLabel {
+  font-size: 16px;
+  line-height: 1.2;
+  color: #858585;
+}
+
+.skillList {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+  list-style: none;
+}
+
+.skillTag {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  height: 40px;
+  padding: 0 12px;
+  border-radius: 360px;
+  background: #f8f8f8;
+  font-size: 15px;
+  line-height: 1.2;
+  color: var(--color-black);
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.skillIcon {
+  width: 24px;
+  height: 24px;
+}
+
+/* Trailing arrow nudges up-right on hover */
+.skillArrow {
+  transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.skillTag:hover .skillArrow {
+  transform: translate(3px, -3px);
+}
+
+/* "Ver mais": "+" grows in fluidly to the right on hover */
+.plusIcon {
+  width: 0;
+  opacity: 0;
+  transform: translateX(-6px);
+  transition:
+    width 0.3s cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 0.3s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.skillTag:hover .plusIcon {
+  width: 16px;
+  opacity: 1;
+  transform: translateX(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .skillArrow,
+  .plusIcon {
+    transition: none;
+  }
+
+  .skillTag:hover .skillArrow {
+    transform: none;
+  }
+}

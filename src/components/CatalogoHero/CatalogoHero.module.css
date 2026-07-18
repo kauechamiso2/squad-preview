@@ -1,0 +1,101 @@
+.hero {
+  padding-top: 24px;
+}
+
+.stage {
+  position: relative;
+  max-width: var(--page-max-width);
+  margin: 0 auto;
+}
+
+.art {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.artMobile {
+  display: none;
+}
+
+/* Text sits on top of the illustration, centred in the cleared upper band. */
+.content {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: 720px;
+  padding-top: 6.1%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 40px;
+}
+
+.title {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 64px;
+  line-height: 0.9;
+  letter-spacing: -2.56px;
+  color: var(--color-black);
+}
+
+.subtitle {
+  max-width: 688px;
+  font-size: 20px;
+  line-height: 1.4;
+  letter-spacing: -0.8px;
+  color: var(--color-text-secondary);
+}
+
+/* --- Tablet --- */
+@media (max-width: 1199px) {
+  .title {
+    font-size: 48px;
+    letter-spacing: -1.92px;
+  }
+
+  .subtitle {
+    font-size: 18px;
+    letter-spacing: -0.6px;
+  }
+}
+
+/* --- Mobile: stacked (text above the characters) --- */
+@media (max-width: 767px) {
+  .stage {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .artDesktop {
+    display: none;
+  }
+
+  .artMobile {
+    display: block;
+    width: 100%;
+  }
+
+  .content {
+    position: static;
+    transform: none;
+    max-width: none;
+    padding: 24px 16px 8px;
+    gap: 24px;
+  }
+
+  .title {
+    font-size: 34px;
+    letter-spacing: -1.2px;
+  }
+
+  .subtitle {
+    font-size: 16px;
+    letter-spacing: -0.4px;
+  }
+}
