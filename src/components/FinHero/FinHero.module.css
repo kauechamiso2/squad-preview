@@ -89,7 +89,7 @@
 .characterShadow {
   position: absolute;
   left: 95.5%;
-  top: 121%;
+  top: 109%;
   width: 26%;
   aspect-ratio: 262.5 / 143.3;
   transform: translate(-50%, -50%) rotate(-11deg);
