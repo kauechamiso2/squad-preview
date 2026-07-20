@@ -74,10 +74,12 @@
   border-radius: 16px 16px 0 0;
 }
 
-/* Caption is real text, bottom-aligned like in the design */
+/* Caption sits right under the mockup (the gap to the mockup is baked into the
+   image's bottom margin). Any card-height slack falls below it so the white card
+   backgrounds still align. */
 .caption {
-  margin-top: auto;
-  padding: 4px 32px 40px;
+  margin-top: 0;
+  padding: 4px 40px 40px;
   text-align: center;
   font-size: 20px;
   font-weight: 500;
