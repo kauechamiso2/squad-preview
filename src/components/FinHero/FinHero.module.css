@@ -88,9 +88,9 @@
 /* Soft ground shadow under the character's feet (Figma "Ellipse 37") */
 .characterShadow {
   position: absolute;
-  left: 94.2%;
-  top: 108%;
-  width: 22.6%;
+  left: 95.5%;
+  top: 121%;
+  width: 26%;
   aspect-ratio: 262.5 / 143.3;
   transform: translate(-50%, -50%) rotate(-11deg);
   background: radial-gradient(
@@ -101,12 +101,12 @@
   pointer-events: none;
 }
 
-/* Pink character overlaps the card and spills past the bottom-right */
+/* Character overlaps the card and spills past the bottom-right (Figma size) */
 .character {
   position: absolute;
-  top: 36.2%;
-  left: 78.7%;
-  width: 25.9%;
+  top: 21.3%;
+  left: 79%;
+  width: 33.7%;
   height: auto;
 }
 
