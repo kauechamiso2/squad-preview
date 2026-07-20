@@ -4,6 +4,7 @@ import './index.css'
 import App from './App.jsx'
 import { getSeo } from './seo.js'
 import { stripBase } from './base.js'
+import { initTracking } from './tracking.js'
 
 const path = stripBase(window.location.pathname)
 const root = document.getElementById('root')
@@ -25,3 +26,7 @@ if (root.childElementCount > 0) {
 } else {
   createRoot(root).render(app)
 }
+
+// Analytics/attribution (Pulse page-view + WhatsApp session + Google Ads),
+// runs on every page load. Client-only — never during prerender.
+initTracking()
