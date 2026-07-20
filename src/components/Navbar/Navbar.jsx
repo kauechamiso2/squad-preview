@@ -156,7 +156,7 @@ function Navbar() {
                 className={`${styles.link} ${openMenu === 'negocio' ? styles.linkActive : ''}`}
                 aria-expanded={openMenu === 'negocio'}
               >
-                Seu Negócio
+                Recursos
                 <Chevron
                   className={`${styles.chevron} ${openMenu === 'negocio' ? styles.chevronOpen : ''}`}
                 />
@@ -226,7 +226,7 @@ function Navbar() {
             aria-expanded={negocioOpen}
             onClick={() => setNegocioOpen((o) => !o)}
           >
-            Seu Negócio
+            Recursos
             <Chevron
               className={`${styles.menuChevron} ${negocioOpen ? styles.menuChevronOpen : ''}`}
             />
