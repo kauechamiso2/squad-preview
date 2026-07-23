@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+import { useLocale } from '../../i18n/LocaleContext.jsx';
 import styles from './PricingDetailModal.module.css';
 
 function FeatureDetails({ details }) {
@@ -36,6 +37,7 @@ function FeatureDetails({ details }) {
  * "closing"; the parent unmounts it after --modal-close-dur.
  */
 function PricingDetailModal({ feature, state, onClose }) {
+  const { t } = useLocale();
   useEffect(() => {
     const onKey = (event) => {
       if (event.key === 'Escape') onClose();
@@ -66,7 +68,7 @@ function PricingDetailModal({ feature, state, onClose }) {
         <button
           type="button"
           className={styles.close}
-          aria-label="Fechar"
+          aria-label={t('common.close')}
           onClick={onClose}
         >
           <svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true">

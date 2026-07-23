@@ -1,3 +1,6 @@
+import enPlans from '../../i18n/plans/en';
+import esPlans from '../../i18n/plans/es';
+
 /**
  * Pricing plans (v2) — everything editable here.
  * features:
@@ -150,3 +153,38 @@ export const PLANS = [
     ],
   },
 ];
+
+/* --- i18n: sobrepõe só o texto por idioma (nomes de plano e preços ficam). --- */
+const PLAN_OVERRIDES = { en: enPlans, es: esPlans };
+
+function mergeFeature(feature, ov) {
+  if (!ov) return feature;
+  const mf = { ...feature };
+  if (ov.label) mf.label = ov.label;
+  if (feature.details && ov.details) {
+    mf.details = { ...feature.details };
+    if (ov.details.text) mf.details.text = ov.details.text;
+    if (ov.details.items) mf.details.items = ov.details.items;
+    if (ov.details.groups) mf.details.groups = ov.details.groups;
+  }
+  return mf;
+}
+
+function mergePlan(plan, ov) {
+  if (!ov) return plan;
+  const mp = { ...plan };
+  if (ov.name) mp.name = ov.name;
+  if (ov.description) mp.description = ov.description;
+  if (ov.period) mp.period = ov.period;
+  if (ov.priceLabel) mp.priceLabel = ov.priceLabel;
+  if (ov.badge) mp.badge = ov.badge;
+  if (ov.cta && ov.cta.label) mp.cta = { ...plan.cta, label: ov.cta.label };
+  if (ov.features) mp.features = plan.features.map((f, i) => mergeFeature(f, ov.features[i]));
+  return mp;
+}
+
+export function getPlans(locale) {
+  const ov = PLAN_OVERRIDES[locale];
+  if (!ov) return PLANS;
+  return PLANS.map((plan) => mergePlan(plan, ov[plan.id]));
+}

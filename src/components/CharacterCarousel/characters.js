@@ -80,6 +80,8 @@ import avatarFin from '../../assets/avatar-fin.png';
 import avatarOpy from '../../assets/avatar-opy-new.png';
 import avatarJuri from '../../assets/avatar-juri-new.png';
 import avatarPipo from '../../assets/avatar-pipo-new.png';
+import enAgents from '../../i18n/agents/en';
+import esAgents from '../../i18n/agents/es';
 
 /**
  * Skills:
@@ -1172,3 +1174,56 @@ export const CHARACTERS = [
   byName('Fin'),
   byName('Pipo'),
 ];
+
+/* --- i18n: sobrepõe apenas o TEXTO por idioma; ícones/imagens/cores ficam na
+   estrutura PT acima. Campo não traduzido cai para o português (fonte). --- */
+const OVERRIDES = { en: enAgents, es: esAgents };
+
+function mergeSkill(skill, sv) {
+  if (!sv) return skill;
+  const ms = { ...skill };
+  if (sv.label) ms.label = sv.label;
+  if (sv.modalLabel) ms.modalLabel = sv.modalLabel;
+  if (skill.modal && sv.modal) {
+    const m = sv.modal;
+    const mm = { ...skill.modal };
+    if (m.title) mm.title = m.title;
+    if (m.subtitle) mm.subtitle = m.subtitle;
+    if (m.quote) mm.quote = m.quote;
+    if (m.features && skill.modal.features) {
+      mm.features = skill.modal.features.map((f, j) => {
+        const fv = m.features[j];
+        return fv
+          ? { ...f, ...(fv.title && { title: fv.title }), ...(fv.text && { text: fv.text }) }
+          : f;
+      });
+    }
+    if (skill.modal.forWho && m.forWho) {
+      mm.forWho = {
+        ...skill.modal.forWho,
+        ...(m.forWho.text && { text: m.forWho.text }),
+        ...(m.forWho.note && { note: m.forWho.note }),
+      };
+    }
+    ms.modal = mm;
+  }
+  return ms;
+}
+
+function mergeAgent(agent, ov) {
+  if (!ov) return agent;
+  const merged = { ...agent };
+  if (ov.segment) merged.segment = ov.segment;
+  if (ov.modalSegment) merged.modalSegment = ov.modalSegment;
+  if (ov.description) merged.description = ov.description;
+  if (ov.skills) merged.skills = agent.skills.map((s, i) => mergeSkill(s, ov.skills[i]));
+  return merged;
+}
+
+/* Agentes já no idioma pedido (com fallback PT por campo). Use nos componentes:
+   const { locale } = useLocale(); const chars = getCharacters(locale); */
+export function getCharacters(locale) {
+  const ov = OVERRIDES[locale];
+  if (!ov) return CHARACTERS;
+  return CHARACTERS.map((agent) => mergeAgent(agent, ov[agent.name]));
+}

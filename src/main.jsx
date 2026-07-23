@@ -2,6 +2,7 @@ import { StrictMode } from 'react'
 import { createRoot, hydrateRoot } from 'react-dom/client'
 import './index.css'
 import App from './App.jsx'
+import { LocaleProvider } from './i18n/LocaleContext.jsx'
 import { getSeo } from './seo.js'
 import { stripBase } from './base.js'
 import { initTracking } from './tracking.js'
@@ -15,7 +16,9 @@ document.title = getSeo(path).title
 
 const app = (
   <StrictMode>
-    <App path={path} />
+    <LocaleProvider>
+      <App path={path} />
+    </LocaleProvider>
   </StrictMode>
 )
 

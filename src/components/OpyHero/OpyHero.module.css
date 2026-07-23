@@ -18,6 +18,7 @@
   align-items: center;
   gap: 40px;
   text-align: center;
+  /* Entrada do título/subtítulo/CTA em sequência: ver motion.div em OpyHero.jsx */
 }
 
 .title {
@@ -41,6 +42,45 @@
 .visual {
   position: relative;
   width: 100%;
+  /* Entrada logo após o texto */
+  animation: opy-hero-in 0.55s cubic-bezier(0.22, 1, 0.36, 1) 0.1s both;
+}
+
+/* Entrada do hero: sobe de leve + fade, uma vez no load */
+@keyframes opy-hero-in {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* Opy voa: flutua devagar e sutil, num loop contínuo */
+@keyframes opy-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+/* A sombra reage ao voo: encolhe e clareia um tico quando a Opy sobe,
+   dando a sensação de que ela está de fato pairando (mesma fase do float) */
+@keyframes opy-shadow {
+  0%,
+  100% {
+    transform: translate(-50%, -50%) rotate(-11deg) scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: translate(-50%, -50%) rotate(-11deg) scale(0.82);
+    opacity: 0.72;
+  }
 }
 
 .card {
@@ -83,6 +123,12 @@
   .dashboard:hover {
     transform: none;
   }
+
+  .visual,
+  .character,
+  .characterShadow {
+    animation: none;
+  }
 }
 
 /* Soft ground shadow under the character's feet (Figma "Ellipse 37") */
@@ -99,6 +145,8 @@
     rgba(120, 110, 115, 0) 70%
   );
   pointer-events: none;
+  /* Reage ao voo da Opy (sincronizado com .character) */
+  animation: opy-shadow 5s ease-in-out 0.7s infinite;
 }
 
 /* Jumping character overlaps the card and spills past the bottom-right */
@@ -108,6 +156,8 @@
   left: 86.9%;
   width: 21.4%;
   height: auto;
+  /* Opy voando: flutua de leve, começa depois da entrada do hero */
+  animation: opy-float 5s ease-in-out 0.7s infinite;
 }
 
 /* --- Tablet --- */

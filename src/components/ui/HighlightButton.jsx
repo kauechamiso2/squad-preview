@@ -14,6 +14,7 @@ function HighlightButton({
   highlightSize = 56,
   href,
   onClick,
+  className: extraClassName,
   ...props
 }) {
   const buttonRef = useRef(null);
@@ -42,7 +43,7 @@ function HighlightButton({
     [onClick],
   );
 
-  const className = `${buttonStyles.button} ${buttonStyles[size]} ${buttonStyles[variant]} ${styles.highlight}`;
+  const className = `${buttonStyles.button} ${buttonStyles[size]} ${buttonStyles[variant]} ${styles.highlight}${extraClassName ? ` ${extraClassName}` : ''}`;
   const Tag = href ? 'a' : 'button';
   const tagProps = href
     ? { href, target: '_blank', rel: 'noopener noreferrer' }

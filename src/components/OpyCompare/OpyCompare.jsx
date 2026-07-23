@@ -1,20 +1,10 @@
+import { motion, MotionConfig } from 'motion/react';
 import thumbsDown from '../../assets/icon-thumbs-down.svg';
 import thumbsUp from '../../assets/icon-thumbs-up.svg';
+import { revealVariants, revealViewport } from '../ui/motionPresets';
+import { useLocale } from '../../i18n/LocaleContext.jsx';
+import { nl2br } from '../../i18n/nl2br.jsx';
 import styles from './OpyCompare.module.css';
-
-const WITHOUT = [
-  'Escala de time grande vira bagunça de planilha.',
-  'Um turno vazio só aparece quando já é tarde.',
-  'Loja sem gente é prejuízo que ninguém viu vir.',
-  'Montar escala toda semana consome um tempo enorme.',
-];
-
-const WITH = [
-  'Escala organizada mesmo com time grande.',
-  'Turno sem cobertura avisa o gestor na hora.',
-  'Buraco na escala nunca passa despercebido.',
-  'Escala pronta sem recomeçar toda semana.',
-];
 
 function Card({ label, items, icon }) {
   return (
@@ -31,19 +21,29 @@ function Card({ label, items, icon }) {
 }
 
 function OpyCompare() {
+  const { t } = useLocale();
+  const c = t('pages.opy.compare');
   return (
-    <section className={styles.section}>
-      <h2 className={styles.title}>
-        O que muda com <span className={styles.gradient}>Opy</span>
-        <br />
-        no seu time
-      </h2>
+    <MotionConfig reducedMotion="user">
+      <motion.section
+        className={styles.section}
+        variants={revealVariants}
+        initial="hidden"
+        whileInView="show"
+        viewport={revealViewport}
+      >
+        <h2 className={styles.title}>
+          {c.pre}
+          <span className={styles.gradient}>Opy</span>
+          {nl2br(c.post)}
+        </h2>
 
-      <div className={styles.cards}>
-        <Card label="SEM OPY NO SEU TIME" items={WITHOUT} icon={thumbsDown} />
-        <Card label="COM OPY NO SEU TIME" items={WITH} icon={thumbsUp} />
-      </div>
-    </section>
+        <div className={styles.cards}>
+          <Card label={c.withoutLabel} items={c.without} icon={thumbsDown} />
+          <Card label={c.withLabel} items={c.with} icon={thumbsUp} />
+        </div>
+      </motion.section>
+    </MotionConfig>
   );
 }
 

@@ -1,3 +1,4 @@
+import { useLocale } from '../../i18n/LocaleContext.jsx';
 import styles from './FeatureSection.module.css';
 
 function FeatureSection({
@@ -6,12 +7,14 @@ function FeatureSection({
   paragraph,
   image,
   reverse = false,
-  cta = 'Conheça mais',
+  cta,
   ctaDisabled = false,
   hideCta = false,
   eyebrowGradient,
   onCta,
 }) {
+  const { t } = useLocale();
+  const ctaLabel = cta ?? t('common.learnMore');
   return (
     <section className={`${styles.section} ${reverse ? styles.reverse : ''}`}>
       <div className={styles.text}>
@@ -29,7 +32,7 @@ function FeatureSection({
             className={`${styles.cta} ${ctaDisabled ? styles.ctaDisabled : ''}`}
             onClick={onCta}
           >
-            {cta}
+            {ctaLabel}
             {!ctaDisabled && (
               <span className={styles.arrow} aria-hidden="true">
                 <svg width="16" height="16" viewBox="0 0 18 18" fill="none">

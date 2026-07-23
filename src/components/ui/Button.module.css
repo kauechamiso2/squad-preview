@@ -10,6 +10,12 @@
   letter-spacing: -0.32px;
   line-height: 1.15;
   white-space: nowrap;
+  /* Feedback de clique: encolhe de leve ao pressionar */
+  transition: transform 0.16s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.button:active {
+  transform: scale(0.97);
 }
 
 .md {
@@ -79,5 +85,13 @@
 @media (prefers-reduced-motion: reduce) {
   .arrow {
     transition: none;
+  }
+
+  .button {
+    transition: none;
+  }
+
+  .button:active {
+    transform: none;
   }
 }

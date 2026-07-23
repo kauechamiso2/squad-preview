@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import VidalyticsEmbed from './VidalyticsEmbed';
+import { useLocale } from '../../i18n/LocaleContext.jsx';
 import styles from './ClientModal.module.css';
 
 /**
@@ -8,6 +9,7 @@ import styles from './ClientModal.module.css';
  * "open" or "closing" — the parent unmounts it after --modal-close-dur.
  */
 function ClientModal({ client, state, onClose }) {
+  const { t } = useLocale();
   useEffect(() => {
     const onKey = (event) => {
       if (event.key === 'Escape') onClose();
@@ -38,7 +40,7 @@ function ClientModal({ client, state, onClose }) {
         <button
           type="button"
           className={styles.close}
-          aria-label="Fechar"
+          aria-label={t('common.close')}
           onClick={onClose}
         >
           <svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true">

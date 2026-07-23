@@ -59,6 +59,7 @@
   border: 0;
   padding: 0;
   cursor: pointer;
+  text-decoration: none;
   transition: color 0.18s ease;
 }
 

@@ -7,6 +7,30 @@ import logoBrigadayros from '../../assets/logo-brigadayros.png';
  * a short lightweight loop for the card's hover preview, and the Vidalytics
  * embed (id + url) played in the modal.
  */
+const OVERRIDES = {
+  en: [
+    {
+      quote:
+        '“Squad didn’t just automate our customer service. It unlocked the company’s growth.”',
+      role: 'CEO & Founder',
+    },
+  ],
+  es: [
+    {
+      quote:
+        '“Squad no solo automatizó nuestra atención. Destrabó el crecimiento de la empresa.”',
+      role: 'CEO y Fundadora',
+    },
+  ],
+};
+
+/* Texto por idioma (nome/logo/vídeo ficam); campo faltando cai para o PT. */
+export function getClients(locale) {
+  const ov = OVERRIDES[locale];
+  if (!ov) return CLIENTS;
+  return CLIENTS.map((c, i) => (ov[i] ? { ...c, ...ov[i] } : c));
+}
+
 export const CLIENTS = [
   {
     quote:

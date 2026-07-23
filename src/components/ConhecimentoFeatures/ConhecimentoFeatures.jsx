@@ -1,4 +1,6 @@
+import { motion, MotionConfig } from 'motion/react';
 import FeatureSection from '../MakyFeatures/FeatureSection';
+import { revealVariants, revealViewport } from '../ui/motionPresets';
 import styles from '../MakyFeatures/FeatureSection.module.css';
 import sec1 from '../../assets/con-sec1.png';
 import sec2 from '../../assets/con-sec2.png';
@@ -50,14 +52,20 @@ const FEATURES = [
 
 function ConhecimentoFeatures() {
   return (
-    <>
+    <MotionConfig reducedMotion="user">
       {FEATURES.map((f, i) => (
-        <div key={f.eyebrow}>
+        <motion.div
+          key={f.eyebrow}
+          variants={revealVariants}
+          initial="hidden"
+          whileInView="show"
+          viewport={revealViewport}
+        >
           {i > 0 && <div className={styles.divider} aria-hidden="true" />}
           <FeatureSection {...f} eyebrowGradient={f.gradient} hideCta />
-        </div>
+        </motion.div>
       ))}
-    </>
+    </MotionConfig>
   );
 }
 

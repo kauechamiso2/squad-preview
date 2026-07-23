@@ -1,3 +1,4 @@
+import { useLocale } from '../../i18n/LocaleContext.jsx';
 import styles from './CarouselArrows.module.css';
 
 function ChevronIcon({ flipped = false }) {
@@ -23,12 +24,13 @@ function ChevronIcon({ flipped = false }) {
 
 /* Prev/next arrow pair used by the carousel sections */
 function CarouselArrows({ canPrev, canNext, onPrev, onNext }) {
+  const { t } = useLocale();
   return (
     <div className={styles.arrows}>
       <button
         type="button"
         className={styles.arrowButton}
-        aria-label="Anterior"
+        aria-label={t('common.prev')}
         disabled={!canPrev}
         onClick={onPrev}
       >
@@ -37,7 +39,7 @@ function CarouselArrows({ canPrev, canNext, onPrev, onNext }) {
       <button
         type="button"
         className={styles.arrowButton}
-        aria-label="Próximo"
+        aria-label={t('common.next')}
         disabled={!canNext}
         onClick={onNext}
       >

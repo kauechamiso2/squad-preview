@@ -1,3 +1,4 @@
+import { motion, MotionConfig } from 'motion/react';
 import Button from '../ui/Button';
 import characters from '../../assets/int-characters.png';
 import logoGmail from '../../assets/int-logo-gmail.png';
@@ -10,6 +11,25 @@ import logoHubspot from '../../assets/int-logo-hubspot.png';
 import logoLojaIntegrada from '../../assets/int-logo-lojaintegrada.png';
 import { WHATSAPP_CTA } from '../../links';
 import styles from './IntegracoesHero.module.css';
+
+// Título -> subtítulo -> CTA, em sequência (stagger). MotionConfig com
+// reducedMotion="user" respeita prefers-reduced-motion (mantém o fade,
+// remove o deslocamento).
+const contentVariants = {
+  hidden: {},
+  show: {
+    transition: { staggerChildren: 0.15, delayChildren: 0.05 },
+  },
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 16 },
+  show: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.55, ease: [0.22, 1, 0.36, 1] },
+  },
+};
 
 const CARDS = [
   { name: 'Gmail', logo: logoGmail },
@@ -33,42 +53,51 @@ function Card({ name, logo }) {
 
 function IntegracoesHero() {
   return (
-    <section className={styles.hero}>
-      <div className={styles.content}>
-        <h1 className={styles.title}>
-          Conecte todas as ferramentas do
-          <br />
-          seu negócio em um só lugar
-        </h1>
-        <p className={styles.subtitle}>
-          O Squad se conecta às ferramentas que sua empresa já usa, como
-          Instagram, WhatsApp e Shopify. Com a integração, os agentes ganham o
-          contexto que precisam pra agir sozinhos, sem você copiar informação de
-          um sistema pro outro.
-        </p>
-        <Button size="lg" href={WHATSAPP_CTA} withArrow>
-          Contratar agora
-        </Button>
-      </div>
+    <MotionConfig reducedMotion="user">
+      <section className={styles.hero}>
+        <motion.div
+          className={styles.content}
+          variants={contentVariants}
+          initial="hidden"
+          animate="show"
+        >
+          <motion.h1 className={styles.title} variants={itemVariants}>
+            Conecte todas as ferramentas do
+            <br />
+            seu negócio em um só lugar
+          </motion.h1>
+          <motion.p className={styles.subtitle} variants={itemVariants}>
+            O Squad se conecta às ferramentas que sua empresa já usa, como
+            Instagram, WhatsApp e Shopify. Com a integração, os agentes ganham o
+            contexto que precisam pra agir sozinhos, sem você copiar informação de
+            um sistema pro outro.
+          </motion.p>
+          <motion.div variants={itemVariants}>
+            <Button size="lg" href={WHATSAPP_CTA} withArrow>
+              Contratar agora
+            </Button>
+          </motion.div>
+        </motion.div>
 
-      <div className={styles.visual}>
-        {/* Infinite horizontal marquee of integration cards (pauses on hover) */}
-        <div className={styles.marquee}>
-          <div className={styles.track}>
-            {[...CARDS, ...CARDS].map((c, i) => (
-              <Card key={`${c.name}-${i}`} {...c} />
-            ))}
+        <div className={styles.visual}>
+          {/* Infinite horizontal marquee of integration cards (pauses on hover) */}
+          <div className={styles.marquee}>
+            <div className={styles.track}>
+              {[...CARDS, ...CARDS].map((c, i) => (
+                <Card key={`${c.name}-${i}`} {...c} />
+              ))}
+            </div>
           </div>
-        </div>
 
-        {/* Characters stand in front of the cards */}
-        <img
-          src={characters}
-          alt="Time de agentes do Squad"
-          className={styles.characters}
-        />
-      </div>
-    </section>
+          {/* Characters stand in front of the cards */}
+          <img
+            src={characters}
+            alt="Time de agentes do Squad"
+            className={styles.characters}
+          />
+        </div>
+      </section>
+    </MotionConfig>
   );
 }
 

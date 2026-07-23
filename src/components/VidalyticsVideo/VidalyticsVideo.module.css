@@ -20,16 +20,28 @@
   aspect-ratio: 16 / 9;
 }
 
-/* Vidalytics injects its player (an iframe) inside this div */
+/* Vidalytics injects its player inside this div. It's a decorative background,
+   so it stays non-interactive (no hover controls, no right-click, no clicks). */
 .embed {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
+  pointer-events: none;
 }
 
 .embed :global(iframe),
 .embed :global(video) {
   width: 100% !important;
   height: 100% !important;
+}
+
+/* Background video: hide ALL of the Vidalytics player chrome — thumbnail, big
+   play/pause button, control bar, seek bar, volume/unmute, settings, tooltips,
+   and the muted-autoplay "Click To Unmute" overlay. All of it lives inside
+   .Root__wrapper (and the right-click .ContextMenu__wrapper); the raw video
+   sits in a separate .Tech__wrapper, which stays. */
+.embed :global(.Root__wrapper),
+.embed :global(.ContextMenu__wrapper) {
+  display: none !important;
 }

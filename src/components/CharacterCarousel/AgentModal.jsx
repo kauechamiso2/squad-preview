@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+import { useLocale } from '../../i18n/LocaleContext.jsx';
 import styles from './AgentModal.module.css';
 
 /**
@@ -10,6 +11,7 @@ import styles from './AgentModal.module.css';
  * `accent` (from the agent) tints the quote bar, section labels and icons.
  */
 function AgentModal({ agent, tool, state, onClose }) {
+  const { t } = useLocale();
   useEffect(() => {
     const onKey = (event) => {
       if (event.key === 'Escape') onClose();
@@ -43,7 +45,7 @@ function AgentModal({ agent, tool, state, onClose }) {
         <button
           type="button"
           className={styles.close}
-          aria-label="Fechar"
+          aria-label={t('common.close')}
           onClick={onClose}
         >
           <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true">
@@ -68,7 +70,7 @@ function AgentModal({ agent, tool, state, onClose }) {
               <img
                 className={styles.screenshot}
                 src={tool.image}
-                alt={`Tela da ferramenta ${m.title}`}
+                alt={`${t('modal.screenshotAlt')} ${m.title}`}
               />
             ) : tool.comingSoon ? (
               <div className={styles.comingMedia}>
@@ -77,13 +79,13 @@ function AgentModal({ agent, tool, state, onClose }) {
                   alt={agent.name}
                   className={styles.comingAvatar}
                 />
-                <span className={styles.comingPill}>Em breve</span>
+                <span className={styles.comingPill}>{t('common.comingSoon')}</span>
               </div>
             ) : null}
 
             <blockquote className={styles.quote}>{m.quote}</blockquote>
 
-            <p className={styles.sectionLabel}>Sobre a ferramenta</p>
+            <p className={styles.sectionLabel}>{t('modal.aboutTool')}</p>
             <div className={styles.featureGrid}>
               {m.features.map(({ Icon, title, text }) => (
                 <div key={title} className={styles.featureCard}>
@@ -104,7 +106,7 @@ function AgentModal({ agent, tool, state, onClose }) {
               alt={agent.name}
               className={styles.soonAvatar}
             />
-            <p className={styles.soonText}>Em breve...</p>
+            <p className={styles.soonText}>{t('common.comingSoonLong')}</p>
           </div>
         ) : (
           <>
@@ -113,7 +115,7 @@ function AgentModal({ agent, tool, state, onClose }) {
               <img
                 className={styles.screenshot}
                 src={tool.image}
-                alt={`Tela da ferramenta ${tool.modalLabel || tool.label}`}
+                alt={`${t('modal.screenshotAlt')} ${tool.modalLabel || tool.label}`}
               />
             )}
           </>

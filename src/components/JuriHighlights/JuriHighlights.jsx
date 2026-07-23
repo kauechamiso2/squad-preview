@@ -1,28 +1,36 @@
+import { motion, MotionConfig } from 'motion/react';
 import hl1 from '../../assets/juri-hl-1.png';
 import hl2 from '../../assets/juri-hl-2.png';
 import hl3 from '../../assets/juri-hl-3.png';
 import hl4 from '../../assets/juri-hl-4.png';
+import { revealVariants, revealViewport } from '../ui/motionPresets';
+import { useLocale } from '../../i18n/LocaleContext.jsx';
 import styles from './JuriHighlights.module.css';
 
-const HIGHLIGHTS = [
-  { img: hl1, caption: 'Reúne todos os contratos em um só lugar.' },
-  { img: hl2, caption: 'Lê o contrato e extrai as informações importantes.' },
-  { img: hl3, caption: 'Avisa antes do contrato vencer.' },
-  { img: hl4, caption: 'Deixa o e-mail de renovação pronto para enviar.' },
-];
+const HL_IMAGES = [hl1, hl2, hl3, hl4];
 
 function JuriHighlights() {
+  const { t } = useLocale();
+  const captions = t('pages.juri.highlights');
   return (
-    <section className={styles.section}>
-      <ul className={styles.grid}>
-        {HIGHLIGHTS.map(({ img, caption }) => (
-          <li key={caption} className={styles.card}>
-            <img src={img} alt="" aria-hidden="true" className={styles.illus} />
-            <p className={styles.caption}>{caption}</p>
-          </li>
-        ))}
-      </ul>
-    </section>
+    <MotionConfig reducedMotion="user">
+      <motion.section
+        className={styles.section}
+        variants={revealVariants}
+        initial="hidden"
+        whileInView="show"
+        viewport={revealViewport}
+      >
+        <ul className={styles.grid}>
+          {HL_IMAGES.map((img, i) => (
+            <li key={i} className={styles.card}>
+              <img src={img} alt="" aria-hidden="true" className={styles.illus} />
+              <p className={styles.caption}>{captions[i]}</p>
+            </li>
+          ))}
+        </ul>
+      </motion.section>
+    </MotionConfig>
   );
 }
 

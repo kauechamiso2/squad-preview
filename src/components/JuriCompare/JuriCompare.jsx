@@ -1,20 +1,10 @@
+import { motion, MotionConfig } from 'motion/react';
 import thumbsDown from '../../assets/icon-thumbs-down.svg';
 import thumbsUp from '../../assets/icon-thumbs-up.svg';
+import { revealVariants, revealViewport } from '../ui/motionPresets';
+import { useLocale } from '../../i18n/LocaleContext.jsx';
+import { nl2br } from '../../i18n/nl2br.jsx';
 import styles from './JuriCompare.module.css';
-
-const WITHOUT = [
-  'Prazo e organização tomam tempo que era pro negócio.',
-  'Multa por cancelar fora do prazo, por distração.',
-  'Cláusula importante escondida em letra miúda.',
-  'Contrato espalhado entre e-mail, PDF e assinador.',
-];
-
-const WITH = [
-  'Contratos organizados todo dia, sem tirar seu tempo.',
-  'Prazo de decisão sempre visível, sem susto.',
-  'Termos importantes traduzidos em campos claros.',
-  'Todos os contratos guardados num só lugar.',
-];
 
 function Card({ label, items, icon }) {
   return (
@@ -31,19 +21,29 @@ function Card({ label, items, icon }) {
 }
 
 function JuriCompare() {
+  const { t } = useLocale();
+  const c = t('pages.juri.compare');
   return (
-    <section className={styles.section}>
-      <h2 className={styles.title}>
-        O que muda com <span className={styles.gradient}>Juri</span>
-        <br />
-        no seu time
-      </h2>
+    <MotionConfig reducedMotion="user">
+      <motion.section
+        className={styles.section}
+        variants={revealVariants}
+        initial="hidden"
+        whileInView="show"
+        viewport={revealViewport}
+      >
+        <h2 className={styles.title}>
+          {c.pre}
+          <span className={styles.gradient}>Juri</span>
+          {nl2br(c.post)}
+        </h2>
 
-      <div className={styles.cards}>
-        <Card label="SEM JURI NO SEU TIME" items={WITHOUT} icon={thumbsDown} />
-        <Card label="COM JURI NO SEU TIME" items={WITH} icon={thumbsUp} />
-      </div>
-    </section>
+        <div className={styles.cards}>
+          <Card label={c.withoutLabel} items={c.without} icon={thumbsDown} />
+          <Card label={c.withLabel} items={c.with} icon={thumbsUp} />
+        </div>
+      </motion.section>
+    </MotionConfig>
   );
 }
 

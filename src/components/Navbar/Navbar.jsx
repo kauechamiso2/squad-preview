@@ -10,22 +10,27 @@ import avatarPipo from '../../assets/avatar-pipo-new.png';
 import avatarJuri from '../../assets/avatar-juri-new.png';
 import { WHATSAPP_CONTACT } from '../../links';
 import { withBase } from '../../base';
+import { useLocale } from '../../i18n/LocaleContext.jsx';
+import LanguageSelector from './LanguageSelector';
 import styles from './Navbar.module.css';
 
 const AGENTS = [
-  { name: 'Waz', segment: 'Vendas e Atendimento', href: '/waz', avatar: avatarWaz },
-  { name: 'Maky', segment: 'Marketing', href: '/maky', avatar: avatarMaky },
-  { name: 'Fin', segment: 'Financeiro', href: '/fin', avatar: avatarFin },
-  { name: 'Opy', segment: 'Operações', href: '/opy', avatar: avatarOpy },
-  { name: 'Pipo', segment: 'Recursos Humanos', href: '/pipo', avatar: avatarPipo },
-  { name: 'Juri', segment: 'Jurídico', href: '/juri', avatar: avatarJuri },
+  { name: 'Waz', segKey: 'nav.segments.waz', href: '/waz', avatar: avatarWaz },
+  { name: 'Maky', segKey: 'nav.segments.maky', href: '/maky', avatar: avatarMaky },
+  { name: 'Fin', segKey: 'nav.segments.fin', href: '/fin', avatar: avatarFin },
+  { name: 'Opy', segKey: 'nav.segments.opy', href: '/opy', avatar: avatarOpy },
+  { name: 'Pipo', segKey: 'nav.segments.pipo', href: '/pipo', avatar: avatarPipo },
+  { name: 'Juri', segKey: 'nav.segments.juri', href: '/juri', avatar: avatarJuri },
 ];
 
 const BUSINESS = [
-  { title: 'Base de Conhecimento', href: '/conhecimento', Icon: Brain, bg: '#efeaff', color: '#7c5cff' },
-  { title: 'Catálogo de Produtos e Serviços', href: '/catalogo', Icon: Storefront, bg: '#eaf6ec', color: '#2f9e44' },
-  { title: 'Integrações', href: '/integracoes', Icon: PuzzlePiece, bg: '#e8f3ff', color: '#1971c2' },
+  { titleKey: 'nav.business.conhecimento', href: '/conhecimento', Icon: Brain, bg: '#efeaff', color: '#7c5cff' },
+  { titleKey: 'nav.business.catalogo', href: '/catalogo', Icon: Storefront, bg: '#eaf6ec', color: '#2f9e44' },
+  { titleKey: 'nav.business.integracoes', href: '/integracoes', Icon: PuzzlePiece, bg: '#e8f3ff', color: '#1971c2' },
 ];
+
+/* "Recursos" está temporariamente oculto (mantido no código para reativar). */
+const SHOW_RECURSOS = false;
 
 function Chevron({ className }) {
   return (
@@ -49,13 +54,14 @@ function Chevron({ className }) {
 }
 
 function AgentLink({ agent, className }) {
+  const { t } = useLocale();
   return (
     <a href={withBase(agent.href)} className={className}>
       <span className={styles.agentAvatar}>
         <img src={agent.avatar} alt="" aria-hidden="true" />
       </span>
       <span className={styles.agentText}>
-        <span className={styles.agentSegment}>{agent.segment}</span>
+        <span className={styles.agentSegment}>{t(agent.segKey)}</span>
         <span className={styles.agentName}>{agent.name}</span>
       </span>
     </a>
@@ -63,6 +69,7 @@ function AgentLink({ agent, className }) {
 }
 
 function BusinessLink({ item, className }) {
+  const { t } = useLocale();
   const { Icon } = item;
   return (
     <a href={withBase(item.href)} className={className}>
@@ -70,13 +77,14 @@ function BusinessLink({ item, className }) {
         <Icon size={24} weight="regular" />
       </span>
       <span className={styles.agentText}>
-        <span className={styles.agentSegment}>{item.title}</span>
+        <span className={styles.agentSegment}>{t(item.titleKey)}</span>
       </span>
     </a>
   );
 }
 
 function Navbar() {
+  const { t } = useLocale();
   const [menuOpen, setMenuOpen] = useState(false);
   const [agentesOpen, setAgentesOpen] = useState(false);
   const [negocioOpen, setNegocioOpen] = useState(false);
@@ -84,6 +92,19 @@ function Navbar() {
   // Hides on scroll down, reveals on scroll up (skipped near the very top)
   const [hidden, setHidden] = useState(false);
   const lastScrollY = useRef(0);
+
+  // "Planos" ancora na tabela de preços da home. Se ela existe na página atual,
+  // rola suave; senão, deixa o link navegar para /#planos.
+  const planosHref = `${withBase('/')}#planos`;
+  const goToPlanos = (e) => {
+    const el = document.getElementById('planos');
+    if (el) {
+      e.preventDefault();
+      const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      el.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'start' });
+    }
+    setMenuOpen(false);
+  };
 
   useEffect(() => {
     lastScrollY.current = window.scrollY;
@@ -128,7 +149,7 @@ function Navbar() {
                 className={`${styles.link} ${openMenu === 'agentes' ? styles.linkActive : ''}`}
                 aria-expanded={openMenu === 'agentes'}
               >
-                Agentes
+                {t('nav.agents')}
                 <Chevron
                   className={`${styles.chevron} ${openMenu === 'agentes' ? styles.chevronOpen : ''}`}
                 />
@@ -146,39 +167,56 @@ function Navbar() {
               )}
             </div>
 
-            <div
-              className={styles.navItem}
-              onMouseEnter={() => setOpenMenu('negocio')}
-              onMouseLeave={() => setOpenMenu(null)}
-            >
-              <button
-                type="button"
-                className={`${styles.link} ${openMenu === 'negocio' ? styles.linkActive : ''}`}
-                aria-expanded={openMenu === 'negocio'}
-              >
-                Recursos
-                <Chevron
-                  className={`${styles.chevron} ${openMenu === 'negocio' ? styles.chevronOpen : ''}`}
-                />
+            {/* Aprendizagem — sem link/menu por enquanto (placeholder) */}
+            <div className={styles.navItem}>
+              <button type="button" className={styles.link}>
+                {t('nav.learning')}
               </button>
-              {openMenu === 'negocio' && (
-                <div className={styles.megaWrap}>
-                  <div className={styles.megaPanel}>
-                    <div className={styles.bizGrid}>
-                      {BUSINESS.map((b) => (
-                        <BusinessLink key={b.href} item={b} className={styles.agentItem} />
-                      ))}
+            </div>
+
+            {/* Planos — ancora suave para a tabela de preços da home */}
+            <div className={styles.navItem}>
+              <a href={planosHref} className={styles.link} onClick={goToPlanos}>
+                {t('nav.plans')}
+              </a>
+            </div>
+
+            {SHOW_RECURSOS && (
+              <div
+                className={styles.navItem}
+                onMouseEnter={() => setOpenMenu('negocio')}
+                onMouseLeave={() => setOpenMenu(null)}
+              >
+                <button
+                  type="button"
+                  className={`${styles.link} ${openMenu === 'negocio' ? styles.linkActive : ''}`}
+                  aria-expanded={openMenu === 'negocio'}
+                >
+                  {t('nav.resources')}
+                  <Chevron
+                    className={`${styles.chevron} ${openMenu === 'negocio' ? styles.chevronOpen : ''}`}
+                  />
+                </button>
+                {openMenu === 'negocio' && (
+                  <div className={styles.megaWrap}>
+                    <div className={styles.megaPanel}>
+                      <div className={styles.bizGrid}>
+                        {BUSINESS.map((b) => (
+                          <BusinessLink key={b.href} item={b} className={styles.agentItem} />
+                        ))}
+                      </div>
                     </div>
                   </div>
-                </div>
-              )}
-            </div>
+                )}
+              </div>
+            )}
           </nav>
         </div>
 
         <div className={styles.actions}>
+          <LanguageSelector />
           <Button size="md" href={WHATSAPP_CONTACT} withArrow>
-            Falar no WhatsApp
+            {t('nav.contact')}
           </Button>
           <button
             type="button"
@@ -209,7 +247,7 @@ function Navbar() {
             aria-expanded={agentesOpen}
             onClick={() => setAgentesOpen((o) => !o)}
           >
-            Agentes
+            {t('nav.agents')}
             <Chevron
               className={`${styles.menuChevron} ${agentesOpen ? styles.menuChevronOpen : ''}`}
             />
@@ -220,22 +258,36 @@ function Navbar() {
             ))}
           </div>
 
-          <button
-            type="button"
-            className={styles.menuItem}
-            aria-expanded={negocioOpen}
-            onClick={() => setNegocioOpen((o) => !o)}
-          >
-            Recursos
-            <Chevron
-              className={`${styles.menuChevron} ${negocioOpen ? styles.menuChevronOpen : ''}`}
-            />
+          {/* Aprendizagem — sem link por enquanto (placeholder) */}
+          <button type="button" className={styles.menuItem}>
+            {t('nav.learning')}
           </button>
-          <div className={`${styles.submenu} ${negocioOpen ? styles.submenuOpen : ''}`}>
-            {BUSINESS.map((b) => (
-              <BusinessLink key={b.href} item={b} className={styles.submenuItem} />
-            ))}
-          </div>
+
+          {/* Planos — ancora suave para a tabela de preços da home */}
+          <a href={planosHref} className={styles.menuItem} onClick={goToPlanos}>
+            {t('nav.plans')}
+          </a>
+
+          {SHOW_RECURSOS && (
+            <>
+              <button
+                type="button"
+                className={styles.menuItem}
+                aria-expanded={negocioOpen}
+                onClick={() => setNegocioOpen((o) => !o)}
+              >
+                {t('nav.resources')}
+                <Chevron
+                  className={`${styles.menuChevron} ${negocioOpen ? styles.menuChevronOpen : ''}`}
+                />
+              </button>
+              <div className={`${styles.submenu} ${negocioOpen ? styles.submenuOpen : ''}`}>
+                {BUSINESS.map((b) => (
+                  <BusinessLink key={b.href} item={b} className={styles.submenuItem} />
+                ))}
+              </div>
+            </>
+          )}
         </div>
       )}
     </header>

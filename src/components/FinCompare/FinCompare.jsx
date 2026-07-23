@@ -1,20 +1,10 @@
+import { motion, MotionConfig } from 'motion/react';
 import thumbsDown from '../../assets/icon-thumbs-down.svg';
 import thumbsUp from '../../assets/icon-thumbs-up.svg';
+import { revealVariants, revealViewport } from '../ui/motionPresets';
+import { useLocale } from '../../i18n/LocaleContext.jsx';
+import { nl2br } from '../../i18n/nl2br.jsx';
 import styles from './FinCompare.module.css';
-
-const WITHOUT = [
-  'Pagamento espalhado entre planilha, app e caderno.',
-  'Dinheiro do negócio se mistura com o pessoal.',
-  'Sem saber o que vem, o crescimento é reativo.',
-  'Dinheiro entra, mas ninguém sabe pra onde vai.',
-];
-
-const WITH = [
-  'Todos os pagamentos num só lugar.',
-  'Separação clara, sem depender de memória.',
-  'Previsibilidade pra crescer com planejamento.',
-  'Clareza de pra onde o dinheiro vai, todo dia.',
-];
 
 function Card({ label, items, icon }) {
   return (
@@ -31,19 +21,29 @@ function Card({ label, items, icon }) {
 }
 
 function FinCompare() {
+  const { t } = useLocale();
+  const c = t('pages.fin.compare');
   return (
-    <section className={styles.section}>
-      <h2 className={styles.title}>
-        O que muda com <span className={styles.gradient}>Fin</span>
-        <br />
-        no seu time
-      </h2>
+    <MotionConfig reducedMotion="user">
+      <motion.section
+        className={styles.section}
+        variants={revealVariants}
+        initial="hidden"
+        whileInView="show"
+        viewport={revealViewport}
+      >
+        <h2 className={styles.title}>
+          {c.pre}
+          <span className={styles.gradient}>Fin</span>
+          {nl2br(c.post)}
+        </h2>
 
-      <div className={styles.cards}>
-        <Card label="SEM FIN NO SEU TIME" items={WITHOUT} icon={thumbsDown} />
-        <Card label="COM FIN NO SEU TIME" items={WITH} icon={thumbsUp} />
-      </div>
-    </section>
+        <div className={styles.cards}>
+          <Card label={c.withoutLabel} items={c.without} icon={thumbsDown} />
+          <Card label={c.withLabel} items={c.with} icon={thumbsUp} />
+        </div>
+      </motion.section>
+    </MotionConfig>
   );
 }
 

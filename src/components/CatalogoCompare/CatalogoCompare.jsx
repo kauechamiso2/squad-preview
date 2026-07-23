@@ -1,5 +1,7 @@
+import { motion, MotionConfig } from 'motion/react';
 import thumbsDown from '../../assets/icon-thumbs-down.svg';
 import thumbsUp from '../../assets/icon-thumbs-up.svg';
+import { revealVariants, revealViewport } from '../ui/motionPresets';
 import styles from '../ConhecimentoCompare/ConhecimentoCompare.module.css';
 
 const WITHOUT = [
@@ -32,12 +34,20 @@ function Card({ label, items, icon }) {
 
 function CatalogoCompare() {
   return (
-    <section className={styles.section}>
-      <div className={styles.cards}>
-        <Card label="SEM SQUAD NO SEU TIME" items={WITHOUT} icon={thumbsDown} />
-        <Card label="COM SQUAD NO SEU TIME" items={WITH} icon={thumbsUp} />
-      </div>
-    </section>
+    <MotionConfig reducedMotion="user">
+      <motion.section
+        className={styles.section}
+        variants={revealVariants}
+        initial="hidden"
+        whileInView="show"
+        viewport={revealViewport}
+      >
+        <div className={styles.cards}>
+          <Card label="SEM SQUAD NO SEU TIME" items={WITHOUT} icon={thumbsDown} />
+          <Card label="COM SQUAD NO SEU TIME" items={WITH} icon={thumbsUp} />
+        </div>
+      </motion.section>
+    </MotionConfig>
   );
 }
 

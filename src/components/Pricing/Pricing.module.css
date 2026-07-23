@@ -6,6 +6,8 @@
   /* 40px here + 120px of the previous section = 160px between sections */
   padding: 40px 0 120px;
   background: var(--color-white);
+  /* Offset para a âncora "Planos" não ficar embaixo do header fixo */
+  scroll-margin-top: 90px;
 }
 
 .heading {

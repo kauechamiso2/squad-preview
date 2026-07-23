@@ -1,28 +1,36 @@
+import { motion, MotionConfig } from 'motion/react';
 import hl1 from '../../assets/maky-hl-1.png';
 import hl2 from '../../assets/maky-hl-2.png';
 import hl3 from '../../assets/maky-hl-3.png';
 import hl4 from '../../assets/maky-hl-4.png';
+import { revealVariants, revealViewport } from '../ui/motionPresets';
+import { useLocale } from '../../i18n/LocaleContext.jsx';
 import styles from './MakyHighlights.module.css';
 
-const HIGHLIGHTS = [
-  { img: hl1, caption: 'Monitora e analisa a concorrência diariamente.' },
-  { img: hl2, caption: 'Cria posts com o contexto que a marca já carrega.' },
-  { img: hl3, caption: 'Analisa, agenda, publica na hora certa.' },
-  { img: hl4, caption: 'Interage e acompanha sua rede 24/7' },
-];
+const HL_IMAGES = [hl1, hl2, hl3, hl4];
 
 function MakyHighlights() {
+  const { t } = useLocale();
+  const captions = t('pages.maky.highlights');
   return (
-    <section className={styles.section}>
-      <ul className={styles.grid}>
-        {HIGHLIGHTS.map(({ img, caption }) => (
-          <li key={caption} className={styles.card}>
-            <img src={img} alt="" aria-hidden="true" className={styles.illus} />
-            <p className={styles.caption}>{caption}</p>
-          </li>
-        ))}
-      </ul>
-    </section>
+    <MotionConfig reducedMotion="user">
+      <motion.section
+        className={styles.section}
+        variants={revealVariants}
+        initial="hidden"
+        whileInView="show"
+        viewport={revealViewport}
+      >
+        <ul className={styles.grid}>
+          {HL_IMAGES.map((img, i) => (
+            <li key={i} className={styles.card}>
+              <img src={img} alt="" aria-hidden="true" className={styles.illus} />
+              <p className={styles.caption}>{captions[i]}</p>
+            </li>
+          ))}
+        </ul>
+      </motion.section>
+    </MotionConfig>
   );
 }
 

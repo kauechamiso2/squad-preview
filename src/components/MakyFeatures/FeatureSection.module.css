@@ -83,7 +83,8 @@
   cursor: pointer;
   transition:
     background 0.25s ease,
-    border-color 0.25s ease;
+    border-color 0.25s ease,
+    transform 0.16s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 /* "Em Breve" — non-interactive: no hover, not clickable */
@@ -94,6 +95,11 @@
 .cta:hover {
   background: #eef0f0;
   border-color: #b0b6b6;
+}
+
+/* Feedback de clique — só no botão interativo (não no "Em breve") */
+.cta:not(.ctaDisabled):active {
+  transform: scale(0.97);
 }
 
 .arrow {
@@ -190,5 +196,9 @@
   .cta,
   .arrow {
     transition: none;
+  }
+
+  .cta:not(.ctaDisabled):active {
+    transform: none;
   }
 }

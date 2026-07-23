@@ -1,3 +1,4 @@
+import { motion, MotionConfig } from 'motion/react';
 import thumbsDown from '../../assets/icon-thumbs-down.svg';
 import thumbsUp from '../../assets/icon-thumbs-up.svg';
 import instagram from '../../assets/intg-instagram.png';
@@ -12,6 +13,7 @@ import outlook from '../../assets/intg-outlook.png';
 import microsoft from '../../assets/intg-microsoft.png';
 import analytics from '../../assets/intg-analytics.png';
 import slack from '../../assets/intg-slack.png';
+import { revealVariants, revealViewport } from '../ui/motionPresets';
 import styles from './IntegracoesLogos.module.css';
 
 const INTEGRATIONS = [
@@ -84,52 +86,60 @@ function CompareCard({ label, items, icon }) {
 
 function IntegracoesLogos() {
   return (
-    <section className={styles.section}>
-      <h2 className={styles.heading}>Integrações disponíveis</h2>
+    <MotionConfig reducedMotion="user">
+      <motion.section
+        className={styles.section}
+        variants={revealVariants}
+        initial="hidden"
+        whileInView="show"
+        viewport={revealViewport}
+      >
+        <h2 className={styles.heading}>Integrações disponíveis</h2>
 
-      <ul className={styles.grid}>
-        {INTEGRATIONS.map(({ name, logo, text, soon, stroke }) => (
-          <li
-            key={name}
-            className={`${styles.card} ${soon ? styles.cardSoon : ''}`}
-            style={
-              stroke
-                ? { '--s1': stroke[0], '--s2': stroke[1], '--s3': stroke[2] }
-                : undefined
-            }
-          >
-            <img
-              src={logo}
-              alt=""
-              aria-hidden="true"
-              className={styles.cardLogo}
-            />
-            <p className={styles.cardName}>{name}</p>
-            <span className={styles.divider} aria-hidden="true" />
-            {soon ? (
-              <p className={styles.soonText}>Em breve</p>
-            ) : (
-              <p className={styles.cardText}>{text}</p>
-            )}
-          </li>
-        ))}
-      </ul>
+        <ul className={styles.grid}>
+          {INTEGRATIONS.map(({ name, logo, text, soon, stroke }) => (
+            <li
+              key={name}
+              className={`${styles.card} ${soon ? styles.cardSoon : ''}`}
+              style={
+                stroke
+                  ? { '--s1': stroke[0], '--s2': stroke[1], '--s3': stroke[2] }
+                  : undefined
+              }
+            >
+              <img
+                src={logo}
+                alt=""
+                aria-hidden="true"
+                className={styles.cardLogo}
+              />
+              <p className={styles.cardName}>{name}</p>
+              <span className={styles.divider} aria-hidden="true" />
+              {soon ? (
+                <p className={styles.soonText}>Em breve</p>
+              ) : (
+                <p className={styles.cardText}>{text}</p>
+              )}
+            </li>
+          ))}
+        </ul>
 
-      <h2 className={styles.compareTitle}>
-        O que muda com squad.com
-        <br />
-        na sua empresa
-      </h2>
+        <h2 className={styles.compareTitle}>
+          O que muda com squad.com
+          <br />
+          na sua empresa
+        </h2>
 
-      <div className={styles.compareCards}>
-        <CompareCard
-          label="SEM SQUAD NO SEU TIME"
-          items={WITHOUT}
-          icon={thumbsDown}
-        />
-        <CompareCard label="COM SQUAD NO SEU TIME" items={WITH} icon={thumbsUp} />
-      </div>
-    </section>
+        <div className={styles.compareCards}>
+          <CompareCard
+            label="SEM SQUAD NO SEU TIME"
+            items={WITHOUT}
+            icon={thumbsDown}
+          />
+          <CompareCard label="COM SQUAD NO SEU TIME" items={WITH} icon={thumbsUp} />
+        </div>
+      </motion.section>
+    </MotionConfig>
   );
 }
 

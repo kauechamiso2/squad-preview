@@ -1,6 +1,10 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
+import { motion, MotionConfig } from 'motion/react';
 import PricingDetailModal from './PricingDetailModal';
-import { PLANS } from './plans';
+import { getPlans } from './plans';
+import { revealVariants, revealViewport } from '../ui/motionPresets';
+import { useLocale } from '../../i18n/LocaleContext.jsx';
+import { nl2br } from '../../i18n/nl2br.jsx';
 import styles from './Pricing.module.css';
 
 /* Keep in sync with --modal-close-dur */
@@ -48,6 +52,8 @@ function XIcon() {
 }
 
 function Pricing() {
+  const { locale, t } = useLocale();
+  const plans = getPlans(locale);
   const trackRef = useRef(null);
   /* Feature detail modal: opens with the clicked feature's info */
   const [modalFeature, setModalFeature] = useState(null);
@@ -80,18 +86,22 @@ function Pricing() {
   }, []);
 
   return (
-    <section className={styles.section}>
+    <MotionConfig reducedMotion="user">
+      <motion.section
+        id="planos"
+        className={styles.section}
+        variants={revealVariants}
+        initial="hidden"
+        whileInView="show"
+        viewport={revealViewport}
+      >
       <div className={styles.heading}>
-        <h2 className={styles.title}>
-          Aproveita a condição limitada
-          <br />
-          para novos membros
-        </h2>
-        <p className={styles.subtitle}>Condição limitada para novos membros.</p>
+        <h2 className={styles.title}>{nl2br(t('home.pricing.title'))}</h2>
+        <p className={styles.subtitle}>{t('home.pricing.subtitle')}</p>
       </div>
 
       <div className={styles.track} ref={trackRef}>
-        {PLANS.map((plan) => (
+        {plans.map((plan) => (
           <article
             key={plan.id}
             data-featured={plan.featured}
@@ -200,7 +210,7 @@ function Pricing() {
                       <button
                         type="button"
                         className={styles.expandButton}
-                        aria-label={`Detalhar ${label}`}
+                        aria-label={`${t('home.pricing.detail')} ${label}`}
                         onClick={() => openModal({ label, details })}
                       >
                         <svg
@@ -234,7 +244,8 @@ function Pricing() {
           onClose={closeModal}
         />
       )}
-    </section>
+      </motion.section>
+    </MotionConfig>
   );
 }
 

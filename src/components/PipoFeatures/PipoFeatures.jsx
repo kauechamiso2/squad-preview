@@ -1,9 +1,12 @@
+import { motion, MotionConfig } from 'motion/react';
 import FeatureSection from '../MakyFeatures/FeatureSection';
-import { CHARACTERS } from '../CharacterCarousel/characters';
+import { CHARACTERS, getCharacters } from '../CharacterCarousel/characters';
 import { useAgentModal } from '../../hooks/useAgentModal';
+import { useLocale } from '../../i18n/LocaleContext.jsx';
+import { revealVariants, revealViewport } from '../ui/motionPresets';
 import styles from '../MakyFeatures/FeatureSection.module.css';
 
-const AGENT = CHARACTERS.find((c) => c.name === 'Pipo');
+const BASE_AGENT = CHARACTERS.find((c) => c.name === 'Pipo');
 import sec1 from '../../assets/pipo-sec1.png';
 import sec2 from '../../assets/pipo-sec2.png';
 import sec3 from '../../assets/pipo-sec3.png';
@@ -11,43 +14,12 @@ import sec4 from '../../assets/pipo-sec4.png';
 
 const GOLD = 'linear-gradient(90deg, #edb845, #f5d68a)';
 
+/* Estrutural; textos vêm de pages.pipo.features (por índice). */
 const FEATURES = [
-  {
-    eyebrow: 'RECRUTAMENTO',
-    title: 'Da vaga à proposta,\nnum funil só',
-    paragraph:
-      'O Pipo publica a vaga com a cara da sua empresa, analisa cada currículo e mostra quem tem mais aderência. Do funil organizado até a proposta pronta, tudo no mesmo lugar.',
-    image: sec1,
-    reverse: false,
-  },
-  {
-    eyebrow: 'WIKI INTERNO',
-    title: 'Conhecimento da empresa,\nsempre à mão da equipe',
-    paragraph:
-      'O Pipo aprende o conteúdo que você já tem e responde a equipe na hora, com a resposta oficial da casa. Ele só usa o que foi aprovado, então nunca inventa uma resposta.',
-    image: sec2,
-    reverse: true,
-  },
-  {
-    eyebrow: 'PDI',
-    title: 'Plano de crescimento pra\ncada colaborador, sem trabalho extra',
-    paragraph:
-      'O Pipo cria plano de desenvolvimento individual pra cada colaborador, com base no histórico e nas necessidades reais da empresa e da função. Cada pessoa ganha um caminho de crescimento definido, em vez de evolução no improviso.',
-    image: sec3,
-    reverse: false,
-    cta: 'Em Breve',
-    ctaDisabled: true,
-  },
-  {
-    eyebrow: 'PROSPECÇÃO DE CANDIDATOS',
-    title: 'Candidato certo,\nsem ficar só esperando',
-    paragraph:
-      'O Pipo pesquisa nas plataformas pra encontrar candidatos, em vez de esperar quem se aplica, e busca o perfil certo pra vaga específica que você quer preencher. Isso tira o trabalho pesado de varrer perfil por perfil e encurta o caminho entre abrir a vaga e ter bons nomes na mão.',
-    image: sec4,
-    reverse: true,
-    cta: 'Em Breve',
-    ctaDisabled: true,
-  },
+  { image: sec1, reverse: false },
+  { image: sec2, reverse: true },
+  { image: sec3, reverse: false, ctaDisabled: true },
+  { image: sec4, reverse: true, ctaDisabled: true },
 ];
 
 const SKILL_LABELS = [
@@ -58,25 +30,40 @@ const SKILL_LABELS = [
 ];
 
 function PipoFeatures() {
+  const { locale, t } = useLocale();
+  const AGENT = getCharacters(locale).find((c) => c.name === 'Pipo');
+  const feats = t('pages.pipo.features');
   const { openTool, modal } = useAgentModal(AGENT);
 
   return (
-    <>
+    <MotionConfig reducedMotion="user">
       {FEATURES.map((f, i) => {
-        const skill = AGENT?.skills.find((s) => s.label === SKILL_LABELS[i]);
+        const baseIdx = BASE_AGENT.skills.findIndex((s) => s.label === SKILL_LABELS[i]);
+        const skill = baseIdx >= 0 ? AGENT.skills[baseIdx] : undefined;
+        const tx = feats[i];
         return (
-          <div key={f.eyebrow}>
+          <motion.div
+            key={i}
+            variants={revealVariants}
+            initial="hidden"
+            whileInView="show"
+            viewport={revealViewport}
+          >
             {i > 0 && <div className={styles.divider} aria-hidden="true" />}
             <FeatureSection
               {...f}
+              eyebrow={tx.eyebrow}
+              title={tx.title}
+              paragraph={tx.paragraph}
+              cta={f.ctaDisabled ? t('common.comingSoon') : undefined}
               eyebrowGradient={GOLD}
               onCta={() => openTool(skill)}
             />
-          </div>
+          </motion.div>
         );
       })}
       {modal}
-    </>
+    </MotionConfig>
   );
 }
 

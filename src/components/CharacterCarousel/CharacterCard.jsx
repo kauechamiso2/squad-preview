@@ -1,12 +1,14 @@
 import { useRef } from 'react';
 import iconArrowUpright from '../../assets/icon-arrow-upright.svg';
 import { withBase } from '../../base';
+import { useLocale } from '../../i18n/LocaleContext.jsx';
 import styles from './CharacterCard.module.css';
 
 /* Peak tilt in degrees at the card edges (transitions.dev card tilt) */
 const MAX_TILT = 8;
 
 function CharacterCard({ character, onOpen }) {
+  const { t } = useLocale();
   const { name, segment, description, avatar, skills } = character;
   const href = withBase(`/${name.toLowerCase()}`);
   const tiltRef = useRef(null);
@@ -81,7 +83,7 @@ function CharacterCard({ character, onOpen }) {
       </div>
 
       <div className={styles.skills}>
-        <p className={styles.skillsLabel}>Ferramentas</p>
+        <p className={styles.skillsLabel}>{t('agentCard.tools')}</p>
         <ul className={styles.skillList}>
           {skills
             .filter(({ cardHidden }) => !cardHidden)

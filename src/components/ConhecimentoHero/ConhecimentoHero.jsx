@@ -1,7 +1,27 @@
+import { motion, MotionConfig } from 'motion/react';
 import Button from '../ui/Button';
 import brain from '../../assets/con-brain.png';
 import { WHATSAPP_CTA } from '../../links';
 import styles from './ConhecimentoHero.module.css';
+
+// Título -> subtítulo -> CTA, em sequência (stagger). MotionConfig com
+// reducedMotion="user" respeita prefers-reduced-motion (mantém o fade,
+// remove o deslocamento).
+const contentVariants = {
+  hidden: {},
+  show: {
+    transition: { staggerChildren: 0.15, delayChildren: 0.05 },
+  },
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 16 },
+  show: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.55, ease: [0.22, 1, 0.36, 1] },
+  },
+};
 
 /* Phosphor icon path data (regular weight, 256 viewBox) */
 const ICONS = {
@@ -73,25 +93,33 @@ const DUR = '12s';
 
 function ConhecimentoHero() {
   return (
-    <section className={styles.hero}>
-      <div className={styles.content}>
-        <h1 className={styles.title}>
-          Ensine uma vez,
-          <br />
-          todo agente aprende.
-        </h1>
-        <p className={styles.subtitle}>
-          A Base de Conhecimento reúne as regras, os processos e as respostas do
-          seu negócio num só lugar. Todo agente do Squad consulta essa mesma
-          base, então a informação é sempre a mesma, não importa com quem você
-          está falando.
-        </p>
-        <Button size="lg" href={WHATSAPP_CTA} withArrow>
-          Contratar Squad
-        </Button>
-      </div>
+    <MotionConfig reducedMotion="user">
+      <section className={styles.hero}>
+        <motion.div
+          className={styles.content}
+          variants={contentVariants}
+          initial="hidden"
+          animate="show"
+        >
+          <motion.h1 className={styles.title} variants={itemVariants}>
+            Ensine uma vez,
+            <br />
+            todo agente aprende.
+          </motion.h1>
+          <motion.p className={styles.subtitle} variants={itemVariants}>
+            A Base de Conhecimento reúne as regras, os processos e as respostas do
+            seu negócio num só lugar. Todo agente do Squad consulta essa mesma
+            base, então a informação é sempre a mesma, não importa com quem você
+            está falando.
+          </motion.p>
+          <motion.div variants={itemVariants}>
+            <Button size="lg" href={WHATSAPP_CTA} withArrow>
+              Contratar Squad
+            </Button>
+          </motion.div>
+        </motion.div>
 
-      <div className={styles.visual}>
+        <div className={styles.visual}>
         <svg
           className={styles.lines}
           viewBox="0 0 1440 132"
@@ -134,8 +162,9 @@ function ConhecimentoHero() {
         </svg>
 
         <img src={brain} alt="" aria-hidden="true" className={styles.brain} />
-      </div>
-    </section>
+        </div>
+      </section>
+    </MotionConfig>
   );
 }
 
