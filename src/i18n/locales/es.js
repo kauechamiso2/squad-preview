@@ -21,7 +21,7 @@ export default {
     },
   },
   lang: { select: 'Seleccionar idioma' },
-  cta: { whatsapp: 'Habla por WhatsApp' },
+  cta: { whatsapp: 'Habla por WhatsApp', wazFloat: 'Contáctanos (Waz)' },
   agentCard: { tools: 'Herramientas' },
   common: { close: 'Cerrar', prev: 'Anterior', next: 'Siguiente', comingSoon: 'Próximamente', comingSoonLong: 'Próximamente...', learnMore: 'Conoce más' },
   modal: { aboutTool: 'Sobre la herramienta', screenshotAlt: 'Pantalla de la herramienta' },

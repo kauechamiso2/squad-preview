@@ -21,7 +21,7 @@ export default {
     },
   },
   lang: { select: 'Select language' },
-  cta: { whatsapp: 'Chat on WhatsApp' },
+  cta: { whatsapp: 'Chat on WhatsApp', wazFloat: 'Get in touch (Waz)' },
   agentCard: { tools: 'Tools' },
   common: { close: 'Close', prev: 'Previous', next: 'Next', comingSoon: 'Coming soon', comingSoonLong: 'Coming soon...', learnMore: 'Learn more' },
   modal: { aboutTool: 'About the tool', screenshotAlt: 'Tool screenshot' },

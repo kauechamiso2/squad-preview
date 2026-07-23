@@ -3,6 +3,7 @@ import { useLocale } from './i18n/LocaleContext.jsx';
 import { getLocalizedSeo } from './seo.js';
 import Navbar from './components/Navbar/Navbar';
 import Footer from './components/Footer/Footer';
+import WazContact from './components/WazContact/WazContact';
 import Home from './pages/Home';
 import Maky from './pages/Maky/Maky';
 import Waz from './pages/Waz/Waz';
@@ -76,6 +77,7 @@ function App({ path }) {
         <Page />
       </main>
       <Footer />
+      <WazContact />
     </>
   );
 }
