@@ -21,7 +21,12 @@ export default {
     },
   },
   lang: { select: 'Selecionar idioma' },
-  cta: { whatsapp: 'Falar no WhatsApp', wazFloat: 'Entre em contato (Waz)' },
+  cta: {
+    whatsapp: 'Falar no WhatsApp',
+    wazFloat: 'Entre em contato (Waz)',
+    hireTitle: 'Contrate agora o Squad\npara o seu negócio',
+    hireNow: 'Contratar agora',
+  },
   agentCard: { tools: 'Ferramentas' },
   common: { close: 'Fechar', prev: 'Anterior', next: 'Próximo', comingSoon: 'Em breve', comingSoonLong: 'Em breve...', learnMore: 'Conheça mais' },
   modal: { aboutTool: 'Sobre a ferramenta', screenshotAlt: 'Tela da ferramenta' },
@@ -158,6 +163,70 @@ export default {
     },
   },
   pages: {
+    aprendizagem: {
+      hero: {
+        title: 'Cada ferramenta, explicada por gente de verdade',
+        subtitle:
+          'Mentoria ao vivo, curso no seu tempo e um especialista te acompanhando. Você aprende a usar cada módulo do Squad com ajuda de verdade.',
+        cta: 'Contratar Squad',
+        dashboardAlt:
+          'Painel de Educação do Squad com a agenda de mentorias da semana',
+      },
+      features: [
+        {
+          eyebrow: 'Mentorias',
+          title: 'Aprenda ao vivo,\ncom quem já domina\no módulo',
+          paragraph:
+            'Escolha um horário e entre numa chamada com quem já domina aquele módulo. Você vê o passo a passo na prática e tira a dúvida na hora, sem esperar resposta de suporte.',
+        },
+        {
+          eyebrow: 'Suporte',
+          title: 'Suporte 24 horas',
+          paragraph:
+            'O Waz é quem primeiro responde pelo Squad, direto no WhatsApp, e resolve a maior parte das dúvidas na hora. Se o problema for mais técnico, ele escala pro time de engenharia e você acompanha tudo na mesma conversa.',
+        },
+        {
+          eyebrow: 'Especialista',
+          title: 'Um especialista com\nvocê, do início ao fim',
+          paragraph:
+            'Além do suporte do dia a dia, um especialista acompanha a implementação do Squad no seu negócio, revisando a configuração e orientando os próximos passos.',
+        },
+      ],
+      compare: {
+        withoutLabel: 'SEM SQUAD NO SEU TIME',
+        withLabel: 'COM SQUAD NO SEU TIME',
+        without: [
+          'Cada IA que você usa tem seu próprio jeito de aprender.',
+          'Ferramenta de IA comprada, sem ninguém pra ensinar a usar.',
+          'Dúvida vira ticket de suporte, sem previsão de resposta.',
+          'Duas ou três IAs diferentes, cada uma com seu próprio suporte.',
+        ],
+        with: [
+          'Um único jeito de aprender, pra todos os agentes do Squad.',
+          'Mentoria ao vivo com quem já domina cada módulo.',
+          'Contato direto com um especialista, sem fila de espera.',
+          'Um time inteiro de agentes, com um único suporte por trás.',
+        ],
+      },
+      faq: [
+        {
+          q: 'As mentorias e os cursos têm algum custo extra?',
+          a: 'Não. Mentorias, cursos e o acompanhamento do especialista já fazem parte do Squad, sem custo adicional.',
+        },
+        {
+          q: 'Posso levar mais gente da minha equipe pras mentorias?',
+          a: 'Pode. As mentorias são para o time todo — quem vai usar o Squad no dia a dia entra junto na chamada e tira as próprias dúvidas.',
+        },
+        {
+          q: 'Como eu falo com o meu especialista?',
+          a: 'Pelo WhatsApp, na mesma conversa em que você já fala com o Squad. Além do suporte do dia a dia, o especialista acompanha a implementação no seu negócio e responde quando você precisar.',
+        },
+        {
+          q: 'Os cursos dão certificado?',
+          a: 'Os cursos ficam gravados e disponíveis no seu tempo, para você e seu time revisarem cada módulo quantas vezes precisarem.',
+        },
+      ],
+    },
     opy: {
       hero: {
         title: 'Conheça Opy:\nsua gestora de operações',

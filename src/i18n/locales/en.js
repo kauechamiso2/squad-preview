@@ -21,7 +21,12 @@ export default {
     },
   },
   lang: { select: 'Select language' },
-  cta: { whatsapp: 'Chat on WhatsApp', wazFloat: 'Get in touch (Waz)' },
+  cta: {
+    whatsapp: 'Chat on WhatsApp',
+    wazFloat: 'Get in touch (Waz)',
+    hireTitle: 'Hire Squad now\nfor your business',
+    hireNow: 'Hire now',
+  },
   agentCard: { tools: 'Tools' },
   common: { close: 'Close', prev: 'Previous', next: 'Next', comingSoon: 'Coming soon', comingSoonLong: 'Coming soon...', learnMore: 'Learn more' },
   modal: { aboutTool: 'About the tool', screenshotAlt: 'Tool screenshot' },
@@ -158,6 +163,70 @@ export default {
     },
   },
   pages: {
+    aprendizagem: {
+      hero: {
+        title: 'Every tool, explained by real people',
+        subtitle:
+          'Live mentoring, a course at your own pace, and a specialist by your side. You learn to use every Squad module with real help.',
+        cta: 'Hire Squad',
+        dashboardAlt:
+          "Squad's Education panel showing the week's mentoring schedule",
+      },
+      features: [
+        {
+          eyebrow: 'Mentoring',
+          title: 'Learn live,\nfrom someone who already\nmasters the module',
+          paragraph:
+            'Pick a time and join a call with someone who already masters that module. You see the whole process step by step and get your question answered on the spot, without waiting on a support reply.',
+        },
+        {
+          eyebrow: 'Support',
+          title: '24/7 support',
+          paragraph:
+            'Waz is the first to answer for Squad, right on WhatsApp, and solves most questions on the spot. If the problem is more technical, he escalates it to the engineering team and you follow everything in the same conversation.',
+        },
+        {
+          eyebrow: 'Specialist',
+          title: 'A specialist with you,\nfrom start to finish',
+          paragraph:
+            'Beyond day-to-day support, a specialist follows the rollout of Squad in your business, reviewing the setup and guiding the next steps.',
+        },
+      ],
+      compare: {
+        withoutLabel: 'WITHOUT SQUAD ON YOUR TEAM',
+        withLabel: 'WITH SQUAD ON YOUR TEAM',
+        without: [
+          'Every AI you use has its own learning curve.',
+          'An AI tool you bought, with no one to teach you how to use it.',
+          "A question turns into a support ticket, and you have no idea when you'll get a reply.",
+          'Two or three different AIs, each with its own support.',
+        ],
+        with: [
+          'One single way to learn, for every Squad agent.',
+          'Live mentoring with someone who already masters each module.',
+          'Direct contact with a specialist, no waiting in line.',
+          'A whole team of agents, with a single support behind it.',
+        ],
+      },
+      faq: [
+        {
+          q: 'Do the mentoring sessions and courses cost extra?',
+          a: "No. Mentoring, courses, and the specialist's support are already part of Squad, at no additional cost.",
+        },
+        {
+          q: 'Can I bring more people from my team to the mentoring sessions?',
+          a: 'You can. The mentoring sessions are for the whole team — whoever will use Squad day to day joins the call and asks their own questions.',
+        },
+        {
+          q: 'How do I talk to my specialist?',
+          a: 'On WhatsApp, in the same conversation you already use with Squad. Beyond day-to-day support, the specialist follows the rollout in your business and answers whenever you need.',
+        },
+        {
+          q: 'Do the courses come with a certificate?',
+          a: 'The courses are recorded and available at your own pace, so you and your team can review each module as many times as you need.',
+        },
+      ],
+    },
     opy: {
       hero: {
         title: 'Meet Opy:\nyour operations manager',

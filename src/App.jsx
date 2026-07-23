@@ -11,6 +11,7 @@ import Fin from './pages/Fin/Fin';
 import Pipo from './pages/Pipo/Pipo';
 import Opy from './pages/Opy/Opy';
 import Juri from './pages/Juri/Juri';
+import Aprendizagem from './pages/Aprendizagem/Aprendizagem';
 import Integracoes from './pages/Integracoes/Integracoes';
 import Conhecimento from './pages/Conhecimento/Conhecimento';
 import Catalogo from './pages/Catalogo/Catalogo';
@@ -24,6 +25,7 @@ const PAGES = {
   '/pipo': Pipo,
   '/opy': Opy,
   '/juri': Juri,
+  '/aprendizagem': Aprendizagem,
   '/integracoes': Integracoes,
   '/conhecimento': Conhecimento,
   '/catalogo': Catalogo,

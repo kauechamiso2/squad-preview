@@ -1,0 +1,124 @@
+.hero {
+  max-width: var(--page-max-width);
+  margin: 0 auto;
+  padding: 120px var(--page-padding-x);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 120px;
+}
+
+/* --- Bloco de texto (título -> subtítulo -> CTA) --- */
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 40px;
+}
+
+.title {
+  /* O Figma usa 688px, mas com a frase "Cada ferramenta, explicada..." isso
+     quebraria em 3 linhas; 780px preserva as 2 linhas do desenho. */
+  max-width: 780px;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 64px;
+  line-height: 0.9;
+  letter-spacing: -2.56px;
+  color: var(--color-black);
+  text-align: center;
+}
+
+.subtitle {
+  max-width: 688px;
+  font-size: 20px;
+  line-height: 1.4;
+  letter-spacing: -0.8px;
+  color: var(--color-text-secondary);
+  text-align: center;
+}
+
+/* --- Visual: card com gradiente + painel, e os personagens à frente --- */
+.visual {
+  position: relative;
+  width: 100%;
+  max-width: 1164px;
+  margin: 0 auto;
+}
+
+.frame {
+  display: block;
+  width: 100%;
+}
+
+.dashboard {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* Largura e recuo medidos no Figma: os personagens ocupam 92% do card e
+   descem ~9% da altura dele abaixo da base. */
+.characters {
+  position: absolute;
+  left: 50%;
+  bottom: -9%;
+  width: 92%;
+  transform: translateX(-50%);
+  pointer-events: none;
+}
+
+/* --- Tablet --- */
+@media (max-width: 1199px) {
+  .hero {
+    padding: 80px 24px;
+    gap: 72px;
+  }
+
+  .title {
+    font-size: 48px;
+    letter-spacing: -1.9px;
+    max-width: 620px;
+  }
+
+  .subtitle {
+    font-size: 18px;
+    letter-spacing: -0.6px;
+    max-width: 600px;
+  }
+}
+
+/* --- Mobile --- */
+@media (max-width: 767px) {
+  .hero {
+    padding: 56px 16px;
+    gap: 48px;
+  }
+
+  .title {
+    font-size: 36px;
+    letter-spacing: -1.4px;
+  }
+
+  .subtitle {
+    font-size: 16px;
+    letter-spacing: -0.5px;
+  }
+
+  /* Painel em tamanho natural, sangrando até a borda direita da tela e
+     recortado — é assim que o Figma mantém o dashboard legível no celular. */
+  .frame {
+    width: calc(100% + 16px);
+    overflow: hidden;
+  }
+
+  .dashboard {
+    width: 1164px;
+    max-width: none;
+  }
+
+  .characters {
+    width: 96%;
+    bottom: -6%;
+  }
+}

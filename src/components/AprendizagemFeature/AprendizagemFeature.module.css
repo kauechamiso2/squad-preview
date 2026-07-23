@@ -1,0 +1,119 @@
+.section {
+  max-width: var(--page-max-width);
+  margin: 0 auto;
+  padding: 40px var(--page-padding-x);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 141px;
+}
+
+/* Aproxima só os blocos de conteúdo entre si (2-3 e 3-4), sem alterar o vão
+   para o hero acima nem para o comparativo abaixo. */
+.section + .section {
+  margin-top: -24px;
+}
+
+/* Mockup à esquerda, texto à direita (bloco Suporte) */
+.reverse {
+  flex-direction: row-reverse;
+}
+
+/* --- Coluna de texto --- */
+.text {
+  width: 453px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 24px;
+}
+
+/* O gradiente vem por style inline; aqui fica a caixa de 473px do Figma para
+   que a rampa de cor caia exatamente nas mesmas letras. */
+.eyebrow {
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.4;
+  letter-spacing: -0.32px;
+  text-transform: uppercase;
+  /* Encolhe até o texto para que a rampa de cor comece sempre na primeira
+     letra, igual ao Figma, mesmo quando o bloco é centralizado. */
+  width: fit-content;
+  background-size: 473px 100%;
+  background-position: left center;
+  background-repeat: no-repeat;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.title {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 40px;
+  line-height: 1;
+  letter-spacing: -0.8px;
+  color: var(--color-black);
+  white-space: pre-line;
+}
+
+.paragraph {
+  font-size: 16px;
+  line-height: 1.4;
+  letter-spacing: -0.64px;
+  color: var(--color-text-secondary);
+}
+
+/* --- Visual (mockup exportado do Figma em 3x) --- */
+.visual {
+  width: 570px;
+  flex-shrink: 0;
+}
+
+.image {
+  display: block;
+  height: auto;
+}
+
+/* --- Tablet e mobile: empilha com o texto centralizado (Figma) --- */
+@media (max-width: 1024px) {
+  .section,
+  .reverse {
+    flex-direction: column;
+    align-items: center;
+    gap: 48px;
+    padding: 56px 24px;
+  }
+
+  .text {
+    width: 100%;
+    max-width: 620px;
+    align-items: center;
+    text-align: center;
+  }
+
+  .visual {
+    width: 100%;
+    max-width: 570px;
+  }
+}
+
+@media (max-width: 767px) {
+  .section,
+  .reverse {
+    gap: 40px;
+    padding: 48px 16px;
+  }
+
+  .title {
+    font-size: 32px;
+    letter-spacing: -0.6px;
+  }
+
+  /* Sem a sangria do export: no celular a imagem cabe dentro do padding */
+  .image {
+    width: 100% !important;
+  }
+}

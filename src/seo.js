@@ -48,6 +48,12 @@ export const SEO = {
       'A Juri é a agente jurídica do Squad: organiza todos os seus contratos num só lugar, avisa quando algum está perto de vencer e deixa o e-mail de renovação pronto pra você enviar — rodando todo dia pelo seu negócio.',
     path: '/juri',
   },
+  '/aprendizagem': {
+    title: 'Aprendizagem — cada ferramenta explicada por gente de verdade | Squad',
+    description:
+      'Mentoria ao vivo, curso no seu tempo e um especialista te acompanhando. Você aprende a usar cada módulo do Squad com ajuda de verdade.',
+    path: '/aprendizagem',
+  },
   '/integracoes': {
     title: 'Integrações — conecte suas ferramentas ao Squad',
     description:
@@ -108,6 +114,11 @@ export const SEO_I18N = {
       description:
         "Juri is Squad's legal agent: she keeps all your contracts in one place, warns you when one is about to expire and drafts the renewal email ready to send — running every day for your business.",
     },
+    '/aprendizagem': {
+      title: 'Learning — every tool explained by real people | Squad',
+      description:
+        'Live mentoring, a course at your own pace, and a specialist alongside you. You learn to use every Squad module with real help.',
+    },
     '/integracoes': {
       title: 'Integrations — connect your tools to Squad',
       description:
@@ -159,6 +170,11 @@ export const SEO_I18N = {
       title: 'Juri — tu equipo legal de guardia con IA | Squad',
       description:
         'Juri es la agente legal de Squad: organiza todos tus contratos en un solo lugar, avisa cuando alguno está por vencer y deja el correo de renovación listo para enviar — trabajando todos los días por tu negocio.',
+    },
+    '/aprendizagem': {
+      title: 'Aprendizaje — cada herramienta explicada por gente de verdad | Squad',
+      description:
+        'Mentoría en vivo, curso a tu ritmo y un especialista acompañándote. Aprendes a usar cada módulo de Squad con ayuda de verdad.',
     },
     '/integracoes': {
       title: 'Integraciones — conecta tus herramientas a Squad',

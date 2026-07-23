@@ -167,11 +167,10 @@ function Navbar() {
               )}
             </div>
 
-            {/* Aprendizagem — sem link/menu por enquanto (placeholder) */}
             <div className={styles.navItem}>
-              <button type="button" className={styles.link}>
+              <a href={withBase('/aprendizagem')} className={styles.link}>
                 {t('nav.learning')}
-              </button>
+              </a>
             </div>
 
             {/* Planos — ancora suave para a tabela de preços da home */}
@@ -258,10 +257,9 @@ function Navbar() {
             ))}
           </div>
 
-          {/* Aprendizagem — sem link por enquanto (placeholder) */}
-          <button type="button" className={styles.menuItem}>
+          <a href={withBase('/aprendizagem')} className={styles.menuItem}>
             {t('nav.learning')}
-          </button>
+          </a>
 
           {/* Planos — ancora suave para a tabela de preços da home */}
           <a href={planosHref} className={styles.menuItem} onClick={goToPlanos}>
