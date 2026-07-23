@@ -149,7 +149,7 @@ export default {
     ],
   },
   Waz: {
-    segment: 'Ventas y Atención',
+    segment: 'Ventas y Atención al Cliente',
     description:
       'Convierte conversaciones en contratos. Prospecta, negocia y atiende a tus clientes 24/7.',
     skills: [

@@ -7,7 +7,7 @@ export default {
     resources: 'Recursos',
     contact: 'Contáctanos',
     segments: {
-      waz: 'Ventas y Atención',
+      waz: 'Ventas y Atención al Cliente',
       maky: 'Marketing',
       fin: 'Finanzas',
       opy: 'Operaciones',
