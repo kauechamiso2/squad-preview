@@ -12,14 +12,23 @@ import sec4 from '../../assets/maky-sec4.png';
 import sec5 from '../../assets/maky-sec5.png';
 import sec6 from '../../assets/maky-sec6.png';
 import sec7 from '../../assets/maky-sec7.png';
+import sec3En from '../../assets/maky-sec3-en.png';
+import sec4En from '../../assets/maky-sec4-en.png';
+import sec5En from '../../assets/maky-sec5-en.png';
+import sec6En from '../../assets/maky-sec6-en.png';
+import sec7En from '../../assets/maky-sec7-en.png';
 
-/* Estrutural; textos vêm de pages.maky.features (por índice). */
+const SEC_IMAGES = [sec3, sec4, sec5, sec6, sec7];
+const SEC_IMAGES_EN = [sec3En, sec4En, sec5En, sec6En, sec7En];
+
+/* Estrutural; textos vêm de pages.maky.features (por índice). A imagem é
+   escolhida por idioma no componente (PT/EN; espanhol usa a versão EN). */
 const FEATURES = [
-  { image: sec3, reverse: false },
-  { image: sec4, reverse: true },
-  { image: sec5, reverse: false },
-  { image: sec6, reverse: true },
-  { image: sec7, reverse: false },
+  { reverse: false },
+  { reverse: true },
+  { reverse: false },
+  { reverse: true },
+  { reverse: false },
 ];
 
 /* Each feature block opens the same modal as the homepage card, by skill label */
@@ -36,6 +45,8 @@ function MakyFeatures() {
   const AGENT = getCharacters(locale).find((c) => c.name === 'Maky');
   const feats = t('pages.maky.features');
   const { openTool, modal } = useAgentModal(AGENT);
+  // Assets só têm PT e EN; espanhol usa a versão em inglês.
+  const secImages = locale !== 'pt' ? SEC_IMAGES_EN : SEC_IMAGES;
 
   return (
     <MotionConfig reducedMotion="user">
@@ -54,6 +65,7 @@ function MakyFeatures() {
             {i > 0 && <div className={styles.divider} aria-hidden="true" />}
             <FeatureSection
               {...f}
+              image={secImages[i]}
               eyebrow={tx.eyebrow}
               title={tx.title}
               paragraph={tx.paragraph}

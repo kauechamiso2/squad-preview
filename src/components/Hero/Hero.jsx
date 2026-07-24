@@ -3,6 +3,9 @@ import RainbowButton from '../ui/RainbowButton';
 import appPreview from '../../assets/app-preview.png';
 import appPreviewTablet from '../../assets/app-preview-tablet.png';
 import appPreviewMobile from '../../assets/app-preview-mobile.png';
+import appPreviewEn from '../../assets/app-preview-en.png';
+import appPreviewTabletEn from '../../assets/app-preview-tablet-en.png';
+import appPreviewMobileEn from '../../assets/app-preview-mobile-en.png';
 import iconArrow from '../../assets/icon-arrow.svg';
 import mediaExame from '../../assets/media-exame.svg';
 import mediaPipeline from '../../assets/media-pipeline.svg';
@@ -55,7 +58,12 @@ const MEDIA_LOGOS = [
 ];
 
 function Hero() {
-  const { t } = useLocale();
+  const { t, locale } = useLocale();
+  // Assets só têm PT e EN; espanhol usa a versão em inglês.
+  const en = locale !== 'pt';
+  const preview = en ? appPreviewEn : appPreview;
+  const previewTablet = en ? appPreviewTabletEn : appPreviewTablet;
+  const previewMobile = en ? appPreviewMobileEn : appPreviewMobile;
   return (
     <MotionConfig reducedMotion="user">
       <section className={styles.hero}>
@@ -97,10 +105,10 @@ function Hero() {
         </motion.div>
 
         <picture className={styles.visual}>
-          <source media="(max-width: 767px)" srcSet={appPreviewMobile} />
-          <source media="(max-width: 1199px)" srcSet={appPreviewTablet} />
+          <source media="(max-width: 767px)" srcSet={previewMobile} />
+          <source media="(max-width: 1199px)" srcSet={previewTablet} />
           <img
-            src={appPreview}
+            src={preview}
             alt="Interface do app Squad com a barra lateral de agentes e ferramentas"
             className={styles.visualImage}
           />

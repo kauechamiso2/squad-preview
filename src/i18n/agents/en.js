@@ -448,10 +448,10 @@ export default {
       'Keeps the operation running. Organizes schedules and makes sure nothing slips.',
     skills: [
       {
-        label: 'Schedules',
-        modalLabel: 'Schedule management',
+        label: 'Shift Management',
+        modalLabel: 'Shift Management',
         modal: {
-          title: 'Scheduling',
+          title: 'Shift Management',
           subtitle:
             'Schedules for large teams, always within the law and with no shift left uncovered.',
           quote:

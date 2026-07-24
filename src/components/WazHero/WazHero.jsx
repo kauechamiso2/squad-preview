@@ -2,6 +2,8 @@ import { motion, MotionConfig } from 'motion/react';
 import Button from '../ui/Button';
 import dashboard from '../../assets/waz-dashboard.png';
 import dashboardMobile from '../../assets/waz-dashboard-mobile.png';
+import dashboardEn from '../../assets/waz-dashboard-en.png';
+import dashboardMobileEn from '../../assets/waz-dashboard-mobile-en.png';
 import character from '../../assets/waz-character.png';
 import { WHATSAPP_CONTACT } from '../../links';
 import { useLocale } from '../../i18n/LocaleContext.jsx';
@@ -28,7 +30,11 @@ const itemVariants = {
 };
 
 function WazHero() {
-  const { t } = useLocale();
+  const { t, locale } = useLocale();
+  // Assets só têm PT e EN; espanhol usa a versão em inglês.
+  const en = locale !== 'pt';
+  const dash = en ? dashboardEn : dashboard;
+  const dashMobile = en ? dashboardMobileEn : dashboardMobile;
   return (
     <MotionConfig reducedMotion="user">
       <section className={styles.hero}>
@@ -56,13 +62,13 @@ function WazHero() {
         <div className={styles.visual}>
           <div className={styles.card}>
             <img
-              src={dashboard}
+              src={dash}
               alt="Painel de Propostas do Squad conduzido pelo Waz"
               className={styles.dashboard}
             />
             {/* Mobile shows a zoomed-in crop of the panel (legible on small screens) */}
             <img
-              src={dashboardMobile}
+              src={dashMobile}
               alt=""
               aria-hidden="true"
               className={styles.dashboardMobile}
