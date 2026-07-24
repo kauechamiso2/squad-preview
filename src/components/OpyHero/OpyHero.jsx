@@ -2,6 +2,8 @@ import { motion, MotionConfig } from 'motion/react';
 import Button from '../ui/Button';
 import dashboard from '../../assets/opy-dashboard.png';
 import dashboardMobile from '../../assets/opy-dashboard-mobile.png';
+import dashboardEn from '../../assets/opy-dashboard-en.png';
+import dashboardMobileEn from '../../assets/opy-dashboard-mobile-en.png';
 import character from '../../assets/opy-character.png';
 import { WHATSAPP_CONTACT } from '../../links';
 import { useLocale } from '../../i18n/LocaleContext.jsx';
@@ -28,7 +30,11 @@ const itemVariants = {
 };
 
 function OpyHero() {
-  const { t } = useLocale();
+  const { t, locale } = useLocale();
+  // Assets só têm PT e EN; espanhol usa a versão em inglês.
+  const en = locale !== 'pt';
+  const dash = en ? dashboardEn : dashboard;
+  const dashMobile = en ? dashboardMobileEn : dashboardMobile;
   return (
     <MotionConfig reducedMotion="user">
       <section className={styles.hero}>
@@ -56,13 +62,13 @@ function OpyHero() {
         <div className={styles.visual}>
           <div className={styles.card}>
             <img
-              src={dashboard}
+              src={dash}
               alt="Painel de Escalas do Squad conduzido pela Opy"
               className={styles.dashboard}
             />
             {/* Mobile shows a zoomed-in crop of the panel (legible on small screens) */}
             <img
-              src={dashboardMobile}
+              src={dashMobile}
               alt=""
               aria-hidden="true"
               className={styles.dashboardMobile}

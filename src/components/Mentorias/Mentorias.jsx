@@ -4,6 +4,9 @@ import iconCheckCircle from '../../assets/icon-check-circle.svg';
 import mentoriasPreview from '../../assets/mentorias-preview.png';
 import mentoriasPreviewTablet from '../../assets/mentorias-preview-tablet.png';
 import mentoriasPreviewMobile from '../../assets/mentorias-preview-mobile.png';
+import mentoriasPreviewEn from '../../assets/mentorias-preview-en.png';
+import mentoriasPreviewTabletEn from '../../assets/mentorias-preview-tablet-en.png';
+import mentoriasPreviewMobileEn from '../../assets/mentorias-preview-mobile-en.png';
 import { revealVariants, revealViewport } from '../ui/motionPresets';
 import { useLocale } from '../../i18n/LocaleContext.jsx';
 import { nl2br } from '../../i18n/nl2br.jsx';
@@ -13,8 +16,13 @@ const MENTORIA_CTA =
   'https://wa.me/551150395056?text=Oi%21%20Vim%20pelo%20site%20da%20Squad%20e%20quero%20saber%20mais%20sobre%20as%20mentorias%20ao%20vivo.%20Pode%20me%20contar%20como%20funciona%3F%20%F0%9F%99%82';
 
 function Mentorias() {
-  const { t } = useLocale();
+  const { t, locale } = useLocale();
   const benefits = t('home.mentorias.benefits');
+  // Assets só têm PT e EN; espanhol usa a versão em inglês.
+  const en = locale !== 'pt';
+  const preview = en ? mentoriasPreviewEn : mentoriasPreview;
+  const previewTablet = en ? mentoriasPreviewTabletEn : mentoriasPreviewTablet;
+  const previewMobile = en ? mentoriasPreviewMobileEn : mentoriasPreviewMobile;
   return (
     <MotionConfig reducedMotion="user">
       <motion.section
@@ -27,16 +35,10 @@ function Mentorias() {
         <div className={styles.content}>
           <div className={styles.visual}>
             <picture>
-              <source
-                media="(max-width: 767px)"
-                srcSet={mentoriasPreviewMobile}
-              />
-              <source
-                media="(max-width: 1199px)"
-                srcSet={mentoriasPreviewTablet}
-              />
+              <source media="(max-width: 767px)" srcSet={previewMobile} />
+              <source media="(max-width: 1199px)" srcSet={previewTablet} />
               <img
-                src={mentoriasPreview}
+                src={preview}
                 alt="Calendário do Squad.com com mentorias agendadas e uma mentoria ao vivo em andamento"
                 className={styles.visualImage}
               />
