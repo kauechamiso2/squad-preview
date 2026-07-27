@@ -57,13 +57,14 @@
   height: auto;
 }
 
-/* Largura e recuo medidos no Figma: os personagens ocupam 92% do card e
-   descem ~9% da altura dele abaixo da base. */
+/* Grupo do Figma (personagens + brilho da bota + sombras no chão). Medidas do
+   Figma: o grupo tem 121.7% da largura do card e começa 9.3% abaixo do topo
+   dele; a sombra transborda a base. */
 .characters {
   position: absolute;
   left: 50%;
-  bottom: -9%;
-  width: 92%;
+  top: 7%;
+  width: 121.73%;
   transform: translateX(-50%);
   pointer-events: none;
 }
@@ -118,7 +119,8 @@
   }
 
   .characters {
-    width: 96%;
-    bottom: -6%;
+    /* Acompanha o dashboard em tamanho natural (mesmo overflow do painel). */
+    width: 121.73%;
+    top: 8%;
   }
 }
