@@ -1,5 +1,6 @@
 import { motion, MotionConfig } from 'motion/react';
 import { revealVariants, revealViewport } from '../ui/motionPresets';
+import { useLocale } from '../../i18n/LocaleContext.jsx';
 import styles from './AprendizagemFeature.module.css';
 
 /**
@@ -17,9 +18,13 @@ function AprendizagemFeature({
   title,
   paragraph,
   image,
+  imageEn,
   imageWidth = '100%',
   reverse = false,
 }) {
+  const { locale } = useLocale();
+  // Assets só têm PT e EN; espanhol usa a versão em inglês.
+  const img = imageEn && locale !== 'pt' ? imageEn : image;
   return (
     <MotionConfig reducedMotion="user">
       <motion.section
@@ -39,7 +44,7 @@ function AprendizagemFeature({
 
         <div className={styles.visual}>
           <img
-            src={image}
+            src={img}
             alt=""
             aria-hidden="true"
             className={styles.image}

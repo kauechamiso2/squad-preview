@@ -6,8 +6,11 @@ import AprendizagemFaq from '../../components/AprendizagemFaq/AprendizagemFaq';
 import IntegracoesCta from '../../components/IntegracoesCta/IntegracoesCta';
 import { useLocale } from '../../i18n/LocaleContext.jsx';
 import mentorias from '../../assets/apr-mentorias.png';
+import mentoriasEn from '../../assets/apr-mentorias-en.png';
 import suporte from '../../assets/apr-suporte.png';
+import suporteEn from '../../assets/apr-suporte-en.png';
 import especialista from '../../assets/apr-especialista.png';
+import especialistaEn from '../../assets/apr-especialista-en.png';
 
 /* Gradientes dos eyebrows exatamente como no Figma (caixa de 473px) */
 const GRAD_MENTORIAS =
@@ -19,9 +22,9 @@ const GRAD_ESPECIALISTA =
 
 /* Estrutural; os textos vêm de pages.aprendizagem.features (por índice) */
 const BLOCKS = [
-  { gradient: GRAD_MENTORIAS, image: mentorias, imageWidth: '107.72%' },
-  { gradient: GRAD_SUPORTE, image: suporte, imageWidth: '104.44%', reverse: true },
-  { gradient: GRAD_ESPECIALISTA, image: especialista },
+  { gradient: GRAD_MENTORIAS, image: mentorias, imageEn: mentoriasEn, imageWidth: '107.72%' },
+  { gradient: GRAD_SUPORTE, image: suporte, imageEn: suporteEn, imageWidth: '104.44%', reverse: true },
+  { gradient: GRAD_ESPECIALISTA, image: especialista, imageEn: especialistaEn },
 ];
 
 function Aprendizagem() {

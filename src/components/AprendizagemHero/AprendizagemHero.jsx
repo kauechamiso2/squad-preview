@@ -1,6 +1,7 @@
 import { motion, MotionConfig } from 'motion/react';
 import Button from '../ui/Button';
 import dashboard from '../../assets/apr-dashboard.png';
+import dashboardEn from '../../assets/apr-dashboard-en.png';
 import characters from '../../assets/apr-characters.png';
 import { WHATSAPP_CTA } from '../../links';
 import { useLocale } from '../../i18n/LocaleContext.jsx';
@@ -26,7 +27,9 @@ const itemVariants = {
 };
 
 function AprendizagemHero() {
-  const { t } = useLocale();
+  const { t, locale } = useLocale();
+  // Assets só têm PT e EN; espanhol usa a versão em inglês.
+  const dash = locale !== 'pt' ? dashboardEn : dashboard;
   return (
     <MotionConfig reducedMotion="user">
       <section className={styles.hero}>
@@ -56,7 +59,7 @@ function AprendizagemHero() {
               borda da tela (como no Figma), por isso o wrapper que faz o clip. */}
           <div className={styles.frame}>
             <img
-              src={dashboard}
+              src={dash}
               alt={t('pages.aprendizagem.hero.dashboardAlt')}
               className={styles.dashboard}
             />
