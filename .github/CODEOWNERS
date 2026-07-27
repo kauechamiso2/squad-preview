@@ -1,0 +1,5 @@
+# O dono do repositório revisa tudo. Combinado com "Require review from Code
+# Owners" na proteção do branch main, isso faz com que TODO pull request
+# precise da aprovação do @kauechamiso2 antes de poder ser mesclado.
+# Os demais membros podem criar branches e abrir PRs normalmente.
+* @kauechamiso2
