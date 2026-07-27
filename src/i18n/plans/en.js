@@ -26,7 +26,7 @@ const TOOLS_GROUPS = [
 
 export default {
   start: {
-    description: 'For those just starting to automate their operation.',
+    description: 'Perfect for businesses taking their first step into AI automation.',
     period: '/mo',
     cta: { label: 'Get started' },
     features: [
@@ -34,7 +34,7 @@ export default {
         label: '1 AI agent of your choice and its tools',
         details: { text: 'Any of the agents and their tools' },
       },
-      { label: 'Guided step-by-step onboarding' },
+      { label: 'Guided, step-by-step onboarding' },
       { label: 'Group mentorship' },
       { label: 'One-on-one mentorship' },
       { label: 'Priority support' },
@@ -42,7 +42,7 @@ export default {
   },
   pro: {
     description:
-      'All the solutions and mentorships. The full team working for you.',
+      'Every agent and every session. The full team working for you.',
     period: '/mo',
     badge: 'Most popular',
     cta: { label: 'I want Business' },
@@ -60,12 +60,12 @@ export default {
           ],
         },
       },
-      { label: 'All the tools', details: { groups: TOOLS_GROUPS } },
+      { label: 'All tools', details: { groups: TOOLS_GROUPS } },
       {
-        label: '8 group mentorships',
+        label: '8 group mentoring sessions',
         details: { text: 'Access to 8 live mentorships we run every day' },
       },
-      { label: 'Guided step-by-step onboarding' },
+      { label: 'Guided, step-by-step onboarding' },
       { label: 'Priority support' },
     ],
   },
@@ -75,9 +75,9 @@ export default {
     priceLabel: 'Starting at',
     cta: { label: 'Talk to a consultant' },
     features: [
-      { label: 'All the tools', details: { groups: TOOLS_GROUPS } },
+      { label: 'All tools', details: { groups: TOOLS_GROUPS } },
       {
-        label: '16 group mentorships',
+        label: '16 group mentoring sessions',
         details: { text: 'Access to all mentorships' },
       },
       {
@@ -86,7 +86,7 @@ export default {
           text: 'A dedicated account manager who supports you whenever you need',
         },
       },
-      { label: 'Guided step-by-step onboarding' },
+      { label: 'Guided, step-by-step onboarding' },
       { label: 'Priority support' },
     ],
   },

@@ -61,8 +61,10 @@ function PopInValue({ value, animate }) {
 }
 
 function BigNumbers() {
-  const { t } = useLocale();
+  const { t, locale } = useLocale();
   const items = t('home.stats.items');
+  // Inglês usa ponto decimal (3.7x); PT e ES mantêm a vírgula (3,7x).
+  const fmt = (v) => (locale === 'en' ? v.replace(',', '.') : v);
   const sectionRef = useRef(null);
   const [visible, setVisible] = useState(false);
 
@@ -113,7 +115,7 @@ function BigNumbers() {
                   <div className={styles.stat}>
                     <p className={`${styles.label} ${styles[gradient]}`}>{label}</p>
                     <p className={styles.value}>
-                      <PopInValue value={value} animate={visible} />
+                      <PopInValue value={fmt(value)} animate={visible} />
                       {suffix && <span className={styles.suffix}>{suffix}</span>}
                     </p>
                   </div>

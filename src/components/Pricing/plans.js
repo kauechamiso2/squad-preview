@@ -183,8 +183,18 @@ function mergePlan(plan, ov) {
   return mp;
 }
 
+/* Inglês usa vírgula como separador de milhar (R$2,000); PT e ES mantêm o
+   ponto (R$2.000). Os preços não têm centavos, então a troca é segura. */
+function localizePrice(price, locale) {
+  return locale === 'en' && price ? price.replace(/\./g, ',') : price;
+}
+
 export function getPlans(locale) {
   const ov = PLAN_OVERRIDES[locale];
-  if (!ov) return PLANS;
-  return PLANS.map((plan) => mergePlan(plan, ov[plan.id]));
+  return PLANS.map((plan) => {
+    const merged = ov ? mergePlan(plan, ov[plan.id]) : { ...plan };
+    return merged.price
+      ? { ...merged, price: localizePrice(merged.price, locale) }
+      : merged;
+  });
 }

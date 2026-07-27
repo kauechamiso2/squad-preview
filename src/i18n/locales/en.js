@@ -43,19 +43,19 @@ export default {
       announceHighlight: 'R$30M',
       title: 'The complete solution for your business',
       subtitle:
-        'Squad is a team of AI agents that takes over your company’s marketing, sales, finance, and operations. Working together, with shared context, 24 hours a day.',
+        'Meet the AI team that runs your business. Marketing, sales, finance, and operations—all working together with shared context, 24/7.',
       mediaTitle: 'In the media',
     },
     mentorias: {
-      title: 'Mentorship for\nyour whole journey',
+      title: 'Mentorship every step\nof the way',
       subtitle:
-        'Live mentorship, several times a day. You’re never on your own. Every day, multiple live sessions with real experts by your side, from the first click to your company running on autopilot.',
+        'Join live mentorship sessions throughout the day with real experts. From your first login to running your business on autopilot, you’re never on your own.',
       benefits: [
         'Several live mentorships a day, one for each tool.',
         'Dedicated support at every stage of the rollout',
         'Experts by area: marketing, sales, finance, and operations',
       ],
-      cta: 'I want this mentorship',
+      cta: 'Join mentorship',
     },
     stats: {
       title: 'It’s like hiring an entire team of specialists.',
@@ -84,7 +84,7 @@ export default {
         {
           label: 'Projects that fail',
           description:
-            'Nearly every AI investment falls short — 95% of projects fail before delivering any return. (MIT NANDA / Media Lab, 2025)',
+            'Most AI investments never pay off — 95% of projects fail before delivering a return. (MIT NANDA / Media Lab, 2025)',
         },
       ],
     },
@@ -154,7 +154,7 @@ export default {
     team: {
       title: 'Your team just grew',
       subtitle:
-        'AI agents ready to work alongside your team, with shared memory and context from day one. Explore each tool by clicking the cards below.',
+        'AI agents ready to work alongside your people, with shared memory and context from day one. Click any card to explore each tool.',
     },
     pricing: {
       title: 'Take advantage of the limited offer\nfor new members',

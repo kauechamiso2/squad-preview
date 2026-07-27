@@ -5,7 +5,7 @@ export default {
   Maky: {
     modalSegment: 'Marketing & Content',
     description:
-      'Your marketing strategist. Creates content, reads the market, and keeps your brand always present.',
+      'Creates content, understands your audience, and keeps your brand top of mind.',
     skills: [
       {
         label: 'Competitor analysis',
@@ -152,10 +152,10 @@ export default {
   Waz: {
     segment: 'Sales & Support',
     description:
-      'Turns conversations into contracts. Prospects, negotiates, and serves your customers 24/7.',
+      'Turns conversations into contracts. Prospects, negotiates, and supports your customers 24/7.',
     skills: [
       {
-        label: 'WhatsApp outbound',
+        label: 'WhatsApp Outreach',
         modalLabel: 'WhatsApp & call outbound prospecting',
         modal: {
           title: 'WhatsApp Broadcast',
@@ -298,7 +298,7 @@ export default {
         },
       },
       {
-        label: 'Lead search',
+        label: 'Lead Discovery',
         modalLabel: 'Lead search & enrichment',
         modal: {
           title: 'Lead Search & Enrichment',
@@ -331,7 +331,7 @@ export default {
   Fin: {
     segment: 'Finance',
     description:
-      'Keeps your books in order. Tracks money in, money out, and your business’s financial health.',
+      'Keeps your finances in order. Tracks cash flow and gives you a real-time view of your business’s financial health.',
     skills: [
       {
         label: 'Cash flow',
@@ -413,7 +413,7 @@ export default {
         },
       },
       {
-        label: 'Customer collection',
+        label: 'Accounts Receivable',
         modal: {
           title: 'Customer Collection',
           subtitle:
@@ -445,7 +445,7 @@ export default {
   Opy: {
     segment: 'Operations',
     description:
-      'Keeps the operation running. Organizes schedules and makes sure nothing slips.',
+      'Keeps operations running smoothly and keeps everything on track.',
     skills: [
       {
         label: 'Shift Management',
@@ -575,7 +575,7 @@ export default {
   Juri: {
     segment: 'Legal',
     description:
-      'Your legal department always on call. Reviews, organizes, and tracks all your contracts.',
+      'Your legal team, always on call. Reviews, organizes, and tracks every contract.',
     skills: [
       {
         label: 'Contract management',
