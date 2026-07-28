@@ -130,18 +130,26 @@
 }
 
 /* Segment: takes over the prominent styling the name used to have */
+/* Reserves 2 lines (longest across pt/en/es is "Vendas e Atendimento" /
+   "Ventas y Atención al Cliente"), so a wrapping segment doesn't push
+   "Ferramentas" down relative to cards with a single-line segment. */
 .segment {
   font-size: 24px;
   font-weight: 500;
   line-height: 1.1;
   color: #090909;
+  min-height: 2.2em;
 }
 
+/* Reserves 4 lines (the longest description across pt/en/es), so
+   "Ferramentas" starts at the same height on every card regardless of
+   description length or how many tools the agent has. */
 .description {
   font-size: 16px;
   line-height: 1.2;
   color: #858585;
   margin-top: 8px;
+  min-height: 4.8em;
 }
 
 /* Skills */

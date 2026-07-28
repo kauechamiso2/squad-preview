@@ -97,7 +97,7 @@ export default {
       features: [
         {
           title: 'Conformidad SOC II',
-          text: 'Protegemos tu información con prácticas de seguridad líderes del sector. Cumplimos con SOC II Tipo I de punta a punta.',
+          text: 'Protegemos tu información con prácticas de seguridad líderes del sector. Cumplimos con SOC II Tipo II de punta a punta.',
         },
         {
           title: 'Cifrado',
@@ -105,7 +105,7 @@ export default {
         },
         {
           title: 'Sin entrenar modelos',
-          text: 'Tus datos están seguros y nunca se usan para entrenar modelos de IA. Tu información es tuya, y sigue siéndolo.',
+          text: 'Tus datos están seguros y nunca se usan para entrenar modelos de IA. Tu información es tuya, y así se queda.',
         },
       ],
     },
@@ -461,11 +461,11 @@ export default {
         },
         {
           q: '¿Maky funciona para cualquier tipo de negocio?',
-          a: 'Sí. Como se apoya en el contexto de tu marca —sitio, redes e historial de tu perfil—, Maky se adapta a tu segmento y crea contenido relevante para tu público, sea cual sea el tipo de negocio.',
+          a: 'Sí. Como se apoya en el contexto de tu marca (sitio, redes e historial de tu perfil), Maky se adapta a tu segmento y crea contenido relevante para tu público, sea cual sea el tipo de negocio.',
         },
         {
           q: '¿Maky reemplaza a una agencia de marketing?',
-          a: 'Maky asume el trabajo operativo del día a día —crear, programar, publicar y responder— funcionando 24 horas al día. Se encarga del marketing recurrente sin que necesites una agencia ni aprender la plataforma.',
+          a: 'Maky asume el trabajo operativo del día a día (crear, programar, publicar y responder), funcionando 24 horas al día. Se encarga del marketing recurrente sin que necesites una agencia ni aprender la plataforma.',
         },
       ],
     },

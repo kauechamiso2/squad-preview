@@ -27,7 +27,7 @@ export default {
   start: {
     description: 'Para quien está empezando a automatizar la operación.',
     period: '/mes',
-    cta: { label: 'Empezar' },
+    cta: { label: 'Habla con un consultor' },
     features: [
       {
         label: '1 agente de IA a tu elección y sus herramientas',

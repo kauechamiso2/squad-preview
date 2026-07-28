@@ -28,7 +28,7 @@ export default {
   start: {
     description: 'Perfect for businesses taking their first step into AI automation.',
     period: '/mo',
-    cta: { label: 'Get started' },
+    cta: { label: 'Talk to a consultant' },
     features: [
       {
         label: '1 AI agent of your choice and its tools',

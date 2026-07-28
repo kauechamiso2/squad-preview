@@ -42,7 +42,7 @@ export const PLANS = [
     price: 'R$2.000',
     period: '/mês',
     cta: {
-      label: 'Começar',
+      label: 'Fale com um consultor',
       variant: 'outline',
       arrow: true,
       href: 'https://wa.me/551150395056?text=Oi%21%20Vim%20pelo%20site%20da%20Squad%20e%20me%20interessei%20pelo%20plano%20Essential.%20Pode%20me%20contar%20mais%3F%20%F0%9F%99%82',

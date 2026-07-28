@@ -1,5 +1,5 @@
 import { motion, MotionConfig } from 'motion/react';
-import HighlightButton from '../ui/HighlightButton';
+import ShineButton from '../ui/ShineButton';
 import iconCheckCircle from '../../assets/icon-check-circle.svg';
 import mentoriasPreview from '../../assets/mentorias-preview.png';
 import mentoriasPreviewTablet from '../../assets/mentorias-preview-tablet.png';
@@ -67,29 +67,7 @@ function Mentorias() {
           </div>
         </div>
 
-        <HighlightButton
-          size="lg"
-          href={MENTORIA_CTA}
-          className={styles.ctaButton}
-        >
-          {t('home.mentorias.cta')}
-          <svg
-            width="18"
-            height="18"
-            viewBox="0 0 18 18"
-            fill="none"
-            aria-hidden="true"
-            className={styles.ctaArrow}
-          >
-            <path
-              d="M3 9h11M10 4.5L14.5 9 10 13.5"
-              stroke="currentColor"
-              strokeWidth="1.8"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-          </svg>
-        </HighlightButton>
+        <ShineButton href={MENTORIA_CTA}>{t('home.mentorias.cta')}</ShineButton>
       </motion.section>
     </MotionConfig>
   );

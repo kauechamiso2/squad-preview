@@ -66,6 +66,20 @@ import toolComentarios from '../../assets/tool-comentarios.jpg';
 import toolBlog from '../../assets/tool-blog.jpg';
 import toolTrafego from '../../assets/tool-trafego.jpg';
 import toolConcorrencia from '../../assets/tool-concorrencia.jpg';
+/* English product screenshots. Used for both en and es — the app itself
+   has no Spanish UI capture, so es falls back to the English one. */
+import toolCampanhasEn from '../../assets/tool-campanhas-en.jpg';
+import toolComentariosEn from '../../assets/tool-comentarios-en.jpg';
+import toolBlogEn from '../../assets/tool-blog-en.jpg';
+import toolTrafegoEn from '../../assets/tool-trafego-en.jpg';
+import toolConcorrenciaEn from '../../assets/tool-concorrencia-en.jpg';
+import toolSdrEn from '../../assets/tool-sdr-en.jpg';
+import toolPropostaEn from '../../assets/tool-proposta-en.jpg';
+import toolOutboundEn from '../../assets/tool-outbound-en.jpg';
+import toolEscalasEn from '../../assets/tool-escalas-en.jpg';
+import toolFluxoEn from '../../assets/tool-fluxo-en.jpg';
+import toolTriagemEn from '../../assets/tool-triagem-en.jpg';
+import toolContratosEn from '../../assets/tool-contratos-en.jpg';
 import toolProposta from '../../assets/tool-proposta.jpg';
 import toolOutbound from '../../assets/tool-outbound.jpg';
 import toolSdr from '../../assets/tool-sdr.jpg';
@@ -88,6 +102,7 @@ import esAgents from '../../i18n/agents/es';
  * - `label` is shown on the card; `Icon` is the leading Phosphor icon.
  * - `icon: false` renders a card-only pill without icons ("Ver mais").
  * - `cardHidden: true` hides the tool from the card (modal-only).
+ * - `imageEn` overrides `image` outside pt (en/es share the English capture).
  * - `modal` carries the rich per-tool modal content (title, subtitle,
  *   quote, feature cards and the "para quem é" block). Tools without it
  *   fall back to a simple video modal.
@@ -109,6 +124,7 @@ const AGENTS = [
         label: 'Análise concorrentes',
         Icon: Binoculars,
         image: toolConcorrencia,
+        imageEn: toolConcorrenciaEn,
         modal: {
           title: 'Análise de Concorrentes',
           subtitle:
@@ -147,6 +163,7 @@ const AGENTS = [
         label: 'Blog / AEO',
         Icon: Article,
         image: toolBlog,
+        imageEn: toolBlogEn,
         modal: {
           title: 'Geração de Blog (AEO)',
           subtitle:
@@ -185,6 +202,7 @@ const AGENTS = [
         label: 'Tráfego pago',
         Icon: ChartLineUp,
         image: toolTrafego,
+        imageEn: toolTrafegoEn,
         modal: {
           title: 'Mídia Paga',
           subtitle:
@@ -223,6 +241,7 @@ const AGENTS = [
         label: 'Campanhas',
         Icon: CalendarPlus,
         image: toolCampanhas,
+        imageEn: toolCampanhasEn,
         modal: {
           title: 'Campanhas',
           subtitle:
@@ -261,6 +280,7 @@ const AGENTS = [
         label: 'Comentários',
         Icon: ChatCircleText,
         image: toolComentarios,
+        imageEn: toolComentariosEn,
         modal: {
           title: 'Automação de Comentários',
           subtitle:
@@ -311,6 +331,7 @@ const AGENTS = [
         modalLabel: 'Prospecção outbound Whatsapp e ligação',
         Icon: WhatsappLogo,
         image: toolOutbound,
+        imageEn: toolOutboundEn,
         modal: {
           title: 'Disparo de WhatsApp',
           subtitle:
@@ -350,6 +371,7 @@ const AGENTS = [
         modalLabel: 'SDR no Whatsapp',
         Icon: Headset,
         image: toolSdr,
+        imageEn: toolSdrEn,
         modal: {
           title: 'Atendimento Automático',
           subtitle:
@@ -389,6 +411,7 @@ const AGENTS = [
         modalLabel: 'Gerador de propostas comerciais',
         Icon: FileText,
         image: toolProposta,
+        imageEn: toolPropostaEn,
         modal: {
           title: 'Proposta Comercial',
           subtitle:
@@ -541,6 +564,7 @@ const AGENTS = [
         label: 'Fluxo de caixa',
         Icon: Wallet,
         image: toolFluxo,
+        imageEn: toolFluxoEn,
         modal: {
           title: 'Fluxo de Caixa',
           subtitle:
@@ -688,6 +712,7 @@ const AGENTS = [
         modalLabel: 'Gestão de escalas',
         Icon: CalendarCheck,
         image: toolEscalas,
+        imageEn: toolEscalasEn,
         modal: {
           title: 'Escala',
           subtitle:
@@ -853,6 +878,7 @@ const AGENTS = [
         modalLabel: 'Assinatura e gestão de contratos',
         Icon: Signature,
         image: toolContratos,
+        imageEn: toolContratosEn,
         modal: {
           title: 'Gestor de Contratos',
           subtitle:
@@ -1016,6 +1042,7 @@ const AGENTS = [
         label: 'Triagem de CVs',
         Icon: UserList,
         image: toolTriagem,
+        imageEn: toolTriagemEn,
         modal: {
           title: 'Recrutamento',
           subtitle:
@@ -1179,9 +1206,13 @@ export const CHARACTERS = [
    estrutura PT acima. Campo não traduzido cai para o português (fonte). --- */
 const OVERRIDES = { en: enAgents, es: esAgents };
 
-function mergeSkill(skill, sv) {
-  if (!sv) return skill;
+function mergeSkill(skill, sv, localized) {
   const ms = { ...skill };
+  /* Screenshot swap is independent of the text overrides: a tool with an
+     English capture uses it on every non-pt locale, even if that tool has
+     no translated copy. */
+  if (localized && skill.imageEn) ms.image = skill.imageEn;
+  if (!sv) return ms;
   if (sv.label) ms.label = sv.label;
   if (sv.modalLabel) ms.modalLabel = sv.modalLabel;
   if (skill.modal && sv.modal) {
@@ -1210,13 +1241,16 @@ function mergeSkill(skill, sv) {
   return ms;
 }
 
-function mergeAgent(agent, ov) {
-  if (!ov) return agent;
+function mergeAgent(agent, ov, localized) {
   const merged = { ...agent };
-  if (ov.segment) merged.segment = ov.segment;
-  if (ov.modalSegment) merged.modalSegment = ov.modalSegment;
-  if (ov.description) merged.description = ov.description;
-  if (ov.skills) merged.skills = agent.skills.map((s, i) => mergeSkill(s, ov.skills[i]));
+  if (ov) {
+    if (ov.segment) merged.segment = ov.segment;
+    if (ov.modalSegment) merged.modalSegment = ov.modalSegment;
+    if (ov.description) merged.description = ov.description;
+  }
+  merged.skills = agent.skills.map((s, i) =>
+    mergeSkill(s, ov?.skills?.[i], localized),
+  );
   return merged;
 }
 
@@ -1224,6 +1258,7 @@ function mergeAgent(agent, ov) {
    const { locale } = useLocale(); const chars = getCharacters(locale); */
 export function getCharacters(locale) {
   const ov = OVERRIDES[locale];
+  /* pt is the source language: keeps its own copy and its own screenshots */
   if (!ov) return CHARACTERS;
-  return CHARACTERS.map((agent) => mergeAgent(agent, ov[agent.name]));
+  return CHARACTERS.map((agent) => mergeAgent(agent, ov[agent.name], true));
 }

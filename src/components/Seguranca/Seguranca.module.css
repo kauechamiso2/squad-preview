@@ -6,18 +6,13 @@
   background: var(--color-white);
 }
 
-/* Gradient headline (dark on the left melting to gray on the right) */
 .title {
   font-family: var(--font-display);
-  font-size: 72px;
+  font-size: 48px;
   font-weight: 600;
-  letter-spacing: -2.88px;
+  letter-spacing: -1.92px;
   line-height: 1;
   text-align: center;
-  background: linear-gradient(90deg, #222222 0%, #7c7c7c 100%);
-  background-clip: text;
-  -webkit-background-clip: text;
-  color: transparent;
 }
 
 /* Wrapper that anchors the full-width line and the junction dots */
@@ -65,11 +60,9 @@
   z-index: 1;
   display: flex;
   align-items: center;
-  gap: 20px;
-  min-height: 226px;
-  padding: 30px 24px;
-  border: 1px solid #eef3f6;
-  border-radius: 24px;
+  justify-content: space-between;
+  padding: 40px;
+  border-radius: 16px;
   background: #eef3f6;
 }
 
@@ -80,7 +73,7 @@
   position: absolute;
   inset: -1px;
   padding: 1.5px;
-  border-radius: 24px;
+  border-radius: 16px;
   background: conic-gradient(
     from calc(var(--angle) - 60deg),
     transparent 0deg,
@@ -200,70 +193,53 @@
 }
 
 .card {
-  flex: 1;
-  min-width: 0;
   display: flex;
   flex-direction: column;
-  gap: 13px;
+  align-items: flex-start;
+  gap: 12px;
+  width: 290px;
+  flex-shrink: 0;
 }
 
-/* Vertical divider between the columns */
-.card + .card {
-  position: relative;
-  padding-left: 21px;
-}
-
-.card + .card::before {
-  content: '';
-  position: absolute;
-  left: 0;
-  top: 50%;
-  transform: translateY(-50%);
+/* Vertical divider between the columns (becomes horizontal once the
+   columns stack, on tablet/mobile) */
+.divider {
+  flex-shrink: 0;
   width: 1px;
-  height: 167px;
+  height: 99px;
   background: #d9e0e5;
-}
-
-.cardHead {
-  display: flex;
-  align-items: center;
-  gap: 10px;
+  list-style: none;
 }
 
 .cardIcon {
   flex-shrink: 0;
-  color: var(--color-black);
+  color: #090909;
 }
 
 .cardTitle {
-  font-size: 19.5px;
-  font-weight: 600;
-  letter-spacing: -0.78px;
+  font-size: 24px;
+  font-weight: 500;
+  letter-spacing: -0.96px;
   line-height: 1.1;
-  color: var(--color-black);
+  color: #090909;
 }
 
 .cardText {
   font-size: 14px;
   letter-spacing: -0.56px;
   line-height: 1.4;
-  color: var(--color-black);
+  color: #798282;
 }
 
 /* Blur-in that replays on every view: the cards remount with .cardIn
    when the panel enters the viewport and the entrance runs again.
    Without .cardIn the content is fully visible — it never depends on
    JS or on the animation actually running. */
+/* Stagger delay is set inline per card (style={{ animationDelay }})
+   keyed by its index in the features array — nth-child can't be used
+   here since the divider elements are also list siblings. */
 .cardIn {
   animation: card-in 0.7s ease backwards;
-}
-
-.cardIn:nth-child(2) {
-  animation-delay: 0.12s;
-}
-
-.cardIn:nth-child(3) {
-  animation-delay: 0.24s;
 }
 
 @keyframes card-in {
@@ -311,23 +287,20 @@
   .panel {
     flex-direction: column;
     align-items: stretch;
-    gap: 24px;
-    min-height: 0;
-    padding: 24px;
+    justify-content: flex-start;
+    gap: 60px;
+    padding: 40px 48px;
   }
 
-  /* Dividers become horizontal when stacked */
-  .card + .card {
-    padding-left: 0;
-    padding-top: 25px;
+  .card {
+    width: 100%;
+    align-items: center;
+    text-align: center;
   }
 
-  .card + .card::before {
-    left: 0;
-    right: 0;
-    top: 0;
-    transform: none;
-    width: auto;
+  /* Divider becomes a full-width horizontal rule when stacked */
+  .divider {
+    width: 100%;
     height: 1px;
   }
 }
@@ -344,6 +317,15 @@
   }
 
   .panel {
-    padding: 24px 20px;
+    /* Not stretched like tablet: items keep their fixed 290px width
+       (matching the Figma mobile spec) while the divider stays full-bleed */
+    align-items: center;
+    padding: 24px 16px;
+  }
+
+  .card {
+    width: 290px;
+    align-items: center;
+    text-align: center;
   }
 }

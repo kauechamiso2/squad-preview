@@ -97,7 +97,7 @@ export default {
       features: [
         {
           title: 'Conformidade SOC II',
-          text: 'Protegemos suas informações com práticas de segurança líderes do setor. Somos compatíveis com SOC II Tipo I de ponta a ponta.',
+          text: 'Protegemos suas informações com práticas de segurança líderes do setor. Somos compatíveis com SOC II Tipo II de ponta a ponta.',
         },
         {
           title: 'Criptografia',
@@ -215,7 +215,7 @@ export default {
         },
         {
           q: 'Posso levar mais gente da minha equipe pras mentorias?',
-          a: 'Pode. As mentorias são para o time todo — quem vai usar o Squad no dia a dia entra junto na chamada e tira as próprias dúvidas.',
+          a: 'Pode. As mentorias são para o time todo: quem vai usar o Squad no dia a dia entra junto na chamada e tira as próprias dúvidas.',
         },
         {
           q: 'Como eu falo com o meu especialista?',
@@ -378,11 +378,11 @@ export default {
         },
         {
           q: 'Consigo revisar a proposta comercial antes de enviar pro cliente?',
-          a: 'Sim. O Waz monta a proposta em minutos, mas ela só vai pro cliente depois da sua revisão — você ajusta desconto, itens e linguagem antes de enviar.',
+          a: 'Sim. O Waz monta a proposta em minutos, mas ela só vai pro cliente depois da sua revisão. Você ajusta desconto, itens e linguagem antes de enviar.',
         },
         {
           q: 'O Waz atende fora do horário comercial?',
-          a: 'Sim. O Waz responde na hora a qualquer momento do dia, seguindo o tom e as regras que você definiu — inclusive fora do horário comercial e nos fins de semana.',
+          a: 'Sim. O Waz responde na hora a qualquer momento do dia, seguindo o tom e as regras que você definiu, inclusive fora do horário comercial e nos fins de semana.',
         },
       ],
     },
@@ -457,15 +457,15 @@ export default {
         },
         {
           q: 'A Maky publica sozinha ou eu aprovo antes?',
-          a: 'Você tem o controle. A Maky cria e agenda tudo, mas as campanhas e publicações só vão ao ar depois da sua aprovação — você revisa antes de qualquer coisa ser publicada.',
+          a: 'Você tem o controle. A Maky cria e agenda tudo, mas as campanhas e publicações só vão ao ar depois da sua aprovação. Você revisa antes de qualquer coisa ser publicada.',
         },
         {
           q: 'A Maky funciona pra qualquer tipo de negócio?',
-          a: 'Sim. Como ela se apoia no contexto da sua marca — site, redes e histórico do seu perfil —, a Maky se adapta ao seu segmento e cria conteúdo relevante pro seu público, seja qual for o tipo de negócio.',
+          a: 'Sim. Como ela se apoia no contexto da sua marca (site, redes e histórico do seu perfil), a Maky se adapta ao seu segmento e cria conteúdo relevante pro seu público, seja qual for o tipo de negócio.',
         },
         {
           q: 'A Maky substitui uma agência de marketing?',
-          a: 'A Maky assume o trabalho operacional do dia a dia — criar, agendar, publicar e responder — rodando 24 horas por dia. Ela dá conta do marketing recorrente sem você precisar de uma agência ou aprender a plataforma.',
+          a: 'A Maky assume o trabalho operacional do dia a dia (criar, agendar, publicar e responder), rodando 24 horas por dia. Ela dá conta do marketing recorrente sem você precisar de uma agência ou aprender a plataforma.',
         },
       ],
     },
@@ -534,7 +534,7 @@ export default {
         },
         {
           q: 'Como o Fin calcula a projeção do próximo mês?',
-          a: 'O Fin projeta o caixa a partir do seu histórico de entradas e saídas e das contas já agendadas — recebimentos previstos, despesas fixas e parcelas a vencer. Assim você enxerga com antecedência quanto deve sobrar no próximo mês.',
+          a: 'O Fin projeta o caixa a partir do seu histórico de entradas e saídas e das contas já agendadas: recebimentos previstos, despesas fixas e parcelas a vencer. Assim você enxerga com antecedência quanto deve sobrar no próximo mês.',
         },
         {
           q: 'Meus dados financeiros ficam seguros com o Fin?',
@@ -611,7 +611,7 @@ export default {
         },
         {
           q: 'A Juri substitui um advogado?',
-          a: 'A Juri não substitui um advogado, ela tira da frente o trabalho repetitivo — organizar contratos, acompanhar prazos, gerar rascunhos e traduzir cláusulas em linguagem simples. Para uma análise jurídica aprofundada ou um caso delicado, o advogado continua sendo quem decide.',
+          a: 'A Juri não substitui um advogado, ela tira da frente o trabalho repetitivo: organizar contratos, acompanhar prazos, gerar rascunhos e traduzir cláusulas em linguagem simples. Para uma análise jurídica aprofundada ou um caso delicado, o advogado continua sendo quem decide.',
         },
         {
           q: 'Como a Juri sabe quando um contrato está perto de vencer?',
@@ -687,15 +687,15 @@ export default {
         },
         {
           q: 'Como o Pipo aprende as regras da minha empresa?',
-          a: 'O Pipo aprende a partir do conteúdo que você já tem — documentos, processos e políticas internas que você sobe pra ele. A partir daí, ele passa a responder o time usando só esse material aprovado, e vai ficando mais completo conforme você adiciona novas informações.',
+          a: 'O Pipo aprende a partir do conteúdo que você já tem: documentos, processos e políticas internas que você sobe pra ele. A partir daí, ele passa a responder o time usando só esse material aprovado, e vai ficando mais completo conforme você adiciona novas informações.',
         },
         {
           q: 'O Pipo substitui um RH de verdade?',
-          a: 'O Pipo não substitui o seu RH, ele tira da frente o trabalho repetitivo — responder as mesmas dúvidas, organizar triagem de currículos e montar trilha de onboarding. Assim o time de pessoas foca nas decisões que realmente precisam de gente.',
+          a: 'O Pipo não substitui o seu RH, ele tira da frente o trabalho repetitivo: responder as mesmas dúvidas, organizar triagem de currículos e montar trilha de onboarding. Assim o time de pessoas foca nas decisões que realmente precisam de gente.',
         },
         {
           q: 'A triagem de currículos do Pipo é confiável?',
-          a: 'O Pipo analisa cada currículo com base nos critérios da vaga que você definiu e mostra quem tem mais aderência, com o porquê de cada indicação. A decisão final continua sua — ele organiza o funil e adianta o trabalho pesado pra você escolher com mais clareza.',
+          a: 'O Pipo analisa cada currículo com base nos critérios da vaga que você definiu e mostra quem tem mais aderência, com o porquê de cada indicação. A decisão final continua sua. Ele organiza o funil e adianta o trabalho pesado pra você escolher com mais clareza.',
         },
       ],
     },
