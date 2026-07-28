@@ -59,24 +59,33 @@ function Seguranca() {
           <span className={styles.sweepRight} aria-hidden="true" />
 
           <ul className={styles.panel} ref={panelRef}>
-            {features.map(({ title, text }, index) => {
+            {features.flatMap(({ title, text }, index) => {
               const Icon = ICONS[index];
-              return (
+              const card = (
                 <li
-                  key={`${runKey}-${index}`}
+                  key={`card-${runKey}-${index}`}
                   /* Animation class only after the observer confirms a view:
                      if it never fires, the content simply stays visible */
                   className={
                     runKey > 0 ? `${styles.card} ${styles.cardIn}` : styles.card
                   }
+                  style={runKey > 0 ? { animationDelay: `${index * 0.12}s` } : undefined}
                 >
-                  <div className={styles.cardHead}>
-                    <Icon size={26} weight="regular" className={styles.cardIcon} />
-                    <p className={styles.cardTitle}>{title}</p>
-                  </div>
+                  <Icon size={24} weight="regular" className={styles.cardIcon} />
+                  <p className={styles.cardTitle}>{title}</p>
                   <p className={styles.cardText}>{text}</p>
                 </li>
               );
+              /* A divider sits between columns, not before the first one */
+              if (index === 0) return [card];
+              return [
+                <li
+                  key={`divider-${runKey}-${index}`}
+                  className={styles.divider}
+                  aria-hidden="true"
+                />,
+                card,
+              ];
             })}
           </ul>
         </div>

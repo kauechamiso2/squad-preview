@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { motion, MotionConfig } from 'motion/react';
 import PricingDetailModal from './PricingDetailModal';
+import ShineButton from '../ui/ShineButton';
 import { getPlans } from './plans';
 import { revealVariants, revealViewport } from '../ui/motionPresets';
 import { useLocale } from '../../i18n/LocaleContext.jsx';
@@ -135,33 +136,9 @@ function Pricing() {
               </div>
 
               {plan.cta.variant === 'pro' ? (
-                <a
-                  href={plan.cta.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={styles.proCta}
-                >
-                  <span className={styles.proCtaShine} aria-hidden="true" />
-                  <span className={styles.proCtaLabel}>
-                    {plan.cta.label}
-                    <svg
-                      width="18"
-                      height="18"
-                      viewBox="0 0 18 18"
-                      fill="none"
-                      aria-hidden="true"
-                      className={styles.proCtaArrow}
-                    >
-                      <path
-                        d="M3 9h11M10 4.5L14.5 9 10 13.5"
-                        stroke="currentColor"
-                        strokeWidth="1.8"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                    </svg>
-                  </span>
-                </a>
+                <ShineButton href={plan.cta.href} className={styles.fullWidthCta}>
+                  {plan.cta.label}
+                </ShineButton>
               ) : (
                 <a
                   href={plan.cta.href}

@@ -43,7 +43,7 @@ export default {
       announceHighlight: 'R$30M',
       title: 'The complete solution for your business',
       subtitle:
-        'Meet the AI team that runs your business. Marketing, sales, finance, and operations—all working together with shared context, 24/7.',
+        'Meet the AI team that runs your business. Marketing, sales, finance, and operations, all working together with shared context, 24/7.',
       mediaTitle: 'In the media',
     },
     mentorias: {
@@ -97,11 +97,11 @@ export default {
       features: [
         {
           title: 'SOC II Compliance',
-          text: 'We protect your information with industry-leading security practices. We are fully SOC II Type I compliant, end to end.',
+          text: 'We protect your information with industry-leading security practices. We are fully SOC II Type II compliant, end to end.',
         },
         {
           title: 'Encryption',
-          text: 'All your data is encrypted at rest and in transit, with bank-grade protection for your company’s sensitive information.',
+          text: 'All your data is encrypted at rest and in transit, with bank-level protection for your company’s sensitive information.',
         },
         {
           title: 'No model training',
@@ -215,7 +215,7 @@ export default {
         },
         {
           q: 'Can I bring more people from my team to the mentoring sessions?',
-          a: 'You can. The mentoring sessions are for the whole team — whoever will use Squad day to day joins the call and asks their own questions.',
+          a: 'You can. The mentoring sessions are for the whole team: whoever will use Squad day to day joins the call and asks their own questions.',
         },
         {
           q: 'How do I talk to my specialist?',
@@ -378,11 +378,11 @@ export default {
         },
         {
           q: 'Can I review the sales proposal before sending it to the customer?',
-          a: 'Yes. Waz builds the proposal in minutes, but it only goes to the customer after your review — you adjust the discount, items, and wording before sending.',
+          a: 'Yes. Waz builds the proposal in minutes, but it only goes to the customer after your review. You adjust the discount, items, and wording before sending.',
         },
         {
           q: 'Does Waz serve customers outside business hours?',
-          a: 'Yes. Waz replies instantly at any time of day, following the tone and rules you set — including outside business hours and on weekends.',
+          a: 'Yes. Waz replies instantly at any time of day, following the tone and rules you set, including outside business hours and on weekends.',
         },
       ],
     },
@@ -457,15 +457,15 @@ export default {
         },
         {
           q: 'Does Maky post on its own or do I approve first?',
-          a: 'You’re in control. Maky creates and schedules everything, but campaigns and posts only go live after your approval — you review before anything is published.',
+          a: 'You’re in control. Maky creates and schedules everything, but campaigns and posts only go live after your approval. You review before anything is published.',
         },
         {
           q: 'Does Maky work for any type of business?',
-          a: 'Yes. Because it relies on your brand’s context — website, social media, and your profile’s history — Maky adapts to your segment and creates content relevant to your audience, whatever the type of business.',
+          a: 'Yes. Because it relies on your brand’s context (website, social media, and your profile’s history), Maky adapts to your segment and creates content relevant to your audience, whatever the type of business.',
         },
         {
           q: 'Does Maky replace a marketing agency?',
-          a: 'Maky takes over the day-to-day operational work — creating, scheduling, posting, and replying — running 24 hours a day. It handles recurring marketing without you needing an agency or having to learn the platform.',
+          a: 'Maky takes over the day-to-day operational work (creating, scheduling, posting, and replying), running 24 hours a day. It handles recurring marketing without you needing an agency or having to learn the platform.',
         },
       ],
     },
@@ -530,11 +530,11 @@ export default {
       faq: [
         {
           q: 'Does Fin replace my accountant?',
-          a: 'Fin doesn’t replace your accountant — it organizes the day-to-day finances that today live scattered across spreadsheets and loose notes. It shows how much comes in, how much goes out, and forecasts cash for the coming months, so you can decide with more clarity. The accounting and tax side stays with the professional who already handles it.',
+          a: 'Fin doesn’t replace your accountant. It organizes the day-to-day finances that today live scattered across spreadsheets and loose notes. It shows how much comes in, how much goes out, and forecasts cash for the coming months, so you can decide with more clarity. The accounting and tax side stays with the professional who already handles it.',
         },
         {
           q: 'How does Fin calculate next month’s forecast?',
-          a: 'Fin forecasts cash from your history of money in and out and from the bills already scheduled — expected receipts, fixed expenses, and installments coming due. That way you see ahead of time how much should be left next month.',
+          a: 'Fin forecasts cash from your history of money in and out and from the bills already scheduled: expected receipts, fixed expenses, and installments coming due. That way you see ahead of time how much should be left next month.',
         },
         {
           q: 'Is my financial data safe with Fin?',
@@ -611,7 +611,7 @@ export default {
         },
         {
           q: 'Does Juri replace a lawyer?',
-          a: 'Juri doesn’t replace a lawyer — it takes the repetitive work off your plate: organizing contracts, tracking deadlines, drafting emails, and translating clauses into plain language. For an in-depth legal analysis or a delicate case, the lawyer is still the one who decides.',
+          a: 'Juri doesn’t replace a lawyer. It takes the repetitive work off your plate: organizing contracts, tracking deadlines, drafting emails, and translating clauses into plain language. For an in-depth legal analysis or a delicate case, the lawyer is still the one who decides.',
         },
         {
           q: 'How does Juri know when a contract is close to expiring?',
@@ -687,15 +687,15 @@ export default {
         },
         {
           q: 'How does Pipo learn my company’s rules?',
-          a: 'Pipo learns from the content you already have — documents, processes, and internal policies you upload to it. From there, it answers your team using only that approved material, and gets more complete as you add new information.',
+          a: 'Pipo learns from the content you already have: documents, processes, and internal policies you upload to it. From there, it answers your team using only that approved material, and gets more complete as you add new information.',
         },
         {
           q: 'Does Pipo replace a real HR team?',
-          a: 'Pipo doesn’t replace your HR — it takes the repetitive work off your plate: answering the same questions, organizing resume screening, and building the onboarding track. That way your people team focuses on the decisions that really need a human.',
+          a: 'Pipo doesn’t replace your HR. It takes the repetitive work off your plate: answering the same questions, organizing resume screening, and building the onboarding track. That way your people team focuses on the decisions that really need a human.',
         },
         {
           q: 'Is Pipo’s resume screening reliable?',
-          a: 'Pipo analyzes each resume against the criteria you set for the role and shows who fits best, with the reasoning behind each suggestion. The final decision is still yours — it organizes the funnel and gets the heavy lifting done so you can choose with more clarity.',
+          a: 'Pipo analyzes each resume against the criteria you set for the role and shows who fits best, with the reasoning behind each suggestion. The final decision is still yours. It organizes the funnel and gets the heavy lifting done so you can choose with more clarity.',
         },
       ],
     },
