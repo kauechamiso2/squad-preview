@@ -1,0 +1,285 @@
+/*
+ * Popup de pré-WhatsApp. Usa os tokens de modal do index.css (--modal-*),
+ * a tipografia display (Fustat) e o raio de 12px dos botões do projeto —
+ * o layout é o do print de referência, o visual é o do design system daqui.
+ */
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  background: rgba(0, 0, 0, 0.55);
+  opacity: 0;
+  transition: opacity var(--modal-open-dur) var(--modal-ease);
+}
+
+.overlay.isOpen {
+  opacity: 1;
+}
+
+.overlay.isClosing {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--modal-close-dur) var(--modal-ease);
+}
+
+.modal {
+  position: relative;
+  width: min(520px, 100%);
+  max-height: calc(100vh - 48px);
+  overflow-y: auto;
+  padding: 48px;
+  background: var(--color-white);
+  border-radius: 20px;
+  transform-origin: center;
+  transform: scale(var(--modal-scale));
+  opacity: 0;
+  pointer-events: none;
+  transition:
+    transform var(--modal-open-dur) var(--modal-ease),
+    opacity var(--modal-open-dur) var(--modal-ease);
+  will-change: transform, opacity;
+}
+
+.modal.isOpen {
+  transform: scale(1);
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.modal.isClosing {
+  transform: scale(var(--modal-scale-close));
+  opacity: 0;
+  pointer-events: none;
+  transition:
+    transform var(--modal-close-dur) var(--modal-ease),
+    opacity var(--modal-close-dur) var(--modal-ease);
+}
+
+.close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  color: var(--color-text-secondary);
+  transition: background var(--acc-ease) 200ms;
+}
+
+.close:hover {
+  background: #f2f4f4;
+  color: var(--color-black);
+}
+
+.eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+  color: var(--color-text-secondary);
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #34c759;
+}
+
+.title {
+  margin-top: 12px;
+  font-family: var(--font-display);
+  font-size: 32px;
+  font-weight: 600;
+  letter-spacing: -1.28px;
+  line-height: 1.05;
+  color: var(--color-black);
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-top: 28px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.label {
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+  color: var(--color-text-secondary);
+}
+
+.input {
+  height: 52px;
+  width: 100%;
+  padding: 0 16px;
+  font-family: var(--font-body);
+  font-size: 16px;
+  letter-spacing: -0.32px;
+  color: var(--color-black);
+  background: var(--color-white);
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
+  transition:
+    border-color 200ms var(--acc-ease),
+    box-shadow 200ms var(--acc-ease);
+}
+
+.input::placeholder {
+  color: #a9b1b1;
+}
+
+.input:focus {
+  outline: none;
+  border-color: var(--color-black);
+  box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.08);
+}
+
+.input[aria-invalid='true'] {
+  border-color: #ff2929;
+}
+
+.input[aria-invalid='true']:focus {
+  box-shadow: 0 0 0 3px rgba(255, 41, 41, 0.12);
+}
+
+.phoneRow {
+  display: flex;
+  gap: 8px;
+}
+
+.prefix {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  height: 52px;
+  padding: 0 14px;
+  flex-shrink: 0;
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: -0.32px;
+  color: var(--color-black);
+  background: #f2f4f4;
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
+}
+
+.phoneInput {
+  min-width: 0;
+}
+
+.error {
+  font-size: 13px;
+  letter-spacing: -0.2px;
+  color: #ff2929;
+}
+
+/* Mesma linguagem do Button lg do projeto: 56px, raio 12px, preto */
+.submit {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  height: 56px;
+  width: 100%;
+  margin-top: 4px;
+  font-family: var(--font-body);
+  font-size: 16px;
+  font-weight: 500;
+  letter-spacing: -0.32px;
+  line-height: 1.15;
+  color: var(--color-white);
+  background: var(--color-black);
+  border: 2.2px solid rgba(255, 255, 255, 0.29);
+  border-radius: 12px;
+  filter: drop-shadow(0 4px 15.5px rgba(0, 0, 0, 0.09));
+  transition: transform 200ms var(--acc-ease);
+}
+
+.submit:hover {
+  transform: translateY(-1px);
+}
+
+.submit:disabled {
+  opacity: 0.75;
+  cursor: default;
+  transform: none;
+}
+
+/* A seta desliza pra fora no hover, igual ao Button do site */
+.arrow {
+  display: inline-flex;
+  align-items: center;
+  width: 0;
+  opacity: 0;
+  overflow: hidden;
+  transform: translateX(-6px);
+  transition:
+    width 250ms var(--acc-ease),
+    opacity 250ms,
+    transform 250ms var(--acc-ease);
+}
+
+.submit:hover .arrow {
+  width: 16px;
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.legal {
+  font-size: 13px;
+  line-height: 1.4;
+  letter-spacing: -0.2px;
+  text-align: center;
+  color: var(--color-text-secondary);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .overlay,
+  .modal,
+  .submit,
+  .arrow {
+    transition: none;
+  }
+}
+
+/* ---------- Mobile (<768px) ---------- */
+@media (max-width: 767px) {
+  .overlay {
+    padding: 16px;
+  }
+
+  .modal {
+    padding: 40px 24px 32px;
+  }
+
+  .title {
+    font-size: 26px;
+    letter-spacing: -1px;
+  }
+
+  /* Evita o zoom automático do iOS ao focar o campo */
+  .input,
+  .prefix {
+    font-size: 16px;
+  }
+}

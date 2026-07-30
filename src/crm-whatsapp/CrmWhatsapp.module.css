@@ -1,0 +1,570 @@
+/*
+ * Estilos dos blocos novos da landing /crm-whatsapp (Google Ads).
+ * Hero, highlights, feature e CTA final reusam SaibaMais.module.css para a
+ * página parecer parte do mesmo site; aqui ficam só os blocos do blueprint
+ * de conversão (dor, passos, antes/depois, FAQ, sticky mobile).
+ */
+
+/* ---------- Espaçamento vertical desta página (−30% vs. base) ----------
+   Acompanha cada breakpoint da base para não achatar (nem esticar) o layout
+   mobile: os valores abaixo são sempre ~70% do que a base define naquele
+   breakpoint. */
+.heroTight {
+  gap: 84px;
+  padding-top: 84px;
+  padding-bottom: 98px;
+}
+
+.highlightsTight {
+  padding-top: 56px;
+  padding-bottom: 56px;
+}
+
+.featureTight {
+  padding-top: 28px;
+  padding-bottom: 70px;
+}
+
+.ctaTight {
+  padding-bottom: 84px;
+}
+
+@media (max-width: 1199px) {
+  /* A base troca var(--page-padding-x) (138px) por 24px neste breakpoint;
+     as seções próprias desta página acompanham. */
+  .pain,
+  .steps,
+  .compare,
+  .stickyBar {
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+
+  .faq {
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+
+  .heroTight {
+    gap: 67px;
+    padding-top: 67px;
+    padding-bottom: 77px;
+  }
+
+  .highlightsTight {
+    padding-top: 45px;
+    padding-bottom: 45px;
+  }
+
+  .featureTight {
+    padding-top: 34px;
+    padding-bottom: 56px;
+  }
+
+  .ctaTight {
+    padding-bottom: 56px;
+  }
+}
+
+@media (max-width: 767px) {
+  /* Base usa 16px de padding lateral no mobile. */
+  .pain,
+  .steps,
+  .compare,
+  .stickyBar {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .faq {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .heroTight {
+    gap: 40px;
+    padding-top: 45px;
+    padding-bottom: 56px;
+  }
+
+  .highlightsTight {
+    padding-top: 34px;
+    padding-bottom: 34px;
+  }
+
+  .featureTight {
+    padding-top: 28px;
+    padding-bottom: 45px;
+  }
+
+  .ctaTight {
+    padding-bottom: 45px;
+  }
+}
+
+/* ---------- Bloco 2 — título dos highlights ---------- */
+.highlightsTitle {
+  font-family: var(--font-display);
+  font-size: 44px;
+  font-weight: 600;
+  letter-spacing: -1.76px;
+  line-height: 1;
+  color: var(--color-black);
+  text-align: center;
+  margin-bottom: 48px;
+}
+
+@media (max-width: 900px) {
+  .highlightsTitle {
+    font-size: 32px;
+    letter-spacing: -1.28px;
+    margin-bottom: 32px;
+  }
+}
+
+/* ---------- Bloco 3 — Dor com número (stat + cards) ---------- */
+.pain {
+  background:
+    radial-gradient(
+      900px 420px at 18% 0%,
+      rgba(255, 255, 255, 0.07),
+      transparent 70%
+    ),
+    var(--color-black);
+  padding: 78px var(--page-padding-x);
+}
+
+.painInner {
+  max-width: 1040px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 64px;
+}
+
+.painHeader {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: center;
+  gap: 80px;
+}
+
+.painStat {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.painNumber {
+  font-family: var(--font-display);
+  font-size: clamp(112px, 14vw, 168px);
+  font-weight: 600;
+  letter-spacing: -6px;
+  line-height: 0.85;
+  background: linear-gradient(
+    180deg,
+    var(--color-white) 30%,
+    rgba(255, 255, 255, 0.35)
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.painNumberCaption {
+  max-width: 300px;
+  font-size: 17px;
+  letter-spacing: -0.34px;
+  line-height: 1.4;
+  color: rgba(255, 255, 255, 0.64);
+}
+
+.painTitle {
+  font-family: var(--font-display);
+  font-size: clamp(34px, 4.5vw, 52px);
+  font-weight: 600;
+  letter-spacing: -2.08px;
+  line-height: 1;
+  color: var(--color-white);
+  justify-self: end;
+  text-align: right;
+}
+
+.painGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  list-style: none;
+  padding: 48px 0 0;
+  margin: 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.painCard {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 28px;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.painIcon {
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  color: rgba(255, 255, 255, 0.55);
+  font-size: 14px;
+}
+
+.painCardTitle {
+  font-family: var(--font-display);
+  font-size: 20px;
+  font-weight: 600;
+  letter-spacing: -0.6px;
+  color: var(--color-white);
+}
+
+.painCardText {
+  font-size: 15px;
+  letter-spacing: -0.3px;
+  line-height: 1.55;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+/* ---------- Bloco 4 — Como funciona ---------- */
+.steps {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 40px;
+  max-width: var(--page-max-width);
+  margin: 0 auto;
+  padding: 84px var(--page-padding-x);
+  text-align: center;
+}
+
+.stepsTitle {
+  font-family: var(--font-display);
+  font-size: 44px;
+  font-weight: 600;
+  letter-spacing: -1.76px;
+  line-height: 1;
+  color: var(--color-black);
+}
+
+.stepsGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+}
+
+.stepCard {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 32px;
+  border: 1px solid var(--color-border);
+  border-radius: 20px;
+  text-align: left;
+  background: var(--color-white);
+}
+
+.stepNumber {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--color-black);
+  color: var(--color-white);
+  font-family: var(--font-display);
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.stepTitle {
+  font-family: var(--font-display);
+  font-size: 22px;
+  font-weight: 600;
+  letter-spacing: -0.66px;
+  color: var(--color-black);
+}
+
+.stepText {
+  font-size: 16px;
+  letter-spacing: -0.32px;
+  line-height: 1.5;
+  color: var(--color-text-secondary);
+}
+
+/* ---------- Blocos 5a/5c — feature com imagem à esquerda ---------- */
+.featureReverse {
+  flex-direction: row-reverse;
+}
+
+@media (max-width: 767px) {
+  /* Abaixo de 767px o .feature base empilha em coluna; acompanha. */
+  .featureReverse {
+    flex-direction: column;
+  }
+}
+
+/* ---------- Bloco 6 — Antes / Depois ---------- */
+.compare {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 48px;
+  max-width: var(--page-max-width);
+  margin: 0 auto;
+  padding: 84px var(--page-padding-x);
+}
+
+.compareTitle {
+  font-family: var(--font-display);
+  font-size: 44px;
+  font-weight: 600;
+  letter-spacing: -1.76px;
+  line-height: 1;
+  color: var(--color-black);
+  text-align: center;
+}
+
+.compareGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  width: 100%;
+  max-width: 960px;
+}
+
+.compareCol {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 32px;
+  border: 1px solid var(--color-border);
+  border-radius: 20px;
+}
+
+.compareColAfter {
+  background: var(--color-black);
+  border-color: var(--color-black);
+}
+
+.compareLabel {
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 1.3px;
+  text-transform: uppercase;
+  color: var(--color-text-secondary);
+}
+
+.compareColAfter .compareLabel {
+  color: rgba(255, 255, 255, 0.64);
+}
+
+.compareList {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.compareItemBefore,
+.compareItemAfter {
+  position: relative;
+  padding-left: 28px;
+  font-size: 16px;
+  letter-spacing: -0.32px;
+  line-height: 1.5;
+}
+
+.compareItemBefore {
+  color: var(--color-text-secondary);
+}
+
+.compareItemAfter {
+  color: var(--color-white);
+}
+
+.compareItemBefore::before,
+.compareItemAfter::before {
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+.compareItemBefore::before {
+  content: '✕';
+  color: var(--color-text-secondary);
+}
+
+.compareItemAfter::before {
+  content: '✓';
+  color: var(--color-white);
+}
+
+/* ---------- Bloco 7 — FAQ ---------- */
+.faq {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 48px;
+  max-width: 880px;
+  margin: 0 auto;
+  padding: 0 var(--page-padding-x) 84px;
+}
+
+.faqTitle {
+  font-family: var(--font-display);
+  font-size: 44px;
+  font-weight: 600;
+  letter-spacing: -1.76px;
+  line-height: 1;
+  color: var(--color-black);
+  text-align: center;
+}
+
+.faqList {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.faqItem {
+  border-bottom: 1px solid var(--color-border);
+  padding: 24px 0;
+}
+
+.faqQuestion {
+  font-family: var(--font-display);
+  font-size: 20px;
+  font-weight: 600;
+  letter-spacing: -0.6px;
+  color: var(--color-black);
+  cursor: pointer;
+  list-style: none;
+  position: relative;
+  padding-right: 32px;
+}
+
+.faqQuestion::-webkit-details-marker {
+  display: none;
+}
+
+.faqQuestion::after {
+  content: '+';
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 24px;
+  color: var(--color-text-secondary);
+}
+
+.faqItem[open] .faqQuestion::after {
+  content: '−';
+}
+
+.faqAnswer {
+  margin-top: 12px;
+  font-size: 16px;
+  letter-spacing: -0.32px;
+  line-height: 1.6;
+  color: var(--color-text-secondary);
+}
+
+/* ---------- CTA fixo (só mobile) ---------- */
+.stickyBar {
+  display: none;
+}
+
+/* ---------- Responsivo ---------- */
+@media (max-width: 900px) {
+  .painHeader {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+
+  .painTitle {
+    justify-self: start;
+    text-align: left;
+  }
+
+  .painGrid {
+    grid-template-columns: 1fr;
+    padding-top: 36px;
+  }
+
+  .stepsTitle,
+  .compareTitle,
+  .faqTitle {
+    font-size: 32px;
+    letter-spacing: -1.28px;
+  }
+
+  .stepsGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .compareGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .pain,
+  .steps,
+  .compare {
+    padding-top: 52px;
+    padding-bottom: 52px;
+  }
+
+  .faq {
+    padding-bottom: 56px;
+    gap: 32px;
+  }
+
+  .stepCard,
+  .compareCol {
+    padding: 24px;
+  }
+
+  .faqQuestion {
+    font-size: 18px;
+  }
+
+  .stickyBar {
+    display: flex;
+    justify-content: center;
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 90;
+    padding: 12px var(--page-padding-x);
+    padding-bottom: calc(12px + env(safe-area-inset-bottom));
+    background: var(--color-white);
+    border-top: 1px solid var(--color-border);
+  }
+
+  .stickyBar > * {
+    width: 100%;
+  }
+
+  /* Evita que o rodapé fique escondido atrás da barra fixa */
+  :global(footer) {
+    padding-bottom: 88px;
+  }
+}
