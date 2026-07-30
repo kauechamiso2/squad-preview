@@ -72,14 +72,14 @@ function Footer() {
           })}
         </div>
 
-        <div className={styles.bottom}>
-          <img src={wordmark} alt="squad.com" className={styles.wordmark} />
-          <p className={styles.legal}>
-            <span>CNPJ: 42.888.509/0001-62</span>
-            <span>© 2026 Squad.com</span>
-          </p>
-        </div>
+        <img src={wordmark} alt="squad.com" className={styles.wordmark} />
       </div>
+
+      {/* Outside the white card, sitting on the footer background */}
+      <p className={styles.legal}>
+        <span>CNPJ: 42.888.509/0001-62</span>
+        <span>© 2026 Squad.com</span>
+      </p>
     </footer>
   );
 }

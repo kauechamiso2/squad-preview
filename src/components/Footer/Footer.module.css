@@ -84,36 +84,30 @@
   color: var(--color-black);
 }
 
-.bottom {
-  position: relative;
-  margin-top: 60px;
-}
-
 /* Scales proportionally: height follows the SVG's intrinsic aspect ratio */
 .wordmark {
   display: block;
   width: 100%;
   height: auto;
   aspect-ratio: 1351.52 / 243.883;
+  margin-top: 60px;
 }
 
-/* The wordmark SVG has empty space below its glyphs (no descenders in
-   "squad.com"); this line sits inside that space, its bottom edge lining
-   up with the wordmark's own bottom edge, matching the Figma footer spec. */
+/* Sits outside the white card, on the footer background. z-index keeps it
+   above the blurred glows painted by .footer::before / ::after. */
 .legal {
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
+  position: relative;
+  z-index: 1;
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 12px;
-  font-size: 16px;
+  margin-top: 24px;
+  font-size: 14px;
   font-weight: 500;
-  letter-spacing: -0.32px;
+  letter-spacing: -0.28px;
   line-height: 1.15;
-  color: var(--color-text-secondary);
+  color: var(--color-white);
 }
 
 /* ---------- Tablet (768–1199px) ---------- */
@@ -137,7 +131,7 @@
     min-width: 0;
   }
 
-  .bottom {
+  .wordmark {
     margin-top: 80px;
   }
 
@@ -167,20 +161,12 @@
     gap: 24px;
   }
 
-  .card {
-    padding-bottom: 28px;
-  }
-
-  .bottom {
+  .wordmark {
     margin-top: 64px;
   }
 
-  /* Unlike desktop/tablet, the wordmark's "q" descender reaches all the way
-     to the bottom of the SVG at this size, so the legal line can't nest
-     inside it without overlapping — give it its own space below instead. */
   .legal {
-    position: static;
-    margin-top: 16px;
+    margin-top: 20px;
     font-size: 12px;
     letter-spacing: -0.24px;
   }
