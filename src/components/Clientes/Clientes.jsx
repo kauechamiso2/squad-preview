@@ -1,7 +1,5 @@
 import { useCallback, useState } from 'react';
 import { motion, MotionConfig } from 'motion/react';
-import CarouselArrows from '../ui/CarouselArrows';
-import { useCarouselTrack } from '../../hooks/useCarouselTrack';
 import ClientCard from './ClientCard';
 import ClientModal from './ClientModal';
 import { getClients } from './clients';
@@ -13,15 +11,9 @@ import styles from './Clientes.module.css';
 /* Keep in sync with --modal-close-dur */
 const MODAL_CLOSE_MS = 150;
 
-/* Card width (374.66) + track gap (20) */
-const CARD_STRIDE = 395;
-
 function Clientes() {
   const { locale, t } = useLocale();
   const clients = getClients(locale);
-  const { trackRef, canScroll, updateArrows, scroll } =
-    useCarouselTrack(CARD_STRIDE);
-  const isSingle = clients.length === 1;
   const [modalClient, setModalClient] = useState(null);
   const [modalState, setModalState] = useState('open');
 
@@ -44,28 +36,19 @@ function Clientes() {
         whileInView="show"
         viewport={revealViewport}
       >
-        <div className={isSingle ? styles.headerCentered : styles.header}>
+        <div className={styles.headerCentered}>
           <h2 className={styles.title}>{nl2br(t('home.clientes.title'))}</h2>
-          {!isSingle && (
-            <CarouselArrows
-              canPrev={canScroll.prev}
-              canNext={canScroll.next}
-              onPrev={() => scroll(-1)}
-              onNext={() => scroll(1)}
-            />
-          )}
         </div>
 
-        <div
-          className={isSingle ? styles.single : styles.track}
-          ref={trackRef}
-          onScroll={updateArrows}
-        >
-          {clients.map((client) => (
+        <div className={styles.grid}>
+          {clients.map((client, index) => (
+            /* Index as key: fixed-length list, never reordered, and the
+               placeholder entries repeat the same person. */
             <ClientCard
-              key={client.name}
+              key={index}
               client={client}
               onOpen={() => openModal(client)}
+              isModalOpen={modalClient === client}
             />
           ))}
         </div>

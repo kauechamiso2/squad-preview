@@ -41,31 +41,11 @@
   text-align: left;
 }
 
-/* Same full-bleed scroll track pattern as the characters carousel.
-   Extra vertical padding leaves room for the hover scale-up. */
-.track {
-  --track-inset: max(
-    var(--page-padding-x),
-    calc((100% - var(--page-max-width)) / 2 + var(--page-padding-x))
-  );
-  display: flex;
+/* Three equal video cards filling the content width */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
   gap: 20px;
-  overflow-x: auto;
-  overflow-y: hidden;
-  overscroll-behavior-y: contain;
-  touch-action: pan-x;
-  scroll-snap-type: x mandatory;
-  scroll-padding-inline: var(--track-inset);
-  padding: 12px var(--track-inset);
-  scrollbar-width: none;
-}
-
-.track::-webkit-scrollbar {
-  display: none;
-}
-
-/* Single featured case: centered block, no scroll track, card fills the row */
-.single {
   width: 100%;
   max-width: var(--page-max-width);
   margin: 0 auto;
@@ -91,11 +71,9 @@
     max-width: 100%;
   }
 
-  .track {
-    --track-inset: 24px;
-  }
-
-  .single {
+  /* Still three columns, cards just scale down with the container */
+  .grid {
+    gap: 16px;
     padding: 0 24px;
   }
 }
@@ -111,11 +89,27 @@
     padding: 0 16px;
   }
 
-  .track {
-    --track-inset: 16px;
+  /* One card per view with the next one peeking in from the edge */
+  .grid {
+    display: flex;
+    gap: 16px;
+    max-width: none;
+    padding: 0 16px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    overscroll-behavior-y: contain;
+    touch-action: pan-x;
+    scroll-snap-type: x mandatory;
+    scroll-padding-inline: 16px;
+    scrollbar-width: none;
   }
 
-  .single {
-    padding: 0 16px;
+  .grid::-webkit-scrollbar {
+    display: none;
+  }
+
+  .grid > * {
+    flex: 0 0 82%;
+    scroll-snap-align: start;
   }
 }

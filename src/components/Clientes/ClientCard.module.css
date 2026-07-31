@@ -1,25 +1,13 @@
-/* Featured case row: video thumbnail (left) + testimonial text (right) + arrow */
+/* Vertical testimonial card: poster fills it, text sits on top (Figma 375×660) */
 .card {
-  display: flex;
-  align-items: center;
-  gap: 64px;
-  width: 100%;
-  cursor: pointer;
-}
-
-/* ---------- Video thumbnail ---------- */
-.media {
   position: relative;
-  flex-shrink: 0;
-  width: 54%;
-  aspect-ratio: 16 / 10;
-  border-radius: 16px;
+  aspect-ratio: 375 / 660;
+  border-radius: 12px;
   overflow: hidden;
   background: #f0efff;
 }
 
-.photo,
-.video {
+.poster {
   position: absolute;
   inset: 0;
   width: 100%;
@@ -27,131 +15,244 @@
   object-fit: cover;
 }
 
-/* The preview clip fades in over the photo on hover */
-.video {
-  opacity: 0;
-  transition: opacity 0.3s ease;
-}
-
-.card:hover .video {
-  opacity: 1;
-}
-
-.playButton {
+/* ---------- Hover preview ----------
+   The Vidalytics embed doubles as the preview source: it fades in over the
+   poster, but only its raw <video> is shown. Everything the player draws on
+   top (controls, unmute prompt, thumbnail) is hidden, and the box it reserves
+   for 16:9 is overridden so the footage crops to the card's vertical frame.
+   `pointer-events: none` keeps the play button — and the player's own overlays
+   — out of the way of the click that opens the modal. */
+.preview {
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  inset: 0;
+  z-index: 1;
+  overflow: hidden;
+  pointer-events: none;
+  animation: previewFade 0.3s ease both;
+}
+
+@keyframes previewFade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Vidalytics rewrites this node's inline style (16:9 via padding-top), so
+   these have to win over it. */
+.preview > div,
+.preview > div > div {
+  position: absolute !important;
+  inset: 0;
+  width: 100% !important;
+  height: 100% !important;
+  padding-top: 0 !important;
+}
+
+.preview :global(.Tech__wrapper) {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.preview :global(.Tech__wrapper) > *:not(video) {
+  display: none !important;
+}
+
+.preview :global(.Tech__video) {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Bottom-up scrim so the overlaid text stays readable over any frame.
+   Above .preview so the quote and play button survive the hover video. */
+.scrim {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0) 52.26%,
+    rgba(0, 0, 0, 0.92) 100%
+  );
+}
+
+/* Stacks the play area over the text so they can never overlap */
+.content {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+}
+
+.stage {
+  flex: 1;
+  min-height: 0;
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 76px;
-  height: 76px;
-  padding-left: 4px;
+}
+
+.playButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 88px;
+  height: 88px;
+  /* Optically centres the triangle inside the circle */
+  padding-left: 5px;
   border-radius: 50%;
   border: 2px solid rgba(255, 255, 255, 0.9);
   background: rgba(255, 255, 255, 0.12);
   color: var(--color-white);
+  cursor: pointer;
   backdrop-filter: blur(2px);
   -webkit-backdrop-filter: blur(2px);
   transition:
     transform 0.3s cubic-bezier(0.22, 1, 0.36, 1),
-    background 0.3s ease;
+    background 0.3s ease,
+    opacity 0.3s ease;
 }
 
-.card:hover .playButton {
+.playButton:hover {
   background: rgba(255, 255, 255, 0.28);
-  transform: translate(-50%, -50%) scale(1.06);
+  transform: scale(1.06);
 }
 
-/* ---------- Text content ---------- */
+/* ---------- Overlaid text ---------- */
 .body {
-  flex: 1;
   display: flex;
   flex-direction: column;
-  gap: 32px;
+  gap: 16px;
+  padding: 0 24px 24px;
 }
 
 .quote {
-  font-family: var(--font-display);
-  font-size: 32px;
-  font-weight: 600;
-  letter-spacing: -1.28px;
-  line-height: 1.15;
-  color: var(--color-black);
+  font-size: 24px;
+  font-weight: 500;
+  letter-spacing: -0.96px;
+  line-height: 1.4;
+  color: var(--color-white);
 }
 
 .person {
   display: flex;
   align-items: center;
-  gap: 32px;
+  justify-content: space-between;
+  gap: 16px;
 }
 
 .identity {
   display: flex;
   flex-direction: column;
-  gap: 2px;
+  min-width: 0;
 }
 
 .name {
-  font-size: 18px;
+  font-size: 20px;
   font-weight: 600;
-  letter-spacing: -0.36px;
+  letter-spacing: -0.8px;
   line-height: 1.4;
-  color: var(--color-black);
+  color: var(--color-white);
 }
 
 .role {
-  font-size: 15px;
+  font-size: 16px;
   font-weight: 500;
-  letter-spacing: -0.3px;
+  letter-spacing: -0.64px;
   line-height: 1.4;
-  color: var(--color-text-secondary);
+  color: #989898;
 }
 
 .logo {
-  height: 40px;
-  width: auto;
-  object-fit: contain;
   flex-shrink: 0;
-  /* The source wordmark is monochrome; render it black on the light section */
-  filter: brightness(0);
-  opacity: 0.85;
+  width: 123px;
+  height: 60px;
+  object-fit: contain;
+  /* Source wordmark is monochrome; render it white over the video */
+  filter: brightness(0) invert(1);
 }
 
-/* ---------- Tablet / Mobile: stack video over text ---------- */
+/* ---------- Tablet (768–1199px): same 3 columns, scaled down ---------- */
 @media (max-width: 1199px) {
-  .card {
-    flex-direction: column;
-    align-items: stretch;
-    gap: 32px;
-  }
-
-  .media {
-    width: 100%;
-    aspect-ratio: 16 / 9;
+  .playButton {
+    width: 72px;
+    height: 72px;
   }
 
   .body {
-    gap: 24px;
+    gap: 12px;
+    padding: 0 16px 16px;
+  }
+
+  .quote {
+    font-size: 18px;
+    letter-spacing: -0.72px;
+  }
+
+  .name {
+    font-size: 16px;
+    letter-spacing: -0.64px;
+  }
+
+  .role {
+    font-size: 13px;
+    letter-spacing: -0.52px;
+  }
+
+  .logo {
+    width: 84px;
+    height: 42px;
   }
 }
 
+/* ---------- Mobile (<768px): one card per view, so text goes back up ---------- */
 @media (max-width: 767px) {
-  .quote {
-    font-size: 26px;
-    letter-spacing: -1.04px;
+  .body {
+    gap: 16px;
+    padding: 0 24px 24px;
   }
 
-  .playButton {
-    width: 60px;
-    height: 60px;
+  .quote {
+    font-size: 22px;
+    letter-spacing: -0.88px;
+  }
+
+  .name {
+    font-size: 18px;
+    letter-spacing: -0.72px;
+  }
+
+  .role {
+    font-size: 15px;
+    letter-spacing: -0.6px;
+  }
+
+  .logo {
+    width: 110px;
+    height: 54px;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .video,
+  .preview {
+    animation: none;
+  }
+
   .playButton {
     transition: none;
+  }
+
+  .playButton:hover {
+    transform: none;
   }
 }

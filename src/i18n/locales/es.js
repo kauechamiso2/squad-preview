@@ -91,6 +91,8 @@ export default {
     clientes: {
       title:
         'El problema nunca fue vender.\nEra lograr atender a quien quería comprar.',
+      /* Se une al nombre: "Ver testimonio de Júlia Nussbacker" */
+      watch: 'Ver testimonio de',
     },
     seguranca: {
       title: 'La seguridad de nivel corporativo\nestá en nuestro ADN',

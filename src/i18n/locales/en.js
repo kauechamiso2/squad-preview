@@ -91,6 +91,8 @@ export default {
     clientes: {
       title:
         'The problem was never selling.\nIt was keeping up with everyone who wanted to buy.',
+      /* Joined with the name: "Watch testimonial from Júlia Nussbacker" */
+      watch: 'Watch testimonial from',
     },
     seguranca: {
       title: 'Enterprise-grade security\nis in our DNA',

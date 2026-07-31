@@ -91,6 +91,8 @@ export default {
     clientes: {
       title:
         'O problema não era vender.\nEra conseguir atender quem queria comprar.',
+      /* Concatenados com o nome: "Assistir depoimento de Júlia Nussbacker" */
+      watch: 'Assistir depoimento de',
     },
     seguranca: {
       title: 'Segurança de nível corporativo\nestá no nosso DNA',
