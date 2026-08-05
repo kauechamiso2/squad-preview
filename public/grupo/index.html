@@ -140,5 +140,68 @@ fbq('track', 'PageView');
 	<!-- Start of bodyEnd -->
     
     <!-- End of bodyEnd -->
+<script>
+(function () {
+  var BTN_TEXT = 'GARANTIR MEU ACESSO';
+
+  function makeEventId() {
+    if (window.crypto && crypto.randomUUID) return crypto.randomUUID();
+    return 'lead-' + Date.now() + '-' + Math.random().toString(36).slice(2, 10);
+  }
+
+  function installLeadGuard() {
+    if (!window.fbq || window.fbq.__wazGuarded) return;
+    var original = window.fbq;
+    function guarded() {
+      var isLead =
+        (arguments[0] === 'track' || arguments[0] === 'trackCustom') &&
+        arguments[1] === 'Lead';
+      if (isLead && window.__wazLeadFired) return;
+      if (isLead) window.__wazLeadFired = true;
+      return original.apply(this, arguments);
+    }
+    for (var k in original) guarded[k] = original[k];
+    guarded.__wazGuarded = true;
+    window.fbq = guarded;
+  }
+
+  function fireLead() {
+    if (window.__wazLeadFired) return;
+    if (typeof window.fbq !== 'function') return;
+    installLeadGuard();
+    var eventId = makeEventId();
+    window.__wazLeadEventId = eventId;
+    window.fbq('track', 'Lead', {}, { eventID: eventId });
+    window.__wazLeadFired = true;
+  }
+
+  document.addEventListener(
+    'click',
+    function (ev) {
+      var el = ev.target;
+      for (var i = 0; i < 6 && el && el !== document.body; i++) {
+        var txt = (el.innerText || '').toUpperCase();
+        if (
+          (el.tagName === 'A' || el.tagName === 'BUTTON') &&
+          txt.indexOf(BTN_TEXT) !== -1
+        ) {
+          fireLead();
+          return;
+        }
+        el = el.parentElement;
+      }
+    },
+    true
+  );
+
+  var tries = 0;
+  var t = setInterval(function () {
+    if (window.fbq || ++tries > 40) {
+      installLeadGuard();
+      clearInterval(t);
+    }
+  }, 250);
+})();
+</script>
 </body>
 </html>
