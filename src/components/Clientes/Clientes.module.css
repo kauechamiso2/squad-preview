@@ -9,18 +9,6 @@
 
 .header {
   display: flex;
-  align-items: flex-end;
-  justify-content: space-between;
-  width: 100%;
-  max-width: var(--page-max-width);
-  margin: 0 auto;
-  padding: 0 var(--page-padding-x);
-}
-
-/* Single featured case: title stands alone, centered like the site's
-   other single-headline sections (no arrows to balance against) */
-.headerCentered {
-  display: flex;
   justify-content: center;
   width: 100%;
   max-width: var(--page-max-width);
@@ -37,35 +25,12 @@
   text-align: center;
 }
 
-.header .title {
-  text-align: left;
-}
-
-/* Same full-bleed scroll track pattern as the characters carousel.
-   Extra vertical padding leaves room for the hover scale-up. */
-.track {
-  --track-inset: max(
-    var(--page-padding-x),
-    calc((100% - var(--page-max-width)) / 2 + var(--page-padding-x))
-  );
-  display: flex;
+/* Two featured cases side by side (matches the content width: two 572px
+   cards + 20px gap = 1164px). */
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
   gap: 20px;
-  overflow-x: auto;
-  overflow-y: hidden;
-  overscroll-behavior-y: contain;
-  touch-action: pan-x;
-  scroll-snap-type: x mandatory;
-  scroll-padding-inline: var(--track-inset);
-  padding: 12px var(--track-inset);
-  scrollbar-width: none;
-}
-
-.track::-webkit-scrollbar {
-  display: none;
-}
-
-/* Single featured case: centered block, no scroll track, card fills the row */
-.single {
   width: 100%;
   max-width: var(--page-max-width);
   margin: 0 auto;
@@ -80,8 +45,7 @@
     padding: 82px 0 24px;
   }
 
-  .header,
-  .headerCentered {
+  .header {
     padding: 0 24px;
   }
 
@@ -91,31 +55,40 @@
     max-width: 100%;
   }
 
-  .track {
-    --track-inset: 24px;
-  }
-
-  .single {
+  .grid {
     padding: 0 24px;
   }
 }
 
-/* ---------- Mobile (<768px) ---------- */
+/* ---------- Mobile (<768px): horizontal scroll (swipe) ---------- */
 @media (max-width: 767px) {
   .section {
     padding: 82px 0 24px;
   }
 
-  .header,
-  .headerCentered {
+  .header {
     padding: 0 16px;
   }
 
-  .track {
-    --track-inset: 16px;
+  .grid {
+    grid-template-columns: none;
+    grid-auto-flow: column;
+    grid-auto-columns: 85%;
+    gap: 12px;
+    padding: 0 16px;
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    touch-action: pan-x;
+    scroll-snap-type: x mandatory;
+    scroll-padding-inline: 16px;
+    scrollbar-width: none;
   }
 
-  .single {
-    padding: 0 16px;
+  .grid::-webkit-scrollbar {
+    display: none;
+  }
+
+  .grid > * {
+    scroll-snap-align: center;
   }
 }

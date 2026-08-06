@@ -1,23 +1,30 @@
-/* Featured case row: video thumbnail (left) + testimonial text (right) + arrow */
+/* Full-bleed portrait video card with the testimonial overlaid on the bottom */
 .card {
-  display: flex;
-  align-items: center;
-  gap: 64px;
-  width: 100%;
-  cursor: pointer;
-}
-
-/* ---------- Video thumbnail ---------- */
-.media {
   position: relative;
-  flex-shrink: 0;
-  width: 54%;
-  aspect-ratio: 16 / 10;
-  border-radius: 16px;
+  display: block;
+  width: 100%;
+  aspect-ratio: 572 / 660;
+  border-radius: 20px;
   overflow: hidden;
-  background: #f0efff;
+  cursor: pointer;
+  background: #14201c;
+  box-shadow: 0 24px 48px -16px rgba(20, 32, 28, 0.28);
+  transition:
+    transform 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.4s ease;
 }
 
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 32px 60px -18px rgba(20, 32, 28, 0.36);
+}
+
+.card:focus-visible {
+  outline: 3px solid var(--color-black);
+  outline-offset: 3px;
+}
+
+/* ---------- Media ---------- */
 .photo,
 .video {
   position: absolute;
@@ -27,64 +34,56 @@
   object-fit: cover;
 }
 
-/* The preview clip fades in over the photo on hover */
+/* The preview clip fades in over the thumbnail on hover */
 .video {
   opacity: 0;
-  transition: opacity 0.3s ease;
+  transition: opacity 0.4s ease;
 }
 
 .card:hover .video {
   opacity: 1;
 }
 
-.playButton {
+/* Dark gradient over the media so the white text stays legible. Matches the
+   Figma's two stacked layers: a base fade to solid black (from ~53%) plus the
+   "Rectangle 3" fade to rgba(0,0,0,0.6) (from ~34%). Together they reach
+   near-black at the bottom. Top layer listed first. */
+.overlay {
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 76px;
-  height: 76px;
-  padding-left: 4px;
-  border-radius: 50%;
-  border: 2px solid rgba(255, 255, 255, 0.9);
-  background: rgba(255, 255, 255, 0.12);
-  color: var(--color-white);
-  backdrop-filter: blur(2px);
-  -webkit-backdrop-filter: blur(2px);
-  transition:
-    transform 0.3s cubic-bezier(0.22, 1, 0.36, 1),
-    background 0.3s ease;
+  inset: 0;
+  background:
+    linear-gradient(to bottom, rgba(0, 0, 0, 0) 33.8%, rgba(0, 0, 0, 0.6) 89%),
+    linear-gradient(to bottom, rgba(0, 0, 0, 0) 52.7%, rgba(0, 0, 0, 1) 109.6%);
+  pointer-events: none;
 }
 
-.card:hover .playButton {
-  background: rgba(255, 255, 255, 0.28);
-  transform: translate(-50%, -50%) scale(1.06);
-}
-
-/* ---------- Text content ---------- */
+/* ---------- Overlaid text ---------- */
 .body {
-  flex: 1;
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
   display: flex;
   flex-direction: column;
-  gap: 32px;
+  gap: 16px;
+  padding: 24px 24px 32px;
+  color: var(--color-white);
 }
 
 .quote {
   font-family: var(--font-display);
-  font-size: 32px;
-  font-weight: 600;
-  letter-spacing: -1.28px;
-  line-height: 1.15;
-  color: var(--color-black);
+  font-size: 24px;
+  font-weight: 500;
+  letter-spacing: -0.96px;
+  line-height: 1.3;
+  color: var(--color-white);
 }
 
 .person {
   display: flex;
   align-items: center;
-  gap: 32px;
+  justify-content: space-between;
+  gap: 16px;
 }
 
 .identity {
@@ -98,7 +97,7 @@
   font-weight: 600;
   letter-spacing: -0.36px;
   line-height: 1.4;
-  color: var(--color-black);
+  color: var(--color-white);
 }
 
 .role {
@@ -106,52 +105,43 @@
   font-weight: 500;
   letter-spacing: -0.3px;
   line-height: 1.4;
-  color: var(--color-text-secondary);
+  color: rgba(255, 255, 255, 0.7);
 }
 
 .logo {
-  height: 40px;
   width: auto;
   object-fit: contain;
   flex-shrink: 0;
-  /* The source wordmark is monochrome; render it black on the light section */
-  filter: brightness(0);
-  opacity: 0.85;
 }
 
-/* ---------- Tablet / Mobile: stack video over text ---------- */
-@media (max-width: 1199px) {
-  .card {
-    flex-direction: column;
-    align-items: stretch;
-    gap: 32px;
-  }
-
-  .media {
-    width: 100%;
-    aspect-ratio: 16 / 9;
-  }
-
-  .body {
-    gap: 24px;
-  }
+.logoWordmark {
+  height: 32px;
 }
 
+.logoEmblem {
+  height: 60px;
+}
+
+/* ---------- Tablet / Mobile: stack to one column ---------- */
 @media (max-width: 767px) {
-  .quote {
-    font-size: 26px;
-    letter-spacing: -1.04px;
+  .card {
+    aspect-ratio: 4 / 5;
+    border-radius: 16px;
   }
 
-  .playButton {
-    width: 60px;
-    height: 60px;
+  .quote {
+    font-size: 22px;
+    letter-spacing: -0.88px;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .video,
-  .playButton {
+  .card,
+  .video {
     transition: none;
+  }
+
+  .card:hover {
+    transform: none;
   }
 }
