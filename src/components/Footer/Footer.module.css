@@ -74,14 +74,25 @@
 }
 
 .link {
+  display: inline-block;
+  /* padding forma a "caixinha"; a margin negativa compensa, mantendo o texto
+     na mesma posição e o espaçamento da lista intacto — a caixa só aparece no
+     hover, extrapolando o texto. */
+  padding: 8px 12px;
+  margin: -8px -12px;
+  border-radius: 8px;
   font-size: 16.5px;
   letter-spacing: -0.33px;
   line-height: 1.15;
   color: var(--color-text-secondary);
+  transition:
+    color 0.18s ease,
+    background 0.18s ease;
 }
 
 .link:hover {
   color: var(--color-black);
+  background: #f5f5f6;
 }
 
 /* Scales proportionally: height follows the SVG's intrinsic aspect ratio */

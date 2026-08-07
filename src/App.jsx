@@ -15,6 +15,7 @@ import Aprendizagem from './pages/Aprendizagem/Aprendizagem';
 import Integracoes from './pages/Integracoes/Integracoes';
 import Conhecimento from './pages/Conhecimento/Conhecimento';
 import Catalogo from './pages/Catalogo/Catalogo';
+import Download from './pages/Download/Download';
 
 /* Roteamento por caminho da URL — toda página compartilha Navbar e Footer */
 const PAGES = {
@@ -29,6 +30,7 @@ const PAGES = {
   '/integracoes': Integracoes,
   '/conhecimento': Conhecimento,
   '/catalogo': Catalogo,
+  '/download': Download,
 };
 
 function App({ path }) {

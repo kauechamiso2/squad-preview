@@ -6,6 +6,8 @@ export default {
     plans: 'Planes',
     resources: 'Recursos',
     contact: 'Contáctanos',
+    login: 'Iniciar sesión',
+    download: 'Descarga la app',
     segments: {
       waz: 'Ventas y Atención al Cliente',
       maky: 'Marketing',
@@ -36,6 +38,7 @@ export default {
     privacy: 'Política de Privacidad',
     contact: 'Contacto',
     social: 'Redes',
+    download: 'Download',
   },
   home: {
     hero: {
@@ -698,6 +701,22 @@ export default {
           a: 'Pipo analiza cada currículo según los criterios de la vacante que definiste y muestra a quien más encaja, con el porqué de cada recomendación. La decisión final sigue siendo tuya: organiza el embudo y adelanta el trabajo pesado para que elijas con más claridad.',
         },
       ],
+    },
+    download: {
+      hero: {
+        title: 'Accede a Squad\ndesde cualquier lugar',
+        subtitle:
+          'iOS, Android, ordenador o navegador: es el mismo Squad en todos. Ábrelo donde estés y continúa exactamente donde lo dejaste.',
+      },
+      mobile: {
+        eyebrow: 'Disponible',
+        title: 'Descarga Squad\nen tu celular',
+        subtitle:
+          'Misma cuenta, mismo equipo, misma memoria. Lo que los agentes hicieron mientras no estabas ya está ahí cuando abres la app.',
+      },
+      desktop: {
+        title: 'Squad desktop',
+      },
     },
   },
 };

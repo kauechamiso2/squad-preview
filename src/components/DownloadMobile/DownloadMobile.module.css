@@ -1,0 +1,184 @@
+.section {
+  max-width: var(--page-max-width);
+  margin: 0 auto;
+  padding: 40px var(--page-padding-x);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 40px;
+}
+
+.text {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 24px;
+  flex: 0 0 453px;
+  max-width: 100%;
+}
+
+/* Eyebrow com gradiente roxo -> claro -> rosa (Figma), clipado no texto */
+.eyebrow {
+  font-weight: 500;
+  font-size: 16px;
+  letter-spacing: -0.32px;
+  line-height: 1.4;
+  text-transform: uppercase;
+  background: linear-gradient(94deg, #9656f1 0%, #cee5e6 47%, #ffd2ea 90%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.title {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 40px;
+  line-height: 1;
+  letter-spacing: -0.8px;
+  color: var(--color-black);
+}
+
+.subtitle {
+  font-size: 16px;
+  line-height: 1.4;
+  letter-spacing: -0.64px;
+  color: var(--color-text-secondary);
+}
+
+.buttons {
+  display: flex;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+/* Pill cinza-claro com borda branca sutil (Figma) + logo preto */
+.storeBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+  background: #f4f5f5;
+  border: 2.2px solid rgba(255, 255, 255, 0.29);
+  border-radius: 12px;
+  color: var(--color-black);
+  font-weight: 500;
+  font-size: 16px;
+  letter-spacing: -0.32px;
+  line-height: 1.15;
+  white-space: nowrap;
+  transition: transform 0.16s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.storeBtn:active {
+  transform: scale(0.98);
+}
+
+.labelWrap {
+  display: inline-flex;
+  align-items: center;
+}
+
+/* Seta escondida em repouso; desliza pra direita no hover (padrão do site) */
+.arrow {
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-end;
+  width: 0;
+  opacity: 0;
+  overflow: hidden;
+  transform: translateX(-6px);
+  transition:
+    width 0.25s cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 0.25s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.arrow svg {
+  flex-shrink: 0;
+}
+
+.storeBtn:hover .arrow {
+  width: 20px;
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.tiles {
+  flex: 0 1 570px;
+  min-width: 0;
+  height: auto;
+}
+
+/* --- Tablet + Mobile: empilha e centraliza --- */
+@media (max-width: 1199px) {
+  .section {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 8px;
+    padding: 40px 24px;
+  }
+
+  .text {
+    align-items: center;
+    flex: 0 0 auto;
+    max-width: 560px;
+  }
+
+  .tiles {
+    flex: 0 0 auto;
+    width: 480px;
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 767px) {
+  .section {
+    padding: 24px 16px;
+  }
+
+  .title {
+    font-size: 34px;
+  }
+
+  /* Botões lado a lado dividindo a largura (Figma mobile) */
+  .buttons {
+    width: 100%;
+    flex-wrap: nowrap;
+    gap: 12px;
+  }
+
+  .storeBtn {
+    flex: 1 1 0;
+    min-width: 0;
+    justify-content: center;
+    padding: 12px 10px;
+    gap: 8px;
+    font-size: 14px;
+    letter-spacing: -0.28px;
+  }
+
+  .storeBtn svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  .tiles {
+    width: 100%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .storeBtn {
+    transition: none;
+  }
+
+  .storeBtn:active {
+    transform: none;
+  }
+
+  .arrow {
+    transition: none;
+  }
+}

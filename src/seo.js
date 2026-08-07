@@ -72,6 +72,12 @@ export const SEO = {
       'Produtos e Serviços reúne o que você vende, o preço e o estoque num só lugar. Todo agente do Squad vende a partir dessa mesma informação, então preço, prazo e disponibilidade nunca ficam desencontrados.',
     path: '/catalogo',
   },
+  '/download': {
+    title: 'Download — o Squad em iOS, Android, Mac e Windows',
+    description:
+      'Baixe o Squad e acesse seus agentes de qualquer lugar: iOS, Android, computador ou navegador. Você abre onde estiver e continua exatamente de onde parou.',
+    path: '/download',
+  },
 };
 
 // Per-locale title/description overrides. Structural fields (path) stay on the
@@ -134,6 +140,11 @@ export const SEO_I18N = {
       description:
         'Products and Services brings together what you sell, the price and the stock in one place. Every Squad agent sells from that same information, so price, delivery time and availability never fall out of sync.',
     },
+    '/download': {
+      title: 'Download — Squad on iOS, Android, Mac and Windows',
+      description:
+        'Download Squad and reach your agents from anywhere: iOS, Android, desktop or browser. Open it wherever you are and pick up exactly where you left off.',
+    },
   },
   es: {
     '/': {
@@ -190,6 +201,11 @@ export const SEO_I18N = {
       title: 'Catálogo — cárgalo una vez, todo agente vende bien | Squad',
       description:
         'Productos y Servicios reúne lo que vendes, el precio y el stock en un solo lugar. Todo agente de Squad vende a partir de esa misma información, así el precio, el plazo y la disponibilidad nunca quedan desencontrados.',
+    },
+    '/download': {
+      title: 'Descarga — Squad en iOS, Android, Mac y Windows',
+      description:
+        'Descarga Squad y accede a tus agentes desde cualquier lugar: iOS, Android, ordenador o navegador. Ábrelo donde estés y continúa exactamente donde lo dejaste.',
     },
   },
 };

@@ -1,0 +1,135 @@
+.hero {
+  max-width: var(--page-max-width);
+  margin: 0 auto;
+  /* Padding lateral pequeno (20px, como a margem do Banner no Figma: 1400 num
+     frame de 1440) para o visual ocupar quase toda a largura — o texto fica
+     centralizado por conta própria (.content tem max-width). */
+  padding: 120px 20px 56px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 64px;
+  /* Clip só o transbordo horizontal; o visual pode transbordar na vertical. */
+  overflow-x: clip;
+}
+
+/* --- Bloco de texto --- */
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 40px;
+  text-align: center;
+  max-width: 692px;
+  width: 100%;
+}
+
+.title {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 64px;
+  line-height: 0.9;
+  letter-spacing: -2.56px;
+  color: var(--color-black);
+}
+
+.subtitle {
+  max-width: 688px;
+  font-size: 20px;
+  line-height: 1.4;
+  letter-spacing: -0.8px;
+  color: var(--color-text-secondary);
+}
+
+.ctaRow {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+/* --- Visual (imagem composta: dashboard + phone + personagens) --- */
+.visual {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.image {
+  width: 100%;
+  height: auto;
+  max-width: 1400px;
+}
+
+/* Um visual por breakpoint */
+.desktop {
+  display: block;
+}
+
+.tablet,
+.mobile {
+  display: none;
+}
+
+/* --- Tablet --- */
+@media (max-width: 1199px) {
+  .hero {
+    padding: 96px 20px 80px;
+    gap: 56px;
+  }
+
+  .title {
+    font-size: 48px;
+    letter-spacing: -1.92px;
+  }
+
+  .subtitle {
+    font-size: 18px;
+    letter-spacing: -0.6px;
+  }
+
+  .desktop {
+    display: none;
+  }
+
+  .tablet {
+    display: block;
+  }
+
+  .image {
+    max-width: 834px;
+  }
+}
+
+/* --- Mobile --- */
+@media (max-width: 767px) {
+  .hero {
+    padding: 64px 16px 56px;
+    gap: 40px;
+  }
+
+  .content {
+    gap: 28px;
+  }
+
+  .title {
+    font-size: 34px;
+    letter-spacing: -1.2px;
+  }
+
+  .subtitle {
+    font-size: 16px;
+    letter-spacing: -0.4px;
+  }
+
+  .tablet {
+    display: none;
+  }
+
+  .mobile {
+    display: block;
+  }
+
+  .image {
+    max-width: 436px;
+  }
+}

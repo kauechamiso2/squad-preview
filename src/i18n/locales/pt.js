@@ -6,6 +6,8 @@ export default {
     plans: 'Planos',
     resources: 'Recursos',
     contact: 'Fale conosco',
+    login: 'Entrar',
+    download: 'Faça o download',
     segments: {
       waz: 'Vendas e Atendimento',
       maky: 'Marketing',
@@ -36,6 +38,7 @@ export default {
     privacy: 'Política de Privacidade',
     contact: 'Contato',
     social: 'Redes',
+    download: 'Download',
   },
   home: {
     hero: {
@@ -698,6 +701,22 @@ export default {
           a: 'O Pipo analisa cada currículo com base nos critérios da vaga que você definiu e mostra quem tem mais aderência, com o porquê de cada indicação. A decisão final continua sua. Ele organiza o funil e adianta o trabalho pesado pra você escolher com mais clareza.',
         },
       ],
+    },
+    download: {
+      hero: {
+        title: 'Acesse o Squad\nde qualquer lugar',
+        subtitle:
+          'iOS, Android, computador ou navegador: é o mesmo Squad em todos. Você abre onde estiver e continua exatamente de onde parou.',
+      },
+      mobile: {
+        eyebrow: 'Disponível',
+        title: 'Baixe o Squad\nno seu celular',
+        subtitle:
+          'Mesma conta, mesmo time, mesma memória. O que os agentes fizeram enquanto você estava fora já está lá quando você abre o app.',
+      },
+      desktop: {
+        title: 'Squad desktop',
+      },
     },
   },
 };
