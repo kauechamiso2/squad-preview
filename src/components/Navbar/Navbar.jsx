@@ -1,5 +1,11 @@
 import { useEffect, useRef, useState } from 'react';
-import { Brain, PuzzlePiece, Storefront } from '@phosphor-icons/react';
+import {
+  Brain,
+  PuzzlePiece,
+  Storefront,
+  AppleLogo,
+  AndroidLogo,
+} from '@phosphor-icons/react';
 import Button from '../ui/Button';
 import logo from '../../assets/logo-squad.svg';
 import avatarMaky from '../../assets/avatar-maky.png';
@@ -8,7 +14,7 @@ import avatarFin from '../../assets/avatar-fin.png';
 import avatarOpy from '../../assets/avatar-opy-new.png';
 import avatarPipo from '../../assets/avatar-pipo-new.png';
 import avatarJuri from '../../assets/avatar-juri-new.png';
-import { WHATSAPP_CONTACT } from '../../links';
+import { WHATSAPP_CONTACT, APP_LOGIN_URL } from '../../links';
 import { withBase } from '../../base';
 import { useLocale } from '../../i18n/LocaleContext.jsx';
 import LanguageSelector from './LanguageSelector';
@@ -214,11 +220,10 @@ function Navbar() {
 
         <div className={styles.actions}>
           <LanguageSelector />
-          {/* TODO: apontar para a URL real de login e i18n do rótulo */}
-          <a href="#" className={styles.login}>
-            Entrar
+          <a href={APP_LOGIN_URL} className={styles.login}>
+            {t('nav.login')}
           </a>
-          <Button size="md" href={WHATSAPP_CONTACT} withArrow>
+          <Button size="md" href={WHATSAPP_CONTACT}>
             {t('nav.contact')}
           </Button>
           <button
@@ -290,6 +295,16 @@ function Navbar() {
               </div>
             </>
           )}
+
+          {/* Ação final do menu — Entrar (tablet) vira Faça o Download (mobile) */}
+          <a href={APP_LOGIN_URL} className={styles.menuLogin}>
+            {t('nav.login')}
+          </a>
+          <a href="#" className={styles.menuDownload}>
+            <AppleLogo size={20} weight="fill" aria-hidden="true" />
+            <AndroidLogo size={20} weight="fill" aria-hidden="true" />
+            {t('nav.download')}
+          </a>
         </div>
       )}
     </header>

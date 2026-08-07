@@ -1,0 +1,84 @@
+/* Pill preto do Figma (frame 1703:87): 452×44, raio 12, sombra suave, logo +
+   texto Inter Medium 14. Largura fixa no desktop; ocupa toda a coluna no
+   tablet/mobile (como no design). */
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  width: 452px;
+  max-width: 100%;
+  height: 44px;
+  padding: 0 24px;
+  background: var(--color-black);
+  color: var(--color-white);
+  border-radius: 12px;
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: 14px;
+  letter-spacing: -0.28px;
+  line-height: 1.15;
+  white-space: nowrap;
+  box-shadow: 0 4px 15.5px rgba(0, 0, 0, 0.09);
+  /* Feedback de clique: encolhe de leve ao pressionar (padrão do site) */
+  transition: transform 0.16s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.button:active {
+  transform: scale(0.98);
+}
+
+.icon {
+  flex-shrink: 0;
+}
+
+.labelWrap {
+  display: inline-flex;
+  align-items: center;
+}
+
+/* Seta escondida em repouso; desliza pra direita no hover (padrão do site) */
+.arrow {
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-end;
+  width: 0;
+  opacity: 0;
+  overflow: hidden;
+  transform: translateX(-6px);
+  transition:
+    width 0.25s cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 0.25s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.arrow svg {
+  flex-shrink: 0;
+}
+
+.button:hover .arrow {
+  width: 22px;
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Tablet e mobile: ocupa toda a largura da coluna de conteúdo */
+@media (max-width: 1199px) {
+  .button {
+    width: 100%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .button {
+    transition: none;
+  }
+
+  .button:active {
+    transform: none;
+  }
+
+  .arrow {
+    transition: none;
+  }
+}

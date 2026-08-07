@@ -35,6 +35,13 @@ const LINK_GROUPS = [
       },
     ],
   },
+  {
+    titleKey: 'footer.download',
+    links: [
+      { label: 'iOS & Android', href: '/download' },
+      { label: 'Mac & Windows', href: '/download' },
+    ],
+  },
 ];
 
 function Footer() {
@@ -53,16 +60,20 @@ function Footer() {
                     const text = labelKey ? t(labelKey) : label;
                     return (
                       <li key={text}>
-                        <a
-                          href={external ? href : withBase(href)}
-                          className={styles.link}
-                          {...(external && {
-                            target: '_blank',
-                            rel: 'noopener noreferrer',
-                          })}
-                        >
-                          {text}
-                        </a>
+                        {href ? (
+                          <a
+                            href={external ? href : withBase(href)}
+                            className={styles.link}
+                            {...(external && {
+                              target: '_blank',
+                              rel: 'noopener noreferrer',
+                            })}
+                          >
+                            {text}
+                          </a>
+                        ) : (
+                          <span className={styles.link}>{text}</span>
+                        )}
                       </li>
                     );
                   })}

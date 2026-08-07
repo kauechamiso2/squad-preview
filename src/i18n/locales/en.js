@@ -6,6 +6,8 @@ export default {
     plans: 'Plans',
     resources: 'Resources',
     contact: 'Contact us',
+    login: 'Log in',
+    download: 'Download the app',
     segments: {
       waz: 'Sales & Support',
       maky: 'Marketing',
@@ -36,6 +38,7 @@ export default {
     privacy: 'Privacy Policy',
     contact: 'Contact',
     social: 'Social',
+    download: 'Download',
   },
   home: {
     hero: {
@@ -698,6 +701,22 @@ export default {
           a: 'Pipo analyzes each resume against the criteria you set for the role and shows who fits best, with the reasoning behind each suggestion. The final decision is still yours. It organizes the funnel and gets the heavy lifting done so you can choose with more clarity.',
         },
       ],
+    },
+    download: {
+      hero: {
+        title: 'Access Squad\nfrom anywhere',
+        subtitle:
+          "iOS, Android, desktop or browser: it's the same Squad on all of them. Open it wherever you are and pick up exactly where you left off.",
+      },
+      mobile: {
+        eyebrow: 'Available',
+        title: 'Get Squad\non your phone',
+        subtitle:
+          'Same account, same team, same memory. What the agents did while you were away is already there when you open the app.',
+      },
+      desktop: {
+        title: 'Squad desktop',
+      },
     },
   },
 };
