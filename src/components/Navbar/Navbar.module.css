@@ -199,6 +199,32 @@
   gap: 8px;
 }
 
+/* Login como botão OUTLINE — pareia com o CTA sólido (mesma altura/raio/padding
+   do Button md), fundo branco + borda, texto preto. */
+.login {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 40px;
+  padding: 0 20px;
+  font-family: var(--font-body);
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: -0.32px;
+  line-height: 1.15;
+  color: var(--color-black);
+  background: var(--color-white);
+  border: 1px solid #c8cad5;
+  border-radius: 12px;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: border-color 0.18s ease;
+}
+
+.login:hover {
+  border-color: var(--color-black);
+}
+
 /* Hamburger — hidden on desktop */
 .hamburger {
   display: none;
@@ -276,6 +302,11 @@
   }
 
   .links {
+    display: none;
+  }
+
+  /* Login fica só no desktop; no mobile entra pelo menu hambúrguer (a fazer) */
+  .login {
     display: none;
   }
 

@@ -10,6 +10,27 @@ const LANGS = [
   { code: 'es', label: 'Español', short: 'ES' },
 ];
 
+function GlobeIcon() {
+  return (
+    <svg
+      className={styles.globe}
+      width="16"
+      height="16"
+      viewBox="0 0 16 16"
+      fill="none"
+      aria-hidden="true"
+    >
+      <circle cx="8" cy="8" r="6.15" stroke="currentColor" strokeWidth="1.3" />
+      <path
+        d="M1.85 8h12.3M8 1.85c1.75 1.6 2.7 3.85 2.7 6.15S9.75 12.55 8 14.15C6.25 12.55 5.3 10.3 5.3 8S6.25 3.45 8 1.85Z"
+        stroke="currentColor"
+        strokeWidth="1.3"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
+
 function LanguageSelector() {
   const { locale, setLocale, t } = useLocale();
   const [open, setOpen] = useState(false);
@@ -41,6 +62,7 @@ function LanguageSelector() {
         aria-expanded={open}
         onClick={() => setOpen((o) => !o)}
       >
+        <GlobeIcon />
         <span className={styles.code}>{current.short}</span>
         <svg
           className={`${styles.chev} ${open ? styles.chevOpen : ''}`}
