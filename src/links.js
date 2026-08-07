@@ -11,12 +11,12 @@ export const WHATSAPP_CONTACT =
 /* Login do app — usado pelo botão "Entrar" do header */
 export const APP_LOGIN_URL = 'https://app.squad.com';
 
-/* Links de download do app por plataforma, usados pelo botão da /download.
-   TODO: trocar os '#' pelos links reais (App Store, Google Play, instaladores
-   Mac/Windows) quando estiverem disponíveis. */
+/* Links de download do app por plataforma, usados pelos botões da /download
+   (hero ciente do device, bloco mobile e bloco desktop). iOS e Mac apontam para
+   o mesmo app na App Store. */
 export const DOWNLOAD_LINKS = {
-  ios: '#',
-  mac: '#',
-  android: '#',
-  windows: '#',
+  ios: 'https://apps.apple.com/br/app/squad-com/id6765670010?l=en-GB',
+  mac: 'https://apps.apple.com/br/app/squad-com/id6765670010?l=en-GB',
+  android: 'https://play.google.com/store/apps/details?id=com.squad.agents',
+  windows: 'https://apps.microsoft.com/detail/9pps2451m612?hl=pt-BR&gl=BR',
 };
