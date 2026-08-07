@@ -300,7 +300,7 @@ function Navbar() {
           <a href={APP_LOGIN_URL} className={styles.menuLogin}>
             {t('nav.login')}
           </a>
-          <a href="#" className={styles.menuDownload}>
+          <a href={withBase('/download')} className={styles.menuDownload}>
             <AppleLogo size={20} weight="fill" aria-hidden="true" />
             <AndroidLogo size={20} weight="fill" aria-hidden="true" />
             {t('nav.download')}
