@@ -214,6 +214,10 @@ function Navbar() {
 
         <div className={styles.actions}>
           <LanguageSelector />
+          {/* TODO: apontar para a URL real de login e i18n do rótulo */}
+          <a href="#" className={styles.login}>
+            Entrar
+          </a>
           <Button size="md" href={WHATSAPP_CONTACT} withArrow>
             {t('nav.contact')}
           </Button>
