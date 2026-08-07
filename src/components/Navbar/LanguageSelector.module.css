@@ -80,6 +80,7 @@
   background: none;
   cursor: pointer;
   text-align: left;
+  white-space: nowrap;
   font-family: var(--font-body);
   font-size: 14px;
   font-weight: 500;
