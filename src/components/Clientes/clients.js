@@ -3,6 +3,12 @@ import logoBrigadayrosWhite from '../../assets/logo-brigadayros-white.png';
 import arianePhoto from '../../assets/graos-ariane-photo.jpg';
 import logoGraosBrasilWhite from '../../assets/logo-graos-brasil-white.png';
 
+/* Vídeos ficam em /public/videos. Prefixa com a base do Vite (import.meta.env
+   .BASE_URL) para funcionarem também no preview sob subpath — GitHub Pages
+   /squad-preview/ — onde o caminho absoluto "/videos/..." apontaria pra raiz
+   errada. Em produção a base é "/", então nada muda. */
+const video = (name) => `${import.meta.env.BASE_URL}videos/${name}`;
+
 /**
  * Everything on each client card is editable here: quote, name, role,
  * company logo (rendered white over the video), the static thumbnail, a short
@@ -20,7 +26,7 @@ const CASE_JULIA_SUBTITLED = {
 };
 /* O loop de hover do PT tem legenda em português queimada; EN/ES usam a
    versão com legenda em inglês. */
-const CASE_JULIA_PREVIEW_EN = '/videos/case-julia-depoimento-preview-en.mp4';
+const CASE_JULIA_PREVIEW_EN = video('case-julia-depoimento-preview-en.mp4');
 
 /* Grãos Brasil — mesmo depoimento em dois embeds: PT e uma versão
    legendada para EN/ES. O loop de hover segue o idioma da legenda. */
@@ -32,7 +38,7 @@ const GRAOS_VIDALYTICS_INTL = {
   id: 'vidalytics_embed_cwbKJIevmOWPkIzQ',
   url: 'https://fast.vidalytics.com/embeds/prUtymBe/cwbKJIevmOWPkIzQ/',
 };
-const GRAOS_PREVIEW_EN = '/videos/graos-depoimento-preview-en.mp4';
+const GRAOS_PREVIEW_EN = video('graos-depoimento-preview-en.mp4');
 
 const OVERRIDES = {
   en: [
@@ -90,7 +96,7 @@ export const CLIENTS = [
     // diferentes, por isso posições distintas).
     imagePosition: '40% 50%',
     videoPosition: '36% 50%',
-    previewVideo: '/videos/case-julia-depoimento-preview.mp4',
+    previewVideo: video('case-julia-depoimento-preview.mp4'),
     vidalytics: {
       id: 'vidalytics_embed_ELGZBliCVjBkfcJt',
       url: 'https://fast.vidalytics.com/embeds/prUtymBe/ELGZBliCVjBkfcJt/',
@@ -107,7 +113,7 @@ export const CLIENTS = [
     image: arianePhoto,
     imagePosition: '58% 50%',
     videoPosition: '56% 50%',
-    previewVideo: '/videos/graos-depoimento-preview.mp4',
+    previewVideo: video('graos-depoimento-preview.mp4'),
     vidalytics: GRAOS_VIDALYTICS_PT,
   },
 ];
