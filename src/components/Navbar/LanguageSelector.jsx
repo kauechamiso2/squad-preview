@@ -5,7 +5,7 @@ import styles from './LanguageSelector.module.css';
 /* Sem bandeiras: um idioma não mapeia 1:1 com um país (ex.: espanhol não é só
    Espanha). O seletor mostra o código no botão e o nome completo no menu. */
 const LANGS = [
-  { code: 'pt', label: 'Português', short: 'PT' },
+  { code: 'pt', label: 'Português (Brasil)', short: 'PT' },
   { code: 'en', label: 'English', short: 'EN' },
   { code: 'es', label: 'Español', short: 'ES' },
 ];
