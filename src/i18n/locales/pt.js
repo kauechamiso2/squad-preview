@@ -6,7 +6,7 @@ export default {
     plans: 'Planos',
     resources: 'Recursos',
     contact: 'Fale conosco',
-    login: 'Entrar',
+    login: 'Login',
     download: 'Faça o download',
     segments: {
       waz: 'Vendas e Atendimento',

@@ -10,8 +10,10 @@
   letter-spacing: -0.32px;
   line-height: 1.15;
   white-space: nowrap;
-  /* Feedback de clique: encolhe de leve ao pressionar */
-  transition: transform 0.16s cubic-bezier(0.22, 1, 0.36, 1);
+  /* Feedback de clique: encolhe de leve ao pressionar; hover suaviza o fundo */
+  transition:
+    transform 0.16s cubic-bezier(0.22, 1, 0.36, 1),
+    background-color 0.18s ease;
 }
 
 .button:active {
@@ -21,6 +23,12 @@
 .md {
   height: 40px;
   font-weight: 600;
+}
+
+/* Hover sutil no CTA sólido do header (Fale conosco): cinza bem escuro,
+   perto do preto mas perceptível. */
+.solid.md:hover {
+  background: #2b2b2b;
 }
 
 /* Compact the small button on narrow phones so the header fits */
