@@ -4,12 +4,12 @@ import DownloadButton from '../DownloadButton/DownloadButton';
 import { detectOS } from '../../device';
 import { useLocale } from '../../i18n/LocaleContext.jsx';
 import { nl2br } from '../../i18n/nl2br.jsx';
-import visualDesktop from '../../assets/download-hero-desktop.png';
-import visualTablet from '../../assets/download-hero-tablet.png';
-import visualMobile from '../../assets/download-hero-mobile.png';
-import visualDesktopEn from '../../assets/download-hero-desktop-en.png';
-import visualTabletEn from '../../assets/download-hero-tablet-en.png';
-import visualMobileEn from '../../assets/download-hero-mobile-en.png';
+import visualDesktop from '../../assets/download-hero-desktop.webp';
+import visualTablet from '../../assets/download-hero-tablet.webp';
+import visualMobile from '../../assets/download-hero-mobile.webp';
+import visualDesktopEn from '../../assets/download-hero-desktop-en.webp';
+import visualTabletEn from '../../assets/download-hero-tablet-en.webp';
+import visualMobileEn from '../../assets/download-hero-mobile-en.webp';
 import styles from './DownloadHero.module.css';
 
 // Título -> subtítulo -> CTA, em sequência (stagger), como nas outras heroes.
